@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using TMPro;
 
 public class logar : MonoBehaviour
 {
-
+    public TMP_InputField log_nick, log_senha;
     public string site, nick, senha, st1, st2;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(fazerLogin(nick,senha));
+        
     }
 
     // Update is called once per frame
@@ -19,16 +21,18 @@ public class logar : MonoBehaviour
         
     }
 
+    public void botao_login(){
+        nick = log_nick.text;
+        senha = log_senha.text;
+        StartCoroutine(fazerLogin(nick,senha));
+    }
+
     IEnumerator fazerLogin(string login_, string senha_){
         
 
         WWWForm form = new WWWForm();
         form.AddField("nickPost", login_);
         form.AddField("senhaPost", senha_);
-
-        st1 = form.ToString();
-
-        st2 = form.headers.ToString();
 
         UnityWebRequest link = UnityWebRequest.Post(site,form);
 
