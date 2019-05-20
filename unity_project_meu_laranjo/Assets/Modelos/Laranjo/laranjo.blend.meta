@@ -43,6 +43,8 @@ ModelImporter:
     100074: punho_direito
     100076: punho_esquerda
     100078: oculos_dwi
+    100080: bancos_1
+    100082: carroceria_mr_bean
     400000: //RootNode
     400002: Cube
     400004: Icosphere
@@ -83,6 +85,8 @@ ModelImporter:
     400074: punho_direito
     400076: punho_esquerda
     400078: oculos_dwi
+    400080: bancos_1
+    400082: carroceria_mr_bean
     2100000: Material
     2100002: cor_olho_1
     2100004: cor_olho_2
@@ -98,6 +102,8 @@ ModelImporter:
     2300014: sobrancelha_presidencial
     2300016: faixa_presidencial
     2300018: Plane
+    2300020: bancos_1
+    2300022: carroceria_mr_bean
     3300000: //RootNode
     3300002: Cube
     3300004: Icosphere
@@ -108,6 +114,8 @@ ModelImporter:
     3300014: sobrancelha_presidencial
     3300016: faixa_presidencial
     3300018: Plane
+    3300020: bancos_1
+    3300022: carroceria_mr_bean
     4300000: Cube
     4300002: Icosphere
     4300004: olhos
@@ -121,10 +129,21 @@ ModelImporter:
     4300020: bigode_mariate
     4300022: chapel_sadboy
     4300024: oculos_dwi
+    4300026: carroceria_mr_bean
+    4300028: bancos_1
     7400000: Default Take
     7400002: laranjo_andar
     7400004: laranjo_item
     7400006: laranjo_ocio
+    7400008: laranjo_carro_dentro_direita
+    7400010: laranjo_carro_dentro_dirigindo_-1
+    7400012: laranjo_carro_dentro_dirigindo_0
+    7400014: laranjo_carro_dentro_dirigindo_1
+    7400016: laranjo_carro_dentro_esquerda
+    7400018: laranjo_carro_entrar_direita
+    7400020: laranjo_carro_entrar_esquerda
+    7400022: laranjo_carro_sair_direita
+    7400024: laranjo_carro_sair_esquerda
     9500000: //RootNode
     13700000: bigode_mariate
     13700002: cabelo_presidencial
@@ -150,7 +169,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: chapeu_sad_boy__sadboy
-    second: {fileID: 2100000, guid: 8ec6eaab1f8a8ff41bf408b478817609, type: 2}
+    second: {fileID: 2100000, guid: 727fb34a997b2924d928ffca6a42be85, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -171,6 +190,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: faixa_presidencial__faixa_presidencial
     second: {fileID: 2100000, guid: 41bcd8876747d3147b6a39d3044cf576, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_taco__textura_taco
+    second: {fileID: 2100000, guid: d0ee614cbc19ba34da81bb1c2c3ef20c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -244,8 +268,8 @@ ModelImporter:
     - serializedVersion: 16
       name: laranjo_andar
       takeName: laranjo_andar
-      firstFrame: -1
-      lastFrame: 11
+      firstFrame: 1
+      lastFrame: 12
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -272,8 +296,8 @@ ModelImporter:
     - serializedVersion: 16
       name: laranjo_item
       takeName: laranjo_item
-      firstFrame: -1
-      lastFrame: 0
+      firstFrame: 1
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -281,6 +305,258 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_dentro_direita
+      takeName: laranjo_carro_dentro_direita
+      firstFrame: 1
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_dentro_dirigindo_-1
+      takeName: laranjo_carro_dentro_dirigindo_-1
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_dentro_dirigindo_0
+      takeName: laranjo_carro_dentro_dirigindo_0
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_dentro_dirigindo_1
+      takeName: laranjo_carro_dentro_dirigindo_1
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_dentro_esquerda
+      takeName: laranjo_carro_dentro_esquerda
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_entrar_direita
+      takeName: laranjo_carro_entrar_direita
+      firstFrame: 1
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_entrar_esquerda
+      takeName: laranjo_carro_entrar_esquerda
+      firstFrame: 1
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_sair_direita
+      takeName: laranjo_carro_sair_direita
+      firstFrame: 1
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: laranjo_carro_sair_esquerda
+      takeName: laranjo_carro_sair_esquerda
+      firstFrame: 1
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

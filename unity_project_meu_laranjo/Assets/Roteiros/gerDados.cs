@@ -17,29 +17,27 @@ public class gerDados : MonoBehaviour
 
     public TextMeshProUGUI textoMoeda, textoDolar;
 
-    gerenciador ger_jogo_;
-
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         instancia = this;
 
         loginConfigs();
         
-        ger_jogo_ = GameObject.Find("ger_jogo").GetComponent<gerenciador>();
+        gerenciador.instancia = GameObject.Find("ger_jogo").GetComponent<gerenciador>();
         carregar();
         //Debug.Log(ferramentas.Serializar<dados>(dados_));
 
         for(int i = 0; i < (dados_.outfit.Length * 64);i++){
             if(temItemOutfFit(i)){
-                for(int i_ = 0; i_ < ger_jogo_.itens.Count - 1; i++){
-                    if(ger_jogo_.itens[i_] != null){
-                        if(ger_jogo_.itens[i_].id == i){
-                            ger_jogo_.laranjo.GetComponent<design>().MudarMesh(ger_jogo_.itens[i]);
+                for(int i_ = 0; i_ < gerenciador.instancia.itens.Count - 1; i++){
+                    if(gerenciador.instancia.itens[i_] != null){
+                        if(gerenciador.instancia.itens[i_].id == i){
+                            gerenciador.instancia.laranjo.GetComponent<design>().MudarMesh(gerenciador.instancia.itens[i]);
 
-                            if(ger_jogo_.itens[i_].posicao == 5){
-                                ger_jogo_.laranjo.GetComponent<Animator>().SetBool("item",ger_jogo_.itens[i].seguraItem);
+                            if(gerenciador.instancia.itens[i_].posicao == 5){
+                                gerenciador.instancia.laranjo.GetComponent<Animator>().SetBool("item",gerenciador.instancia.itens[i].seguraItem);
                             }
-                            itemAtual[ger_jogo_.itens[i_].posicao] = i;
+                            itemAtual[gerenciador.instancia.itens[i_].posicao] = i;
                         }
                     }
                 }
@@ -143,8 +141,8 @@ public class gerDados : MonoBehaviour
     }
 
     public void trocarOutFit(int id_){
-        removerOutFit(itemAtual[ger_jogo_.itemDeId(id_).posicao]);
-        itemAtual[ger_jogo_.itemDeId(id_).posicao] = ger_jogo_.itemDeId(id_).id;
+        removerOutFit(itemAtual[gerenciador.instancia.itemDeId(id_).posicao]);
+        itemAtual[gerenciador.instancia.itemDeId(id_).posicao] = gerenciador.instancia.itemDeId(id_).id;
         adicionarOutFit(id_);
     }
 }

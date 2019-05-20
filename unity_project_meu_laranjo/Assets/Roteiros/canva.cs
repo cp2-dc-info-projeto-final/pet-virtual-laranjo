@@ -9,6 +9,12 @@ public class canva : MonoBehaviour
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
+
+    public static canva instancia;
+
+    private void Awake() {
+        instancia = this;
+    }
     
 
 
@@ -30,10 +36,10 @@ public class canva : MonoBehaviour
 
 
         if(results.Count == 0){
-            return true;
+            return false;
         }else
         {
-            return false;
+            return true;
         }
 
         
