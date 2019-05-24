@@ -138,6 +138,7 @@ ModelImporter:
     2300020: item (08) - roupa
     2300022: item (09) - colar
     2300024: item (10) - sapato
+    2300026: laranjo
     3300000: bancos_1
     3300002: carroceria_mr_bean
     3300004: roupa
@@ -151,6 +152,7 @@ ModelImporter:
     3300020: item (08) - roupa
     3300022: item (09) - colar
     3300024: item (10) - sapato
+    3300026: laranjo
     4300000: oculos_dwi
     4300002: objeto_taco
     4300004: bigode_mariate
@@ -191,6 +193,8 @@ ModelImporter:
     7400032: carroceria_mr_bean|laranjo_carro_dentro_dirigindo_-1
     7400034: bancos_1|bancos_1Action
     7400036: bancos_1|carroceria_mr_beanAction
+    7400038: esqueleto|laranjo_carro_entrar_esquerda (1)
+    7400040: esqueleto|laranjo_carro_sair_esquerda_ROOT
     9500000: //RootNode
     13700000: bigode_mariate
     13700002: cabelo_presidencial
@@ -440,7 +444,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -504,14 +508,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.8627451
-        functionName: saiu_carro
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -556,6 +553,62 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: esqueleto|laranjo_carro_entrar_esquerda (1)
+      takeName: esqueleto|laranjo_carro_entrar_esquerda
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: esqueleto|laranjo_carro_sair_esquerda_ROOT
+      takeName: esqueleto|laranjo_carro_sair_esquerda_ROOT
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

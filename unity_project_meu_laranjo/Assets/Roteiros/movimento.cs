@@ -167,7 +167,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 
                 destino = entrada_carro;
 
-                if(Vector3.Distance(destino.transform.position, transform.position) > distanciaMax){
+                if(Vector3.Distance(new Vector3(destino.transform.position.x,0,destino.transform.position.z), new Vector3(transform.position.x,0,transform.position.z)) > distanciaMax){
                     andar = true;
                 }else
                 {
@@ -214,17 +214,14 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3 (0,0,0),Time.deltaTime * 8);
             if(entrou_carro){
                 //ani_.applyRootMotion = false;
-                col_.isTrigger = true;
+                //col_.isTrigger = true;
+                col_.enabled = false;
                 ani_.SetTrigger("entrar_esq");
                 entrou_carro = false;
             }
             
 
             controle_carro.SetActive(true);
-
-            if(transform.rotation != entrada_carro.transform.rotation){
-
-            }
 
         }
 
@@ -247,7 +244,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     }
 
     public void botao_sair_carro(){
-        col_.isTrigger = false;
+        //col_.isTrigger = false;
+        col_.enabled = true;
         controle_carro.SetActive(false);
         ani_.SetTrigger("sair_esq");
         entrada_carro.transform.DetachChildren();
@@ -256,10 +254,5 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         destino = Instantiate(prefab_destino,transform.position,Quaternion.Euler(0,0,0));
         gerenciador.instancia.mudar_camera("camera_fora");
     }
-
-    public void saiu_carro(){
-        ani_.applyRootMotion = true;
-    }
-
 
 }
