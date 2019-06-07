@@ -216,6 +216,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 //ani_.applyRootMotion = false;
                 //col_.isTrigger = true;
                 col_.enabled = false;
+                rb_.constraints = RigidbodyConstraints.FreezePosition;
                 ani_.SetTrigger("entrar_esq");
                 entrou_carro = false;
             }
@@ -246,6 +247,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     public void botao_sair_carro(){
         //col_.isTrigger = false;
         col_.enabled = true;
+        rb_.constraints = RigidbodyConstraints.None;
+        rb_.constraints = RigidbodyConstraints.FreezeRotation;
         controle_carro.SetActive(false);
         ani_.SetTrigger("sair_esq");
         entrada_carro.transform.DetachChildren();
