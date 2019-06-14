@@ -21,6 +21,8 @@ ModelImporter:
     100030: casa_1_MESH
     100032: garagem_1
     100034: garagem_1_MESH
+    100036: casa_1_LOD0
+    100038: casa_1_LOD1
     400000: carro_base
     400002: carro_base_001
     400004: carroceria_mr_bean
@@ -39,6 +41,8 @@ ModelImporter:
     400030: casa_1_MESH
     400032: garagem_1
     400034: garagem_1_MESH
+    400036: casa_1_LOD0
+    400038: casa_1_LOD1
     2100000: Material
     2100002: unnamed
     2100004: cor_olho_1_001
@@ -75,6 +79,8 @@ ModelImporter:
     2300028: casa_1_MESH
     2300030: garagem_1
     2300032: garagem_1_MESH
+    2300034: casa_1_LOD0
+    2300036: casa_1_LOD1
     3300000: carro_base
     3300002: carro_base_001
     3300004: carroceria_mr_bean
@@ -92,6 +98,8 @@ ModelImporter:
     3300028: casa_1_MESH
     3300030: garagem_1
     3300032: garagem_1_MESH
+    3300034: casa_1_LOD0
+    3300036: casa_1_LOD1
     4300000: garagem_limite_002
     4300002: Cube_002
     4300004: Cube_001
@@ -109,10 +117,113 @@ ModelImporter:
     4300028: casa_1_MESH
     4300030: garagem_1_MESH
     4300032: garagem_1
+    4300034: casa_1_LOD1
+    4300036: casa_1_LOD0
     7400000: Default Take
     9500000: //RootNode
+    20500000: //RootNode
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 0b4a280d622e2c94297dbb820a9263aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001
+    second: {fileID: 2100000, guid: 04c8e800c92571749851c24d5f2a4678, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_002
+    second: {fileID: 2100000, guid: 9ea094a890e18a543a42364f85fd4eb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_003
+    second: {fileID: 2100000, guid: 4c6e415cd0baf5c42ab8681ceafe9257, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_004
+    second: {fileID: 2100000, guid: 4a6d5eb7b07d0134ca417f28868a624e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_co2
+    second: {fileID: 2100000, guid: 102158433df71c9468362b4795342353, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_cor2
+    second: {fileID: 2100000, guid: da025ca639a98214eadc5f36f80ad62e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_cor2__textura_casa_1
+    second: {fileID: 2100000, guid: 8bba5128365386341b626f54f0d93748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_pintura
+    second: {fileID: 2100000, guid: d09af7080b18bce468b6f7c91462fb4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_pintura__textura_casa_1
+    second: {fileID: 2100000, guid: a3ff136ec29de70459b61003310d4f12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_teto
+    second: {fileID: 2100000, guid: 3562ed265185c0c40a237a0432ad7d39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_teto__textura_casa_1
+    second: {fileID: 2100000, guid: a40b5b45aa7bd184dbb9aa952d72aa1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_1
+    second: {fileID: 2100000, guid: eafc62e3abd570e409cd43cb7d074363, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_1_001
+    second: {fileID: 2100000, guid: 427ffc4b1ead06b459d552e24c522e7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_2
+    second: {fileID: 2100000, guid: 2206620df79048246b189d0b11689d35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_2_001
+    second: {fileID: 2100000, guid: 782c45af98a64b8498cf190dcc751c05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_3
+    second: {fileID: 2100000, guid: 52ca60cab78facd4abfcbbc4230e7541, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_3_001
+    second: {fileID: 2100000, guid: 3f1eb381051930b49b84ba7456c54f83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat_1
+    second: {fileID: 2100000, guid: 3eec51c335459304682cefee3601041e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: f2e69066bc507ca4c9b808919cbce7e7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -142,7 +253,9 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0
