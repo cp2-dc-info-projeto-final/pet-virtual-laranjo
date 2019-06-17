@@ -49,6 +49,16 @@ ModelImporter:
     100086: grama_LOD2
     100088: muro_01_LOD0
     100090: muro_01_LOD1
+    100092: 000_carroceria_mr_bean
+    100094: 000_grama_LOD0.001
+    100096: 000_laranjo
+    100098: 000_terreno_plano_FORMATO_corte_00
+    100100: ponte_01_LOD0
+    100102: ponte_01_MESH
+    100104: pedra_01_LOD0
+    100106: pedra_01_LOD1
+    100108: pedra_01_LOD2
+    100110: terreno_agua_01
     400000: arbusto_01_LOD0
     400002: arbusto_01_LOD1
     400004: arbusto_01_LOD2
@@ -95,6 +105,16 @@ ModelImporter:
     400086: grama_LOD2
     400088: muro_01_LOD0
     400090: muro_01_LOD1
+    400092: 000_carroceria_mr_bean
+    400094: 000_grama_LOD0.001
+    400096: 000_laranjo
+    400098: 000_terreno_plano_FORMATO_corte_00
+    400100: ponte_01_LOD0
+    400102: ponte_01_MESH
+    400104: pedra_01_LOD0
+    400106: pedra_01_LOD1
+    400108: pedra_01_LOD2
+    400110: terreno_agua_01
     2100000: textura_arvore
     2100002: chao_terreno_grama
     2100004: chao_terreno_terra
@@ -159,6 +179,16 @@ ModelImporter:
     2300084: grama_LOD2
     2300086: muro_01_LOD0
     2300088: muro_01_LOD1
+    2300090: 000_carroceria_mr_bean
+    2300092: 000_grama_LOD0.001
+    2300094: 000_laranjo
+    2300096: 000_terreno_plano_FORMATO_corte_00
+    2300098: ponte_01_LOD0
+    2300100: ponte_01_MESH
+    2300102: pedra_01_LOD0
+    2300104: pedra_01_LOD1
+    2300106: pedra_01_LOD2
+    2300108: terreno_agua_01
     3300000: arbusto_01_LOD0
     3300002: arbusto_01_LOD1
     3300004: arbusto_01_LOD2
@@ -204,6 +234,16 @@ ModelImporter:
     3300084: grama_LOD2
     3300086: muro_01_LOD0
     3300088: muro_01_LOD1
+    3300090: 000_carroceria_mr_bean
+    3300092: 000_grama_LOD0.001
+    3300094: 000_laranjo
+    3300096: 000_terreno_plano_FORMATO_corte_00
+    3300098: ponte_01_LOD0
+    3300100: ponte_01_MESH
+    3300102: pedra_01_LOD0
+    3300104: pedra_01_LOD1
+    3300106: pedra_01_LOD2
+    3300108: terreno_agua_01
     4300000: arvore_02_LOD2
     4300002: arvore_02_LOD1
     4300004: arbusto_01_LOD2
@@ -249,13 +289,33 @@ ModelImporter:
     4300084: grama_LOD1
     4300086: muro_01_LOD1
     4300088: muro_01_LOD0
+    4300090: ponte_01_MESH
+    4300092: ponte_01_LOD0
+    4300094: 000_terreno_plano_FORMATO_corte_00
+    4300096: 000_grama_LOD0.001
+    4300098: 000_laranjo
+    4300100: 000_carroceria_mr_bean
+    4300102: pedra_01_LOD0
+    4300104: pedra_01_LOD1
+    4300106: pedra_01_LOD2
+    4300108: terreno_agua_01
     20500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: cb205aad8099b9e47aec0a480a332bbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: No Name
     second: {fileID: 2100000, guid: 95a8eb895e70d7147a5801c22b2064ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chao_terreno_agua
+    second: {fileID: 2100000, guid: e710995632ee598428ae84f6b55d24ab, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -266,6 +326,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: chao_terreno_terra
     second: {fileID: 2100000, guid: b05127168e4204146a8c37c02451a5b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_1
+    second: {fileID: 2100000, guid: eafc62e3abd570e409cd43cb7d074363, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_2
+    second: {fileID: 2100000, guid: 2206620df79048246b189d0b11689d35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_3
+    second: {fileID: 2100000, guid: 52ca60cab78facd4abfcbbc4230e7541, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -324,6 +399,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: ponte_01_cor1
+    second: {fileID: 2100000, guid: cceabeacec07861478a8a47cb5748522, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ponto_01_cor2
+    second: {fileID: 2100000, guid: bae40583e7111da48b7292b25d41fdc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: portao_porta_cor_01
     second: {fileID: 2100000, guid: 9773ae9d0a2e0664ea248410b5fedb05, type: 2}
   - first:
@@ -346,6 +431,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: textura_grama
     second: {fileID: 2100000, guid: 9c3ccfd939b3af044ac1b9ca97966ca4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: textura_pedra
+    second: {fileID: 2100000, guid: f0ecdd7ff82d3194994749a0f70f9798, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
