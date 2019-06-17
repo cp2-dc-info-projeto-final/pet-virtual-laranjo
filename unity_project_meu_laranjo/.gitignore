@@ -1,0 +1,62 @@
+
+# Ignorerar arquivos temporarios
+
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Mm]emoryCaptures/
+
+# nunca ignorar dados meta
+
+!/[Aa]ssets/**/*.meta
+
+# Para pluguins da Asset Store
+# /[Aa]ssets/AssetStoreTools*
+
+# Arquivos do TextMesh Pro
+[Aa]ssets/TextMesh*Pro/
+
+# Jetbrains gerado automaticamente
+[Aa]ssets/Plugins/Editor/JetBrains*
+
+# cache Visual Studio
+.vs/
+
+# cache Gradle
+.gradle/
+
+# Visual Studio e outros
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# dados meta gerados pelo Unity3D
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# crashreports do Unity3D
+sysinfo.txt
+
+# builds
+*.apk
+*.unitypackage
+
+# crashlytics
+crashlytics-build.properties
