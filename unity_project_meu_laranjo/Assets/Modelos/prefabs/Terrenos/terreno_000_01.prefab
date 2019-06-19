@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 7727843211488951930}
   - component: {fileID: 7727843211488951931}
   - component: {fileID: 7727843211488951928}
+  - component: {fileID: 3934377767471015583}
   m_Layer: 0
   m_Name: terreno_plano_baixo
   m_TagString: Untagged
@@ -483,6 +484,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3934377767471015583
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727843211488951929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300028, guid: 2ccc5b73427f1c5469253d5b1660ef13, type: 3}
 --- !u!1001 &7727843209519048652
 PrefabInstance:
   m_ObjectHideFlags: 0

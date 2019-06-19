@@ -20,7 +20,11 @@ public class gerenciador : MonoBehaviour
     public Slider slider_nivel;
     public Image[] cor_nivel;
     public Sprite[] raridade;
+
+    public int render_area = 600;
     public GameObject[] terrenosPrefabs;
+
+    public peca_terreno[] pecas;
     public List<terreno> todosTerrenos;
 
     private void Awake() {

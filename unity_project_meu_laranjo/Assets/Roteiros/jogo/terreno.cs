@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class terreno : MonoBehaviour
 {
+    public int id;
     public int posX, posZ;
     public int tamanho = 100;
     public bool canto = false, dentro = false, fora = false;
@@ -48,6 +49,7 @@ public class terreno : MonoBehaviour
     void Start()
     {
         pivotTerreno = transform.parent.gameObject;
+        gatilho.transform.localScale = new Vector3(gerenciador.instancia.render_area,100,gerenciador.instancia.render_area);
     }
 
     // Update is called once per frame
@@ -66,7 +68,33 @@ public class terreno : MonoBehaviour
                         vizinho[i] = gerenciador.instancia.pegar_terreno(i == 0 || i == 3? posX : i == 1 ? posX - 1 : posX + 1, i == 1 || i == 2? posZ : i == 0 ? posZ + 1 : posZ - 1).gameObject;
                     }else
                     {
-                        vizinho[i] = Instantiate(gerenciador.instancia.terrenosPrefabs[0],new Vector3(1000,1000,1000),Quaternion.Euler(0,0,0), pivotTerreno.transform);
+                        foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+                        {
+                            List<int> lista_;
+
+                            if(i == 1){
+                                foreach (int i_ in peca_.conexao_4)
+                                {
+                                    if(i_ == id){
+                                        //lista_.Add(i_);
+                                    }
+                                }
+                            }
+                            
+                            if(i == 2){
+
+                            }
+
+                            if(i == 3){
+
+                            }
+
+                            if(i == 4){
+
+                            }
+                        }
+
+                        //vizinho[i] = Instantiate(gerenciador.instancia.terrenosPrefabs[0],new Vector3(1000,1000,1000),Quaternion.Euler(0,0,0), pivotTerreno.transform);
                         Debug.Log(vizinho[i].transform.position.y.ToString());
                         vizinho[i].GetComponent<terreno>().setar_dados(i,i == 0 || i == 3? posX : i == 1 ? posX - 1 : posX + 1, i == 1 || i == 2? posZ : i == 0 ? posZ + 1 : posZ - 1, gameObject);
                         vizinho[i].transform.position = new Vector3( - vizinho[i].GetComponent<terreno>().posX * tamanho,0, - tamanho - vizinho[i].GetComponent<terreno>().posZ * tamanho);
