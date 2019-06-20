@@ -68,6 +68,10 @@ public class terreno : MonoBehaviour
                         vizinho[i] = gerenciador.instancia.pegar_terreno(i == 0 || i == 3? posX : i == 1 ? posX - 1 : posX + 1, i == 1 || i == 2? posZ : i == 0 ? posZ + 1 : posZ - 1).gameObject;
                     }else
                     {
+                        /*
+
+                        --- gerador sendo melhorado ---
+
                         foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
                         {
                             List<int> lista_;
@@ -93,6 +97,12 @@ public class terreno : MonoBehaviour
 
                             }
                         }
+
+                        */
+                        
+                        // --- GERANDOR ALEATORIO CAPENGA (so pra cumprir o cronograma porque estou formatando o pc pra resolver um problema no Unity)
+
+                        vizinho[i] = Instantiate(gerenciador.instancia.terrenosPrefabs[Random.Range(0,gerenciador.instancia.terrenosPrefabs.lenght)],new Vector3(1000,1000,1000),Quaternion.Euler(0,0,0), pivotTerreno.transform);
 
                         //vizinho[i] = Instantiate(gerenciador.instancia.terrenosPrefabs[0],new Vector3(1000,1000,1000),Quaternion.Euler(0,0,0), pivotTerreno.transform);
                         Debug.Log(vizinho[i].transform.position.y.ToString());
