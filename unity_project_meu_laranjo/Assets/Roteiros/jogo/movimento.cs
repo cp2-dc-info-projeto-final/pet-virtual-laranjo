@@ -39,7 +39,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
     void Start()
     {
-        destino = Instantiate(prefab_destino, transform.position,Quaternion.Euler(0,0,0));
+        destino = Instantiate(prefab_destino, transform.position + new Vector3(0,0,0.1f),Quaternion.Euler(0,0,0));
 
         col_ = gameObject.GetComponent<Collider>();
 

@@ -10892,6 +10892,9 @@ MonoBehaviour:
   render_area: 600
   terrenosPrefabs:
   - {fileID: 7727843209453391784, guid: 8b37c99ef82b94144b85ad1933b57e61, type: 3}
+  pecas:
+  - {fileID: 11400000, guid: e0bc77779c370754f9cf11ae83527c6a, type: 2}
+  - {fileID: 11400000, guid: eb4af358bff57284fa8d7ed1730fefeb, type: 2}
   todosTerrenos:
   - {fileID: 1515822244}
 --- !u!114 &420692446
@@ -18518,11 +18521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6852987734744427035}
     m_Modifications:
-    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
-        type: 3}
-      propertyPath: m_Name
-      value: arvore_01_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 3135915721602908095, guid: 6db4963b48fa6db4da667eef2a7b902c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18577,6 +18575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
+        type: 3}
+      propertyPath: m_Name
+      value: arvore_01_LOD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db4963b48fa6db4da667eef2a7b902c, type: 3}
@@ -33988,6 +33991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canto
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750412504303711880, guid: 7157b39bf4c2ce545bca54a77d5a86e8,
+        type: 3}
+      propertyPath: id
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7157b39bf4c2ce545bca54a77d5a86e8, type: 3}
