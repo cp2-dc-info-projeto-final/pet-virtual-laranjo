@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,22 +84,23 @@ public class terreno : MonoBehaviour
                                 foreach (int id_ in peca_.conexao_4)
                                 {
                                     // ----------------------------------------------------------------------------------------------------------- PAUSA AQUI Debug.Log()
-                                    //Debug.Log("TAQUI" + id_);
+                                    Debug.Log("TAQUI: " + id + " - " + id_);
                                     if(id_ == id){
 
                                         bool podeAdd = true;
+                                        Debug.Log("TAQUI1111111111111111111111111111111111111111 " + id + " - " + peca_.id);
                                         foreach (int num_ in ListaInstancia_)
                                         {
-                                            //Debug.Log("TAQUI222");
-                                            if(id_ == num_){
-                                                Debug.Log("*****REMOVIDO EM POS1: " + id_);
+                                            Debug.Log("TAQUI222222222222222222222222222222222222222" + num_);
+                                            if(peca_.id == num_){
+                                                Debug.Log("*****REMOVIDO EM POS1: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
                                             
-                                            ListaInstancia_.Add(id_);
-                                            Debug.Log("-----ADICIONADO EM POS1: " + id_);
+                                            ListaInstancia_.Add(peca_.id);
+                                            Debug.Log("-----ADICIONADO EM POS1: " + peca_.id);
                                         }
                                         
                                     }
@@ -113,14 +115,14 @@ public class terreno : MonoBehaviour
                                         bool podeAdd = true;
                                         foreach (int num_ in ListaInstancia_)
                                         {
-                                            if(id_ == num_){
-                                                Debug.Log("*****REMOVIDO EM POS2: " + id_);
+                                            if(peca_.id == num_){
+                                                Debug.Log("*****REMOVIDO EM POS2: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
-                                            ListaInstancia_.Add(id_);
-                                            Debug.Log("-----ADICIONADO EM POS2: " + id_);
+                                            ListaInstancia_.Add(peca_.id);
+                                            Debug.Log("-----ADICIONADO EM POS2: " + peca_.id);
                                         }
                                         
                                     }
@@ -135,14 +137,14 @@ public class terreno : MonoBehaviour
                                         bool podeAdd = true;
                                         foreach (int num_ in ListaInstancia_)
                                         {
-                                            if(id_ == num_){
-                                                Debug.Log("*****REMOVIDO EM POS3: " + id_);
+                                            if(peca_.id == num_){
+                                                Debug.Log("*****REMOVIDO EM POS3: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
-                                            ListaInstancia_.Add(id_);
-                                            Debug.Log("-----ADICIONADO EM POS3: " + id_);
+                                            ListaInstancia_.Add(peca_.id);
+                                            Debug.Log("-----ADICIONADO EM POS3: " + peca_.id);
                                         }
                                         
                                     }
@@ -157,14 +159,14 @@ public class terreno : MonoBehaviour
                                         bool podeAdd = true;
                                         foreach (int num_ in ListaInstancia_)
                                         {
-                                            if(id_ == num_){
-                                                Debug.Log("*****REMOVIDO EM POS4: " + id_);
+                                            if(peca_.id == num_){
+                                                Debug.Log("*****REMOVIDO EM POS4: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
-                                            ListaInstancia_.Add(id_);
-                                            Debug.Log("-----ADICIONADO EM POS4: " + id_);
+                                            ListaInstancia_.Add(peca_.id);
+                                            Debug.Log("-----ADICIONADO EM POS4: " + peca_.id);
                                         }
                                         
                                     }
