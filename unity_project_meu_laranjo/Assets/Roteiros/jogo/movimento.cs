@@ -134,7 +134,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
         if(pode_andar){
             if(!indo_carro){
-                if(Vector3.Distance(destino.transform.position, transform.position) > distanciaMax){
+                if(Vector3.Distance(new Vector3(destino.transform.position.x,0,destino.transform.position.z), new Vector3(transform.position.x,0,transform.position.z)) > distanciaMax){
                     andar = true;
                 }else
                 {

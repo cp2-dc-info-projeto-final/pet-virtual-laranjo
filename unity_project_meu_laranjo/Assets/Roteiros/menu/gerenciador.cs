@@ -71,16 +71,11 @@ public class gerenciador : MonoBehaviour
     }
 
     public void colocaritemLoja(int id_){
-        for(int i = 0; i < itens.Count - 1; i++){
-            if(itens[i] != null){
-                if(itens[i].id == id_){
-                    laranjo_preview.GetComponent<design>().MudarMesh(itens[i]);
-
-                    if((int)itens[i].posicao == 5){
-                        laranjo_preview.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
-                    }
-                }
-            }
+        
+        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_));
+        
+        if((int)itemDeId(id_).posicao == 5){
+            laranjo_preview.GetComponent<Animator>().SetBool("item",itemDeId(id_).seguraItem);
         }
     }
 
