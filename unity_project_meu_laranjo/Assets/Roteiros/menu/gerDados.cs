@@ -34,10 +34,10 @@ public class gerDados : MonoBehaviour
                         if(gerenciador.instancia.itens[i_].id == i){
                             gerenciador.instancia.laranjo.GetComponent<design>().MudarMesh(gerenciador.instancia.itens[i]);
 
-                            if(gerenciador.instancia.itens[i_].posicao == 5){
+                            if((int)gerenciador.instancia.itens[i_].posicao == 5){
                                 gerenciador.instancia.laranjo.GetComponent<Animator>().SetBool("item",gerenciador.instancia.itens[i].seguraItem);
                             }
-                            itemAtual[gerenciador.instancia.itens[i_].posicao] = i;
+                            itemAtual[(int)gerenciador.instancia.itens[i_].posicao] = i;
                         }
                     }
                 }
@@ -141,8 +141,8 @@ public class gerDados : MonoBehaviour
     }
 
     public void trocarOutFit(int id_){
-        removerOutFit(itemAtual[gerenciador.instancia.itemDeId(id_).posicao]);
-        itemAtual[gerenciador.instancia.itemDeId(id_).posicao] = gerenciador.instancia.itemDeId(id_).id;
+        removerOutFit(itemAtual[(int)gerenciador.instancia.itemDeId(id_).posicao]);
+        itemAtual[(int)gerenciador.instancia.itemDeId(id_).posicao] = gerenciador.instancia.itemDeId(id_).id;
         adicionarOutFit(id_);
     }
 }

@@ -18,7 +18,7 @@ public class design : MonoBehaviour
     }
     public void mudaroupa(item item_){
     
-    CopyComponent(item_.prefab.GetComponent<SkinnedMeshRenderer>(),partes[item_.posicao]);
+    CopyComponent(item_.prefab.GetComponent<SkinnedMeshRenderer>(),partes[(int)item_.posicao]);
     
 }
 
@@ -47,13 +47,13 @@ public void MudarMesh(item item_)
 
     if(item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMesh != null){
         Mesh meshInstance = Instantiate(item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMesh) as Mesh;
-        partes[item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMesh = meshInstance;
+        partes[(int)item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMesh = meshInstance;
     }else
     {
-        partes[item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
+        partes[(int)item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMesh = null;
 
     }
-    partes[item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMaterials = item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMaterials;
+    partes[(int)item_.posicao].GetComponent<SkinnedMeshRenderer>().sharedMaterials = item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMaterials;
 }
 
 }

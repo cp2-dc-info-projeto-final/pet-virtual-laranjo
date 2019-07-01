@@ -8,4 +8,9 @@
     public int[] itens = new int[32];
     public int[] outfit = new int[32];
 
+    public int id_casa = 1;
+
+    public int quant_gar = 1;
+    public carro_dados[] carro;
+
 }

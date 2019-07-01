@@ -76,7 +76,7 @@ public class gerenciador : MonoBehaviour
                 if(itens[i].id == id_){
                     laranjo_preview.GetComponent<design>().MudarMesh(itens[i]);
 
-                    if(itens[i].posicao == 5){
+                    if((int)itens[i].posicao == 5){
                         laranjo_preview.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
                     }
                 }
@@ -91,7 +91,7 @@ public class gerenciador : MonoBehaviour
                     laranjo_preview.GetComponent<design>().MudarMesh(itens[i]);
                     laranjo.GetComponent<design>().MudarMesh(itens[i]);
 
-                    if(itens[i].posicao == 5){
+                    if((int)itens[i].posicao == 5){
                         laranjo_preview.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
                         laranjo.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
                     }
@@ -137,7 +137,7 @@ public class gerenciador : MonoBehaviour
                     
 
                     GameObject botao_ = Instantiate(prefab_botao,lista_loja.transform);
-                    botao_.GetComponent<Image>().sprite = raridade[item_.raridade];
+                    botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
                     botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
                     botao_.GetComponent<Button>().onClick.AddListener(() => botaoLoja(item_.id));
 
@@ -149,9 +149,9 @@ public class gerenciador : MonoBehaviour
             foreach(item item_ in itens)
             {
                 if(item_ != null){
-                    if(item_.posicao == posi_){
+                    if((int)item_.posicao == posi_){
                         GameObject botao_ = Instantiate(prefab_botao,lista_loja.transform);
-                        botao_.GetComponent<Image>().sprite = raridade[item_.raridade];
+                        botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
                         botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
                         botao_.GetComponent<Button>().onClick.AddListener(() => botaoLoja(item_.id));
                     }
@@ -182,7 +182,7 @@ public class gerenciador : MonoBehaviour
                     if(gerDados.instancia.temItem(item_.id)){
 
                         GameObject botao_ = Instantiate(prefab_botao,lista_armario.transform);
-                        botao_.GetComponent<Image>().sprite = raridade[item_.raridade];
+                        botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
                         botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
                         botao_.GetComponent<Button>().onClick.AddListener(() => botaoArmario(item_.id));
 
@@ -195,11 +195,11 @@ public class gerenciador : MonoBehaviour
             foreach(item item_ in itens)
             {
                 if(item_ != null){
-                    if(item_.posicao == posi_){
+                    if((int)item_.posicao == posi_){
                         if(gerDados.instancia.temItem(item_.id)){
 
                         GameObject botao_ = Instantiate(prefab_botao,lista_armario.transform);
-                        botao_.GetComponent<Image>().sprite = raridade[item_.raridade];
+                        botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
                         botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
                         botao_.GetComponent<Button>().onClick.AddListener(() => botaoArmario(item_.id));
                     
