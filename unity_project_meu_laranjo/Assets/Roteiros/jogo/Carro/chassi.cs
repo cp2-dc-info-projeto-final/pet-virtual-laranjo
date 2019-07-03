@@ -5,7 +5,8 @@ using UnityEngine;
 public class chassi : MonoBehaviour
 {
     public int[] cor_id;
-    public GameObject[] portas, entradas , rodas_coll, rodas_tranf_, acessorios;
+    public GameObject[] portas, entradas , rodas_tranf_, acessorios;
+    public WheelCollider[] rodas_coll;
     
     // Start is called before the first frame update
     void Start()

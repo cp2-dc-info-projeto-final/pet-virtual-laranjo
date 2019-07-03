@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class carro_dados : ScriptableObject
+﻿public class carro_dados
 {
-    int id_chassi;
-    int[] nivel, cor_id, acessorios;
+    public int id_chassi = 1;
+    public int[] nivel, cor_id, acessorios;
 }

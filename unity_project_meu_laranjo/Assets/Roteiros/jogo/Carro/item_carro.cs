@@ -16,7 +16,8 @@ public class item_carro : ScriptableObject
 
     public enum PosicaoItemCarro
     {
-        Roda = 1,
+        Chassi = 0,
+        Roda,
         ArCapo,
         ArTeto,
         Carroceria,
@@ -34,7 +35,7 @@ public class item_carro : ScriptableObject
     }
 }
 
-[CreateAssetMenu(fileName = "item_carro", menuName = "Laranjo/Inventario/Item de Carro (Roda)")]
+[CreateAssetMenu(fileName = "roda", menuName = "Laranjo/Inventario/Item de Carro (Roda)")]
 public class pneu : item_carro{
     public aroNumeros aro;
 

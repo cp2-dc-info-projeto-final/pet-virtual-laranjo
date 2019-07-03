@@ -10,7 +10,7 @@
 
     public int id_casa = 1;
 
-    public int quant_gar = 1;
+    public int quant_gar = 3;
     public carro_dados[] carro;
 
 }

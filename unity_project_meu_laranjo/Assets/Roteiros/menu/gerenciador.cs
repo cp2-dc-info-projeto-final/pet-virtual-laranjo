@@ -22,10 +22,13 @@ public class gerenciador : MonoBehaviour
     public Sprite[] raridade;
 
     public int render_area = 600;
-    public GameObject[] terrenosPrefabs;
 
     public peca_terreno[] pecas;
     public List<terreno> todosTerrenos;
+    public List<item_casa> casas;
+    public GameObject[] casa_pivot;
+    public GameObject carro_base;
+    public List<item_carro> itens_carro;
 
     private void Awake() {
         instancia = this;
@@ -53,6 +56,11 @@ public class gerenciador : MonoBehaviour
             //GameObject.Find("camera_carro") .GetComponent<movimento>().cam_ = GameObject.Find("camera_fora_1").GetComponent<Camera>();
         }
         */
+
+        if(Input.GetKeyDown(KeyCode.I)){
+            instanciar_casa();
+            instanciar_carro(1);
+        }
 
         if(nivel_lar < 0.5f){
 
@@ -291,5 +299,56 @@ public class gerenciador : MonoBehaviour
         }
 
         return terreno_;
+    }
+
+    //                                                                 -------------------------------------Instacia as casas do save---------------------------
+    public void instanciar_casa(){
+        Instantiate(CasaDeId(gerDados.instancia.dados_.id_casa).prefab_casa, casa_pivot[0].transform);
+
+        for(int i_ = 2; i_ <= gerDados.instancia.dados_.quant_gar; i_++){
+            Instantiate(CasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
+        }
+    }
+
+    public void instanciar_carro(int i_){
+        GameObject car_, chas_;
+        if(gerDados.instancia.dados_.carro[i_] != null){
+            car_ = Instantiate(carro_base, casa_pivot[i_].transform.position, casa_pivot[i_].transform.rotation);
+
+            chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
+
+            car_.GetComponent<veiculo>().entrada = chas_.GetComponent<chassi>().entradas;
+            car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
+
+            car_.name = "carro_" + (i_ -1);
+        }
+        
+  
+    }
+
+    public item_casa CasaDeId(int id_){
+        item_casa casa_ = null;
+
+        foreach (item_casa cas_ in casas){
+            if(cas_.id == id_){
+                casa_ = cas_;
+            }
+        }
+
+        return casa_;
+    }
+
+public item_carro ChassiDeId(int id_){
+        item_carro chassi_ = null;
+
+        foreach (item_carro chas_ in itens_carro){
+            if(chas_.posicao == item_carro.PosicaoItemCarro.Chassi){
+                if(chas_.id == id_){
+                    chassi_ = chas_;
+                }
+            }
+        }
+
+        return chassi_;
     }
 }
