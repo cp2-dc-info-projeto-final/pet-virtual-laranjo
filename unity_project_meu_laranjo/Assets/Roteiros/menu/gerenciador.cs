@@ -59,7 +59,9 @@ public class gerenciador : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.I)){
             instanciar_casa();
-            instanciar_carro(1);
+            for(int i_ = 1; i_ <= 3; i_++){
+                instanciar_carro(i_);
+            }
         }
 
         if(nivel_lar < 0.5f){
@@ -313,14 +315,15 @@ public class gerenciador : MonoBehaviour
     public void instanciar_carro(int i_){
         GameObject car_, chas_;
         if(gerDados.instancia.dados_.carro[i_] != null){
-            car_ = Instantiate(carro_base, casa_pivot[i_].transform.position, casa_pivot[i_].transform.rotation);
+            car_ = Instantiate(carro_base, casa_pivot[i_].transform.position + new Vector3(0,0.35f,-2), Quaternion.Euler(0,0,0));
 
             chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
 
             car_.GetComponent<veiculo>().entrada = chas_.GetComponent<chassi>().entradas;
             car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
 
-            car_.name = "carro_" + (i_ -1);
+            car_.name = "carro_0" + (i_);
+            Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
         }
         
   

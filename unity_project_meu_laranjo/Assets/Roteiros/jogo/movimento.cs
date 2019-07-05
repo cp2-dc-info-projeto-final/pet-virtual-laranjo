@@ -96,7 +96,9 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                                     destino = Instantiate(prefab_destino,hit_.point,Quaternion.Euler(0,0,0));
 
                                     foreach(GameObject car_ in gerenciador.instancia.carros){
-                                        car_.GetComponent<veiculo>().menu_entrar.SetActive(false);
+                                        if(car_ != null){
+                                            car_.GetComponent<veiculo>().menu_entrar.SetActive(false);
+                                        }
                                     }
                                     //GameObject.FindGameObjectWithTag("carro").GetComponent<veiculo>().menu_entrar.SetActive(false);
                                     indo_carro = false;
@@ -240,8 +242,12 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             destino = Instantiate(prefab_destino,transform.position,Quaternion.Euler(0,0,0));
         }
         
-        
-        gerenciador.instancia.carros[indice_carro].GetComponent<veiculo>().menu_entrar.SetActive(false);
+        foreach (GameObject car_ in gerenciador.instancia.carros)
+        {
+            if(car_ != null){
+                car_.GetComponent<veiculo>().menu_entrar.SetActive(false);
+            }
+        }
     }
 
     public void botao_sair_carro(){

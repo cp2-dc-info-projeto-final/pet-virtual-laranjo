@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class veiculo : MonoBehaviour
 {
@@ -19,11 +20,39 @@ public class veiculo : MonoBehaviour
     {
         rb_ = GetComponent<Rigidbody>();
         rb_.mass = peso;
+
+        Debug.Log("controle_carro_" + gameObject.name.Split('_')[1]);
+        botao_ui_ = GameObject.Find("controle_carro_" + gameObject.name.Split('_')[1]).transform.GetChild(0).gameObject.GetComponent<lista_botoes_ui>().lista;
+        menu_entrar = GameObject.Find("menu_entrar_carro_" + gameObject.name.Split('_')[1]).transform.GetChild(0).gameObject;
+        gerenciador.instancia.carros[int.Parse(gameObject.name.Split('_')[1])] = gameObject;
+
+        for (int i = 0; i <= 3; i++)
+        {
+            menu_entrar.transform.GetChild(i).GetComponent<Button>().interactable = false;
+        }
+
+        for (int i = 0; i < transform.GetChild(transform.childCount - 1).GetComponent<chassi>().entradas.Length; i++)
+        {
+            
+            menu_entrar.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        }
+        
+        
+        //botao_ui_ = GameObject.Find("controle_carro_" + gameObject.name.Split('_')[1]).GetComponent<lista_botoes_ui>().lista;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(botao_ui_[0] == null){
+        
+        } 
+
+        if(menu_entrar == null){
+            
+        }
+
+
         if(Input.GetKeyDown(KeyCode.W)||Input.GetKeyDown(KeyCode.S)||Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.A)){
             teclado = true;
         }
