@@ -36,8 +36,10 @@ public class item_carro : ScriptableObject
 }
 
 [CreateAssetMenu(fileName = "roda", menuName = "Laranjo/Inventario/Item de Carro (Roda)")]
-public class pneu : item_carro{
+public class item_pneu : item_carro{
     public aroNumeros aro;
+
+    public GameObject prefab_2;
 
     public enum aroNumeros{
         aro15 = 15,

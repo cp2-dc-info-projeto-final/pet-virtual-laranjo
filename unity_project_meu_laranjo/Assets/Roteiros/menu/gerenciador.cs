@@ -37,7 +37,10 @@ public class gerenciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        instanciar_casa();
+        for(int i_ = 1; i_ <= 3; i_++){
+            instanciar_carro(i_);
+        }
     }
 
     // Update is called once per frame
@@ -56,13 +59,6 @@ public class gerenciador : MonoBehaviour
             //GameObject.Find("camera_carro") .GetComponent<movimento>().cam_ = GameObject.Find("camera_fora_1").GetComponent<Camera>();
         }
         */
-
-        if(Input.GetKeyDown(KeyCode.I)){
-            instanciar_casa();
-            for(int i_ = 1; i_ <= 3; i_++){
-                instanciar_carro(i_);
-            }
-        }
 
         if(nivel_lar < 0.5f){
 
@@ -322,6 +318,19 @@ public class gerenciador : MonoBehaviour
             car_.GetComponent<veiculo>().entrada = chas_.GetComponent<chassi>().entradas;
             car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
 
+            for (int rodaid_ = 0; rodaid_ < car_.GetComponent<veiculo>().transf_roda.Length; rodaid_++)
+            {
+                GameObject rod_;
+                if( rodaid_ % 2 == 0){
+                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[1]).prefab);
+                }else
+                {
+                 rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[1]).prefab_2,chas_.GetComponent<chassi>().rodas_tranf_.transform);
+                }
+
+
+            }
+
             car_.name = "carro_0" + (i_);
             Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
         }
@@ -341,7 +350,7 @@ public class gerenciador : MonoBehaviour
         return casa_;
     }
 
-public item_carro ChassiDeId(int id_){
+    public item_carro ChassiDeId(int id_){
         item_carro chassi_ = null;
 
         foreach (item_carro chas_ in itens_carro){
@@ -353,5 +362,19 @@ public item_carro ChassiDeId(int id_){
         }
 
         return chassi_;
+    }
+
+    public item_pneu RodaDeId(int id_){
+        item_pneu roda_ = null;
+
+        foreach (item_pneu chas_ in itens_carro){
+            if(chas_.posicao == item_carro.PosicaoItemCarro.Roda){
+                if(chas_.id == id_){
+                    roda_ = chas_;
+                }
+            }
+        }
+
+        return roda_;
     }
 }

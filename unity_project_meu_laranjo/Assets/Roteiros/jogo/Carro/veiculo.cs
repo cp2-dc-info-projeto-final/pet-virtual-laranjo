@@ -8,7 +8,7 @@ public class veiculo : MonoBehaviour
     public GameObject[] entrada;
     public GameObject menu_entrar;
     public botao_ui[] botao_ui_;
-    public float peso = 1500,torque = 1000;
+    public float peso = 1500, tracao,torque = 1000 ,cambio, suspencao;
     public Transform[] transf_roda;
     public WheelCollider[] coll_roda;
     Rigidbody rb_;
@@ -128,14 +128,14 @@ public class veiculo : MonoBehaviour
             dir_esq -= Time.deltaTime;
         }else
         {
-            dir_esq += Time.deltaTime * 3;
+            dir_esq += Time.deltaTime * 8;
         }
         
         if(press_dir){
             dir_dir += Time.deltaTime;
         }else
         {
-            dir_dir -= Time.deltaTime * 3;
+            dir_dir -= Time.deltaTime * 8;
         }
 
         dir_esq = Mathf.Clamp(dir_esq,-1,0);
@@ -145,14 +145,14 @@ public class veiculo : MonoBehaviour
 
 
         if(press_fre){
-            vel_fre += Time.deltaTime * 3;
+            vel_fre += Time.deltaTime * 6;
         }else
         {
             vel_fre -= Time.deltaTime;
         }
         
         if(press_tra){
-            vel_tra -= Time.deltaTime *3;
+            vel_tra -= Time.deltaTime *6;
         }else
         {
             vel_tra += Time.deltaTime;
@@ -165,8 +165,8 @@ public class veiculo : MonoBehaviour
 
         angulo = Mathf.Lerp(angulo,direcao,Time.deltaTime * 4);
 
-        coll_roda[0].steerAngle = angulo * 40;
-        coll_roda[1].steerAngle = angulo * 40;
+        coll_roda[0].steerAngle = angulo * 45;
+        coll_roda[1].steerAngle = angulo * 45;
 
         coll_roda[2].motorTorque = velocida*torque;
         coll_roda[3].motorTorque = velocida*torque;

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edfba4a0bded9dd409cd6bc8e22c718f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   posX: 0
   posZ: 0
   tamanho: 100
@@ -61,6 +62,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  ListaInstancia_: 
 --- !u!114 &8469486611717451881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,232 +81,230 @@ MonoBehaviour:
     lightmapOffsetScale: {x: 0.048740212, y: 0.048740212, z: 0.00000026813865, w: 0.9258691}
   - renderer: {fileID: 3894438113589634589}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.039118886, y: 0.039118886, z: 0.84762806, w: 0.46356028}
+    lightmapOffsetScale: {x: 0.039118886, y: 0.039118886, z: 0.92764395, w: 0.37321424}
   - renderer: {fileID: 3701820386639847323}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0176035, y: 0.0176035, z: 0.3475466, w: 0.6484941}
+    lightmapOffsetScale: {x: 0.0176035, y: 0.0176035, z: 0.55175215, w: 0.22183274}
   - renderer: {fileID: 7059984151227308673}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007865859, y: 0.007865859, z: 0.23346473, w: 0.17394513}
+    lightmapOffsetScale: {x: 0.007865859, y: 0.007865859, z: 0.08196368, w: 0.68542403}
   - renderer: {fileID: 3894438114959500464}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.039118886, y: 0.039118886, z: 0.9355187, w: 0.916722}
+    lightmapOffsetScale: {x: 0.039118886, y: 0.039118886, z: 0.93942493, w: 0.949217}
   - renderer: {fileID: 3701820385806785846}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0176035, y: 0.0176035, z: 0.32615918, w: 0.5195879}
+    lightmapOffsetScale: {x: 0.0176035, y: 0.0176035, z: 0.3806528, w: 0.22183274}
   - renderer: {fileID: 7059984152009709612}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007865859, y: 0.007865859, z: 0.36300302, w: 0.17394513}
+    lightmapOffsetScale: {x: 0.007865859, y: 0.007865859, z: 0.08196368, w: 0.77819735}
   - renderer: {fileID: 7616045447069989899}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.029758576, y: 0.029758576, z: 0.70702004, w: 0.7851832}
+    lightmapOffsetScale: {x: 0.029758576, y: 0.029758576, z: 0.7596922, w: 0.38711765}
   - renderer: {fileID: 9125052978410779007}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.014170053, y: 0.014170053, z: 0.4333101, w: 0.26248446}
+    lightmapOffsetScale: {x: 0.014170053, y: 0.014170053, z: 0.594256, w: 0.22180675}
   - renderer: {fileID: 5993421983044497476}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0061154673, y: 0.0061154673, z: 0.59948695, w: 0.26247314}
+    lightmapOffsetScale: {x: 0.0061154673, y: 0.0061154673, z: 0.17175257, w: 0.7730515}
   - renderer: {fileID: 7616045447841812560}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.029758576, y: 0.029758576, z: 0.6738169, w: 0.7851832}
+    lightmapOffsetScale: {x: 0.029758576, y: 0.029758576, z: 0.5977872, w: 0.7195624}
   - renderer: {fileID: 9125052978712714532}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.014170053, y: 0.014170053, z: 0.20479445, w: 0.9819081}
+    lightmapOffsetScale: {x: 0.014170053, y: 0.014170053, z: 0.98604447, w: 0.17391212}
   - renderer: {fileID: 5993421984084761631}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0061154673, y: 0.0061154673, z: 0.22448695, w: 0.82977873}
+    lightmapOffsetScale: {x: 0.0061154673, y: 0.0061154673, z: 0.15222132, w: 0.6772623}
   - renderer: {fileID: 6015385522125863028}
-    lightmapIndex: 2
-    lightmapOffsetScale: {x: 0.021497142, y: 0.021497142, z: 0.97850925, w: 0.5617134}
+    lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.021497142, y: 0.021497142, z: 0.8980515, w: 0.38712248}
   - renderer: {fileID: 5557334660535450463}
     lightmapIndex: 1
     lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.9785156, w: 0.07823527}
   - renderer: {fileID: 1769784667683046664}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.34179688, w: 0.6992881}
+    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.61211777, w: 0.23751794}
   - renderer: {fileID: 6015385522302455629}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.021497142, y: 0.021497142, z: 0.8905564, w: 0.4635821}
+    lightmapOffsetScale: {x: 0.021497142, y: 0.021497142, z: 0.9764939, w: 0.7063033}
   - renderer: {fileID: 5557334660643884134}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.7675781, w: 0.26252314}
+    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.79180527, w: 0.22184542}
   - renderer: {fileID: 1769784667523068465}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.984375, w: 0.27164286}
+    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.15820312, w: 0.8209961}
   - renderer: {fileID: 275637072885320554}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.021500565, y: 0.021500565, z: 0.9708372, w: 0.5567827}
+    lightmapOffsetScale: {x: 0.021500565, y: 0.021500565, z: 0.87297654, w: 0.38712075}
   - renderer: {fileID: 7827160268488566999}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.92578125, w: 0.17113146}
+    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.97265625, w: 0.12474665}
   - renderer: {fileID: 6633222543847394231}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.9707031, w: 0.3015615}
+    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.14257812, w: 0.8688907}
   - renderer: {fileID: 275637073070130677}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.021500565, y: 0.021500565, z: 0.32616377, w: 0.96099627}
+    lightmapOffsetScale: {x: 0.021500565, y: 0.021500565, z: 0.939445, w: 0.9238465}
   - renderer: {fileID: 7827160269109061192}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.90234375, w: 0.26252314}
+    lightmapOffsetScale: {x: 0.009765625, y: 0.009765625, z: 0.8875084, w: 0.22184542}
   - renderer: {fileID: 6633222543696659752}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.3553718, w: 0.6699912}
+    lightmapOffsetScale: {x: 0.00390625, y: 0.00390625, z: 0.15820312, w: 0.9167853}
   - renderer: {fileID: 6547528182269421712}
-    lightmapIndex: 3
-    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: 0.71089953, w: 0.18622589}
+    lightmapIndex: 2
+    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: 0.36324328, w: 0.08414425}
   - renderer: {fileID: 515339252462629314}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.72667676, w: 0.18577366}
+    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.09386424, w: 0.17393205}
   - renderer: {fileID: 5302277462565027259}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.9180246, w: 0.30997851}
+    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.18560272, w: 0.90994465}
   - renderer: {fileID: 384620400769564620}
-    lightmapIndex: 4
-    lightmapOffsetScale: {x: 0.15631674, y: 0.15631674, z: 0.16012289, w: -0.000033370878}
+    lightmapIndex: 2
+    lightmapOffsetScale: {x: 0.15631674, y: 0.15631674, z: 0.37496662, w: 0.5015657}
   - renderer: {fileID: 2491777846954425626}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.07815837, y: 0.07815837, z: 0.6796708, w: 0.09287952}
+    lightmapOffsetScale: {x: 0.07815837, y: 0.07815837, z: 0.17576456, w: 0.09287952}
   - renderer: {fileID: 4605648069692019684}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.03725156, y: 0.03725156, z: 0.32603765, w: 0.30927008}
+    lightmapOffsetScale: {x: 0.03725156, y: 0.03725156, z: 0.1424439, w: 0.87617725}
   - renderer: {fileID: 1134371606068149826}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.529212, w: 0.8814988}
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.9764776, w: 0.7316891}
   - renderer: {fileID: 837047779505438227}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.84763753, w: 0.33466557}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.9148334, w: 0.22184713}
   - renderer: {fileID: 2452128579476688454}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.32616708, w: 0.7494713}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.53406805}
   - renderer: {fileID: 1134371606257835491}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.7070086, w: 0.8140888}
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.9394305, w: 0.90479404}
   - renderer: {fileID: 837047779711901106}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.3144344, w: 0.9749325}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.23240316, w: 0.93463165}
   - renderer: {fileID: 2452128579286740455}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.3203077, w: 0.9468949}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.33248514}
   - renderer: {fileID: 1134371606100152539}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.32614923, w: 0.91669965}
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.36716485, w: 0.9790023}
   - renderer: {fileID: 837047779874033802}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.6718563, w: 0.33466557}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.79178655, w: 0.235519}
   - renderer: {fileID: 2452128579108085983}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.3671827, w: 0.72643316}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.4649538}
   - renderer: {fileID: 1134371606530005432}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.35122246, w: 0.9609932}
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.28903985, w: 0.9790023}
   - renderer: {fileID: 837047778894600681}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.46873128, w: 0.1739525}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.08201253, w: 0.83523124}
   - renderer: {fileID: 2452128577931651516}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.5449171, w: 0.2682837}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.9851599, w: 0.23346534}
   - renderer: {fileID: 1134371607013635075}
-    lightmapIndex: 2
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.978493, w: 0.41048542}
+    lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.9394305, w: 0.88589114}
   - renderer: {fileID: 837047778556146770}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.59763753, w: 0.1739525}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.08201253, w: 0.8934389}
   - renderer: {fileID: 2452128578262238215}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.3437452, w: 0.72643316}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.44191578}
   - renderer: {fileID: 1134371605644243613}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.35122246, w: 0.93560255}
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.73813415, w: 0.30293545}
   - renderer: {fileID: 837047780458279628}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.68357503, w: 0.33466557}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.8054584, w: 0.235519}
   - renderer: {fileID: 2452128578482422425}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.34960458, w: 0.7494713}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.55134666}
   - renderer: {fileID: 1134371605518145044}
-    lightmapIndex: 2
-    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.978493, w: 0.5870992}
+    lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.01565884, y: 0.01565884, z: 0.970556, w: 0.3302625}
   - renderer: {fileID: 837047780046968389}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.70701253, w: 0.33466557}
+    lightmapOffsetScale: {x: 0.007841481, y: 0.007841481, z: 0.8191303, w: 0.235519}
   - renderer: {fileID: 2452128578943542800}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.99413586, w: 0.34332663}
+    lightmapOffsetScale: {x: 0.0019604778, y: 0.0019604778, z: 0.24413584, w: 0.36704218}
   - renderer: {fileID: 6547528183699365431}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: 0.5605089, w: 0.50894433}
+    lightmapIndex: 3
+    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: 0.47652453, w: -0.000037959373}
   - renderer: {fileID: 515339251066128229}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.1758955, w: 0.18577366}
+    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.51378614, w: 0.092877455}
   - renderer: {fileID: 5302277461478345500}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.6836496, w: 0.30997851}
+    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.18560272, w: 0.8129605}
   - renderer: {fileID: 6547528183106490704}
     lightmapIndex: 3
-    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: -0.000037959373, w: 0.18622589}
+    lightmapOffsetScale: {x: 0.1778103, y: 0.1778103, z: 0.18160267, w: -0.000037959373}
   - renderer: {fileID: 515339252737067010}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.1758955, w: 0.324944}
+    lightmapOffsetScale: {x: 0.08779512, y: 0.08779512, z: 0.09386424, w: 0.3131024}
   - renderer: {fileID: 5302277461802976379}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.8711496, w: 0.30997851}
+    lightmapOffsetScale: {x: 0.04292206, y: 0.04292206, z: 0.18560272, w: 0.8856986}
   - renderer: {fileID: 880300536024164164}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.18367217, y: 0.18367217, z: 0.74800766, w: 0.7851552}
+    lightmapOffsetScale: {x: 0.18367217, y: 0.18367217, z: 0.8124608, w: 0.4201827}
   - renderer: {fileID: 2363677839287901621}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.08986353, y: 0.08986353, z: -0.0000005932738, w: 0.8360467}
+    lightmapOffsetScale: {x: 0.08986353, y: 0.08986353, z: -0.0000005932738, w: 0.4644618}
   - renderer: {fileID: 8752248621438972997}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.044931766, y: 0.044931766, z: 0.0937497, w: 0.7163142}
+    lightmapOffsetScale: {x: 0.044931766, y: 0.044931766, z: 0.0937497, w: 0.78152615}
   - renderer: {fileID: 880300536223125174}
-    lightmapIndex: 4
-    lightmapOffsetScale: {x: 0.18367217, y: 0.18367217, z: -0.00003921078, w: 0.7178565}
+    lightmapIndex: 2
+    lightmapOffsetScale: {x: 0.18367217, y: 0.18367217, z: -0.00003921078, w: 0.17409125}
   - renderer: {fileID: 2363677839088415815}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.08986353, y: 0.08986353, z: -0.0000005932738, w: 0.557358}
+    lightmapOffsetScale: {x: 0.08986353, y: 0.08986353, z: -0.0000005932738, w: 0.18577322}
   - renderer: {fileID: 8752248621369499063}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.044931766, y: 0.044931766, z: 0.0937497, w: 0.4768412}
+    lightmapOffsetScale: {x: 0.044931766, y: 0.044931766, z: 0.0937497, w: 0.63784236}
   - renderer: {fileID: 3893789314965724505}
-    lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.5605235, w: 0.9319744}
+    lightmapIndex: 3
+    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.36325788, w: -0.000023359615}
   - renderer: {fileID: 3150080232064172893}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.6778055, w: 0.28006548}
+    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.18561795, w: 0.22183375}
   - renderer: {fileID: 6034808745857943234}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.14261113, w: 0.5084417}
+    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.7558924, w: 0.13902676}
   - renderer: {fileID: 3893789313058130164}
-    lightmapIndex: 4
-    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.82028913, w: 0.08992489}
+    lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.82028913, w: 0.66331756}
   - renderer: {fileID: 3150080230108878576}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.92585236, w: 0.14077915}
+    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.42194608, w: 0.13927464}
   - renderer: {fileID: 6034808746792457071}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.14261113, w: 0.87567323}
+    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.8105799, w: 0.20403188}
   - renderer: {fileID: 3893789314264091691}
-    lightmapIndex: 4
-    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.74411726, w: 0.215936}
+    lightmapIndex: 1
+    lightmapOffsetScale: {x: 0.10942172, y: 0.10942172, z: 0.75192976, w: 0.6064624}
   - renderer: {fileID: 3150080231029101103}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.90241486, w: 0.23217084}
+    lightmapOffsetScale: {x: 0.054628078, y: 0.054628078, z: 0.63483673, w: 0.17393912}
   - renderer: {fileID: 6034808745821378480}
     lightmapIndex: 1
-    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.14261113, w: 0.9555372}
+    lightmapOffsetScale: {x: 0.025363036, y: 0.025363036, z: 0.9277674, w: 0.20403188}
   m_Lightmaps:
-  - {fileID: 2800000, guid: c43ede6f4e0e9df42a0ff4a0302bc57d, type: 3}
-  - {fileID: 2800000, guid: 914e2f94d3b39be429fd196f04a18a7a, type: 3}
-  - {fileID: 2800000, guid: 0b10b791181f20344b8e38d26da8284b, type: 3}
-  - {fileID: 2800000, guid: b28ac64e08582ea4ab327345ce0c1b24, type: 3}
-  - {fileID: 2800000, guid: 10978be3e2b54b94fb7afc17a347ec51, type: 3}
+  - {fileID: 2800000, guid: 7087c64a3d705be418fa57635fabedcc, type: 3}
+  - {fileID: 2800000, guid: 00d2326ea5895884b88054e565caea26, type: 3}
+  - {fileID: 2800000, guid: 38863e2c03c3895409f189f5f1af1ca0, type: 3}
+  - {fileID: 2800000, guid: 6f8796a87cdeb1a429d503483ce819bd, type: 3}
   m_Lightmaps2:
-  - {fileID: 2800000, guid: f6ccc0ed87956ab45a3f29f5ac6165d7, type: 3}
-  - {fileID: 2800000, guid: e089fb064fca7de4db413ba57192d071, type: 3}
-  - {fileID: 2800000, guid: 576721cec1cec0a4b98c7114bac40bca, type: 3}
-  - {fileID: 2800000, guid: 01452ca61e1fd4740a592dcb4c91ff37, type: 3}
-  - {fileID: 2800000, guid: fdb0596711b56c54ba5b46801d0c81aa, type: 3}
+  - {fileID: 2800000, guid: 632b1c3525840994d83ebce3ba0f493c, type: 3}
+  - {fileID: 2800000, guid: af4bfdaaa2136e441a5ee66f260a125b, type: 3}
+  - {fileID: 2800000, guid: 9e7619136a470474ea711e28fb6486d8, type: 3}
+  - {fileID: 2800000, guid: 52424a33de99d4645822ba5e7d77efbb, type: 3}
 --- !u!1 &8469486611864328178
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9020775111329229601}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 4d93cfed0f21b4f4b916017300aeedb9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -519,11 +519,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 3416389561413540238, guid: e56756d4a21f3bf41b06970688eb0f74,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_01_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 8200384647022282282, guid: e56756d4a21f3bf41b06970688eb0f74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -579,6 +574,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3416389561413540238, guid: e56756d4a21f3bf41b06970688eb0f74,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_01_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56756d4a21f3bf41b06970688eb0f74, type: 3}
 --- !u!23 &6633222543696659752 stripped
@@ -612,11 +612,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -672,6 +667,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (4)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!4 &3300592903564542069 stripped
@@ -705,11 +705,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -765,6 +760,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &2452128579286740455 stripped
@@ -798,11 +798,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
-        type: 3}
-      propertyPath: m_Name
-      value: pedra_01_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 3750078656772994022, guid: c6a9532932aae2143ba4b25522222980,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -858,6 +853,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
+        type: 3}
+      propertyPath: m_Name
+      value: pedra_01_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a9532932aae2143ba4b25522222980, type: 3}
 --- !u!4 &5844475287258844993 stripped
@@ -891,11 +891,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -951,6 +946,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &2452128579476688454 stripped
@@ -984,11 +984,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1044,6 +1039,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &2452128578482422425 stripped
@@ -1077,11 +1077,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
-        type: 3}
-      propertyPath: m_Name
-      value: arvore_01_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 3135915721602908095, guid: 6db4963b48fa6db4da667eef2a7b902c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1137,6 +1132,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
+        type: 3}
+      propertyPath: m_Name
+      value: arvore_01_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db4963b48fa6db4da667eef2a7b902c, type: 3}
 --- !u!23 &880300536223125174 stripped
@@ -1170,11 +1170,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
-        type: 3}
-      propertyPath: m_Name
-      value: pedra_01_LOD (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3750078656772994022, guid: c6a9532932aae2143ba4b25522222980,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1230,6 +1225,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
+        type: 3}
+      propertyPath: m_Name
+      value: pedra_01_LOD (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a9532932aae2143ba4b25522222980, type: 3}
 --- !u!4 &5844475286400284289 stripped
@@ -1263,11 +1263,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 9025982706958354545, guid: 6e3732b0371c56c47bb4e2c526558e89,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_04_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 4439891083934908035, guid: 6e3732b0371c56c47bb4e2c526558e89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1323,6 +1318,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9025982706958354545, guid: 6e3732b0371c56c47bb4e2c526558e89,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_04_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e3732b0371c56c47bb4e2c526558e89, type: 3}
 --- !u!23 &7059984152009709612 stripped
@@ -1356,11 +1356,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
-        type: 3}
-      propertyPath: m_Name
-      value: arbusto_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 7388972921453542428, guid: a9e9b78f818be9a45bf7d897ad41e14c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1426,6 +1421,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 100.00018
       objectReference: {fileID: 0}
+    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
+        type: 3}
+      propertyPath: m_Name
+      value: arbusto_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e9b78f818be9a45bf7d897ad41e14c, type: 3}
 --- !u!23 &6034808746792457071 stripped
@@ -1459,11 +1459,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 3416389561413540238, guid: e56756d4a21f3bf41b06970688eb0f74,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_01_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 8200384647022282282, guid: e56756d4a21f3bf41b06970688eb0f74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1519,6 +1514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3416389561413540238, guid: e56756d4a21f3bf41b06970688eb0f74,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_01_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e56756d4a21f3bf41b06970688eb0f74, type: 3}
 --- !u!23 &6633222543847394231 stripped
@@ -1552,11 +1552,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
-        type: 3}
-      propertyPath: m_Name
-      value: arvore_01_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3135915721602908095, guid: 6db4963b48fa6db4da667eef2a7b902c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,6 +1607,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2405791604857363644, guid: 6db4963b48fa6db4da667eef2a7b902c,
+        type: 3}
+      propertyPath: m_Name
+      value: arvore_01_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db4963b48fa6db4da667eef2a7b902c, type: 3}
 --- !u!4 &5662231301156325338 stripped
@@ -1645,11 +1645,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1705,6 +1700,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &837047780046968389 stripped
@@ -1738,11 +1738,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
-        type: 3}
-      propertyPath: m_Name
-      value: arbusto_LOD (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 7388972921453542428, guid: a9e9b78f818be9a45bf7d897ad41e14c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1808,6 +1803,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 100.00018
       objectReference: {fileID: 0}
+    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
+        type: 3}
+      propertyPath: m_Name
+      value: arbusto_LOD (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e9b78f818be9a45bf7d897ad41e14c, type: 3}
 --- !u!4 &259990918930837369 stripped
@@ -1841,11 +1841,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 1468336942942442300, guid: 61ee26bdeb8a0b04db490f5ed21dfb95,
-        type: 3}
-      propertyPath: m_Name
-      value: arvore_02_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 4995357492473888953, guid: 61ee26bdeb8a0b04db490f5ed21dfb95,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1901,6 +1896,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1468336942942442300, guid: 61ee26bdeb8a0b04db490f5ed21dfb95,
+        type: 3}
+      propertyPath: m_Name
+      value: arvore_02_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61ee26bdeb8a0b04db490f5ed21dfb95, type: 3}
 --- !u!23 &2491777846954425626 stripped
@@ -1934,11 +1934,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1994,6 +1989,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &837047778556146770 stripped
@@ -2027,11 +2027,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 6083394634542899422, guid: 06fba3e18f680864083a9b5afd8da0ea,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_02_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 4270886163565117468, guid: 06fba3e18f680864083a9b5afd8da0ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2087,6 +2082,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6083394634542899422, guid: 06fba3e18f680864083a9b5afd8da0ea,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_02_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06fba3e18f680864083a9b5afd8da0ea, type: 3}
 --- !u!23 &1769784667523068465 stripped
@@ -2120,11 +2120,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 1848096397378586925, guid: 33759c1ae30c5fa47a2b66eff9287669,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_03_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 585465635769789325, guid: 33759c1ae30c5fa47a2b66eff9287669,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2180,6 +2175,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848096397378586925, guid: 33759c1ae30c5fa47a2b66eff9287669,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_03_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33759c1ae30c5fa47a2b66eff9287669, type: 3}
 --- !u!23 &5993421983044497476 stripped
@@ -2213,11 +2213,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 6083394634542899422, guid: 06fba3e18f680864083a9b5afd8da0ea,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_02_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4270886163565117468, guid: 06fba3e18f680864083a9b5afd8da0ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2273,6 +2268,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6083394634542899422, guid: 06fba3e18f680864083a9b5afd8da0ea,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_02_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06fba3e18f680864083a9b5afd8da0ea, type: 3}
 --- !u!23 &1769784667683046664 stripped
@@ -2306,11 +2306,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 1848096397378586925, guid: 33759c1ae30c5fa47a2b66eff9287669,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_03_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 585465635769789325, guid: 33759c1ae30c5fa47a2b66eff9287669,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2366,6 +2361,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1848096397378586925, guid: 33759c1ae30c5fa47a2b66eff9287669,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_03_LOD
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33759c1ae30c5fa47a2b66eff9287669, type: 3}
 --- !u!23 &5993421984084761631 stripped
@@ -2399,11 +2399,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
-        type: 3}
-      propertyPath: m_Name
-      value: pedra_01_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 3750078656772994022, guid: c6a9532932aae2143ba4b25522222980,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2459,6 +2454,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 969254199455945546, guid: c6a9532932aae2143ba4b25522222980,
+        type: 3}
+      propertyPath: m_Name
+      value: pedra_01_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a9532932aae2143ba4b25522222980, type: 3}
 --- !u!4 &5844475285842772006 stripped
@@ -2492,11 +2492,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 9025982706958354545, guid: 6e3732b0371c56c47bb4e2c526558e89,
-        type: 3}
-      propertyPath: m_Name
-      value: flor_04_LOD (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4439891083934908035, guid: 6e3732b0371c56c47bb4e2c526558e89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2552,6 +2547,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9025982706958354545, guid: 6e3732b0371c56c47bb4e2c526558e89,
+        type: 3}
+      propertyPath: m_Name
+      value: flor_04_LOD (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e3732b0371c56c47bb4e2c526558e89, type: 3}
 --- !u!23 &3701820386639847323 stripped
@@ -2585,11 +2585,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
-        type: 3}
-      propertyPath: m_Name
-      value: grama_LOD (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 5250990627659770655, guid: 757fcb4c8e7b4384b801105f3f5742b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2645,6 +2640,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304117889556587314, guid: 757fcb4c8e7b4384b801105f3f5742b3,
+        type: 3}
+      propertyPath: m_Name
+      value: grama_LOD (3)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757fcb4c8e7b4384b801105f3f5742b3, type: 3}
 --- !u!23 &1134371606530005432 stripped
@@ -2678,11 +2678,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8810244970844726702}
     m_Modifications:
-    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
-        type: 3}
-      propertyPath: m_Name
-      value: arbusto_LOD
-      objectReference: {fileID: 0}
     - target: {fileID: 7388972921453542428, guid: a9e9b78f818be9a45bf7d897ad41e14c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2747,6 +2742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 100.00018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669545169251748942, guid: a9e9b78f818be9a45bf7d897ad41e14c,
+        type: 3}
+      propertyPath: m_Name
+      value: arbusto_LOD
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e9b78f818be9a45bf7d897ad41e14c, type: 3}
