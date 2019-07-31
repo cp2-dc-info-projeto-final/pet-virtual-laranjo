@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +29,9 @@ public class gerenciador : MonoBehaviour
     public GameObject[] casa_pivot;
     public GameObject carro_base;
     public List<item_carro> itens_carro;
+
+    public GameObject SHOWSHOW;
+    public item_carro SHOWSHOWIC;
 
     private void Awake() {
         instancia = this;
@@ -315,21 +318,32 @@ public class gerenciador : MonoBehaviour
 
             chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
 
+            Debug.Log("-  -  -" + i_);
+
             car_.GetComponent<veiculo>().entrada = chas_.GetComponent<chassi>().entradas;
             car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
+
+            
 
             for (int rodaid_ = 0; rodaid_ < car_.GetComponent<veiculo>().transf_roda.Length; rodaid_++)
             {
                 GameObject rod_;
                 if( rodaid_ % 2 == 0){
-                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[1]).prefab);
+                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[0]).prefab,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
                 }else
                 {
-                 rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[1]).prefab_2,chas_.GetComponent<chassi>().rodas_tranf_.transform);
+                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[0]).prefab_2,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
                 }
 
+                car_.GetComponent<veiculo>().transf_roda[rodaid_] = rod_.transform;
 
             }
+
+            SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
+            
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[4],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
+
+            
 
             car_.name = "carro_0" + (i_);
             Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
@@ -351,10 +365,11 @@ public class gerenciador : MonoBehaviour
     }
 
     public item_carro ChassiDeId(int id_){
+
         item_carro chassi_ = null;
 
         foreach (item_carro chas_ in itens_carro){
-            if(chas_.posicao == item_carro.PosicaoItemCarro.Chassi){
+            if(chas_.posicao == PosicaoItemCarro.Chassi){
                 if(chas_.id == id_){
                     chassi_ = chas_;
                 }
@@ -367,14 +382,28 @@ public class gerenciador : MonoBehaviour
     public item_pneu RodaDeId(int id_){
         item_pneu roda_ = null;
 
-        foreach (item_pneu chas_ in itens_carro){
-            if(chas_.posicao == item_carro.PosicaoItemCarro.Roda){
+        foreach (item_carro chas_ in itens_carro){
+            if(chas_.posicao == PosicaoItemCarro.Roda){
                 if(chas_.id == id_){
-                    roda_ = chas_;
+                    roda_ = chas_ as item_pneu;
                 }
             }
         }
 
         return roda_;
+    }
+
+    public item_carro itemCarroDeId(int id_, PosicaoItemCarro pos_){
+        item_carro item_ = null;
+
+        foreach (item_carro chas_ in itens_carro){
+            if(chas_.posicao == pos_){
+                if(chas_.id == id_){
+                    item_ = chas_;
+                }
+            }
+        }
+
+        return item_;
     }
 }
