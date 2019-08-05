@@ -341,7 +341,10 @@ public class gerenciador : MonoBehaviour
 
             SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
             
-            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[4],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[1],PosicaoItemCarro.ArTeto).prefab,chas_.GetComponent<chassi>().acessorios[1].transform);
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[2],PosicaoItemCarro.ArCapo).prefab,chas_.GetComponent<chassi>().acessorios[2].transform);
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[3],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
 
             
 
