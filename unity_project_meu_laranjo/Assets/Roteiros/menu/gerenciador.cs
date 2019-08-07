@@ -314,7 +314,12 @@ public class gerenciador : MonoBehaviour
     public void instanciar_carro(int i_){
         GameObject car_, chas_;
         if(gerDados.instancia.dados_.carro[i_] != null){
+
+            
             car_ = Instantiate(carro_base, casa_pivot[i_].transform.position + new Vector3(0,0.35f,-2), Quaternion.Euler(0,0,0));
+
+            car_.name = "carro_0" + (i_);
+            Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
 
             chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
 
@@ -329,10 +334,10 @@ public class gerenciador : MonoBehaviour
             {
                 GameObject rod_;
                 if( rodaid_ % 2 == 0){
-                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[0]).prefab,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
+                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[4]).prefab,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
                 }else
                 {
-                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[0]).prefab_2,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
+                    rod_ = Instantiate(RodaDeId(gerDados.instancia.dados_.carro[i_].acessorios[4]).prefab_2,chas_.GetComponent<chassi>().rodas_tranf_[rodaid_].transform);
                 }
 
                 car_.GetComponent<veiculo>().transf_roda[rodaid_] = rod_.transform;
@@ -341,15 +346,14 @@ public class gerenciador : MonoBehaviour
 
             SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
             
-            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
+            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[1],PosicaoItemCarro.ArTeto).prefab,chas_.GetComponent<chassi>().acessorios[1].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[2],PosicaoItemCarro.ArCapo).prefab,chas_.GetComponent<chassi>().acessorios[2].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[3],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
 
             
 
-            car_.name = "carro_0" + (i_);
-            Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
+            
         }
         
   
@@ -403,6 +407,24 @@ public class gerenciador : MonoBehaviour
             if(chas_.posicao == pos_){
                 if(chas_.id == id_){
                     item_ = chas_;
+                }
+            }
+        }
+
+        return item_;
+    }
+
+    public item_carro itemCarroDeId(int id_, PosicaoItemCarro pos_, int idChassi_){
+        item_carro item_ = null;
+        item_carroceria temp_ = null;
+
+        foreach (item_carro chas_ in itens_carro){
+            if(chas_.posicao == pos_){
+                
+                temp_ = chas_ as item_carroceria;
+
+                if(chas_.id == id_ && temp_.id_chassi == idChassi_){
+                    item_ = chas_ as item_carro;
                 }
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "item_carro", menuName = "Laranjo/Inventario/Item de Carro")]
+[CreateAssetMenu(fileName = "item_carro_", menuName = "Laranjo/Inventario/Item de Carro")]
 public class item_carro : ScriptableObject
 {
     public int id, id_ordem;
@@ -17,7 +17,7 @@ public class item_carro : ScriptableObject
 
 }
 
-[CreateAssetMenu(fileName = "roda", menuName = "Laranjo/Inventario/Item de Carro (Roda)")]
+[CreateAssetMenu(fileName = "roda_", menuName = "Laranjo/Inventario/Item de Carro (Roda)")]
 public class item_pneu : item_carro{
     public aroNumeros aro;
 
@@ -29,6 +29,13 @@ public class item_pneu : item_carro{
         aro19 = 19,
         aro22 = 22
     }
+}
+
+[CreateAssetMenu(fileName = "carroceria_", menuName = "Laranjo/Inventario/Item de Carro (Carroceria)")]
+public class item_carroceria : item_carro{
+    public int id_chassi;
+
+    //public PosicaoItemCarro posicao = PosicaoItemCarro.Carroceria;
 }
 
     public enum PosicaoItemCarro
