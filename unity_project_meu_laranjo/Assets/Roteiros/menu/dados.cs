@@ -11,6 +11,6 @@
     public int id_casa = 1;
 
     public int quant_gar = 3;
-    public carro_dados[] carro = new carro_dados[]{null,new carro_dados(1,3,2,3,3,1),null,new carro_dados()};
+    public carro_dados[] carro = new carro_dados[]{null,new carro_dados(1,3,2,3,3,1,3,19),null,new carro_dados()};
 
 }

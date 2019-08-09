@@ -29,6 +29,7 @@ public class gerenciador : MonoBehaviour
     public GameObject[] casa_pivot;
     public GameObject carro_base;
     public List<item_carro> itens_carro;
+    public List<item_cor> itens_cor;
 
     public GameObject SHOWSHOW;
     public item_carro SHOWSHOWIC;
@@ -346,13 +347,32 @@ public class gerenciador : MonoBehaviour
 
             SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
             
-            Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
+            GameObject obj_chassi_ = Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[1],PosicaoItemCarro.ArTeto).prefab,chas_.GetComponent<chassi>().acessorios[1].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[2],PosicaoItemCarro.ArCapo).prefab,chas_.GetComponent<chassi>().acessorios[2].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[3],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
 
-            
+            Material[] tempMats_ = obj_chassi_.GetComponent<MeshRenderer>().materials;
 
+
+
+            tempMats_[0] = itemCorDeId(gerDados.instancia.dados_.carro[i_].cor_id[0]).material;
+            tempMats_[1] = itemCorDeId(gerDados.instancia.dados_.carro[i_].cor_id[1]).material;
+
+            obj_chassi_.GetComponent<MeshRenderer>().materials = tempMats_;
+
+            SHOWSHOW = obj_chassi_;
+            foreach(GameObject porta_ in chas_.GetComponent<chassi>().portas){
+
+                tempMats_ = porta_.GetComponent<MeshRenderer>().materials;
+
+                tempMats_[0] = itemCorDeId(gerDados.instancia.dados_.carro[i_].cor_id[0]).material;
+                tempMats_[1] = itemCorDeId(gerDados.instancia.dados_.carro[i_].cor_id[1]).material;
+
+                porta_.GetComponent<MeshRenderer>().materials = tempMats_;
+            }
+            
+            
             
         }
         
@@ -430,5 +450,17 @@ public class gerenciador : MonoBehaviour
         }
 
         return item_;
+    }
+
+    public item_cor itemCorDeId(int id_){
+        item_cor cor_ = null;
+
+            foreach (item_cor itemcor_ in itens_cor){
+                if(itemcor_.id == id_){
+                    cor_ = itemcor_;
+                }
+            }
+
+        return cor_;
     }
 }
