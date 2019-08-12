@@ -182,7 +182,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                     entrou_carro = true;
                     indo_carro = false;
 
-                    gerenciador.instancia.cameras[2].transform.SetParent(gerenciador.instancia.carros[indice_carro].transform);
+                    //gerenciador.instancia.cameras[2].transform.SetParent(gerenciador.instancia.carros[indice_carro].transform);
+                    gerenciador.instancia.cameras[2].GetComponent<camera_carro>().carro_ = gerenciador.instancia.carros[indice_carro];
                     gerenciador.instancia.cameras[2].transform.localPosition = new Vector3(0,0,0);
                     //gerenciador.instancia.cameras[2].transform.localRotation = Quaternion.Euler(0,0,0);
                     gerenciador.instancia.cameras[2].GetComponent<camera_carro>().cam_rot =  Quaternion.Euler(0,0,0);

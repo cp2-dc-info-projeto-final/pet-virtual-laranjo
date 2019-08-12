@@ -11,9 +11,9 @@ public class camera_carro : MonoBehaviour//, IPointerDownHandler
     public float velz, velmax, sensizmais, sensizmenos, distanciaMax;
     
 
-    public GameObject cam_carro;
+    public GameObject carro_, cam_carro;
 
-    public Quaternion cam_rot;
+    public Quaternion cam_rot, cam_rot_final;
 
 
     SkinnedMeshRenderer sknd_;
@@ -48,8 +48,9 @@ public class camera_carro : MonoBehaviour//, IPointerDownHandler
     void Update()
     {
         //---girar camera---
+        transform.position = Vector3.Lerp(transform.position, carro_.transform.position,Time.deltaTime * 2);
 
-        cam_carro.transform.localRotation = Quaternion.Lerp(cam_carro.transform.localRotation, cam_rot,Time.deltaTime * 8);
+        cam_carro.transform.localRotation = Quaternion.Euler(0,Mathf.LerpAngle(transform.rotation.eulerAngles.y,carro_.transform.rotation.eulerAngles.y - (cam_rot.eulerAngles.y * -1),Time.deltaTime * 1),0);// Quaternion.Lerp(cam_carro.transform.localRotation, cam_rot,Time.deltaTime);
 
         //---mover camera---
 
