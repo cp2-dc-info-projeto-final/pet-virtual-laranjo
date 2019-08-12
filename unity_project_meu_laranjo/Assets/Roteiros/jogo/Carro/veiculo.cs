@@ -145,17 +145,17 @@ public class veiculo : MonoBehaviour
 
 
         if(press_fre){
-            vel_fre += Time.deltaTime * 6;
+            vel_fre += Time.deltaTime * 8;
         }else
         {
-            vel_fre -= Time.deltaTime;
+            vel_fre -= Time.deltaTime * 4;
         }
         
         if(press_tra){
-            vel_tra -= Time.deltaTime *6;
+            vel_tra -= Time.deltaTime *8;
         }else
         {
-            vel_tra += Time.deltaTime;
+            vel_tra += Time.deltaTime * 4;
         }
 
         vel_tra = Mathf.Clamp(vel_tra,-1,0);
@@ -165,8 +165,8 @@ public class veiculo : MonoBehaviour
 
         angulo = Mathf.Lerp(angulo,direcao,Time.deltaTime * 4);
 
-        coll_roda[0].steerAngle = angulo * 45;
-        coll_roda[1].steerAngle = angulo * 45;
+        coll_roda[0].steerAngle = angulo * 35;
+        coll_roda[1].steerAngle = angulo * 35;
 
         coll_roda[2].motorTorque = velocida*torque;
         coll_roda[3].motorTorque = velocida*torque;
