@@ -13,7 +13,7 @@ public class gatilhoTerreno : MonoBehaviour
         if(other.gameObject.tag == "carro"){
             entrou = true;
             ter_.dentro = true;
-            Debug.Log("setou true");
+            //Debug.Log("setou true");
             ot = other.gameObject;
         }
     }
@@ -21,7 +21,7 @@ public class gatilhoTerreno : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "carro"){
             ter_.fora = true;
-            Debug.Log("setou false");
+            //Debug.Log("setou false");
         };
         
     }

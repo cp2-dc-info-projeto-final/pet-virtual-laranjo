@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class terreno : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class terreno : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         pivotTerreno = transform.parent.gameObject;
         gatilho.transform.localScale = new Vector3(gerenciador.instancia.render_area,100,gerenciador.instancia.render_area);
     }
@@ -81,33 +83,41 @@ public class terreno : MonoBehaviour
                             
                             
                             if(i == 0){
+
+                                ListaInstancia_ = listaDePosicao(posX,posZ + 1);
+
+                                /*
                                 foreach (int id_ in peca_.conexao_4)
                                 {
                                     // ----------------------------------------------------------------------------------------------------------- PAUSA AQUI Debug.Log()
-                                    Debug.Log("TAQUI: " + id + " - " + id_);
+                                    //Debug.Log("TAQUI: " + id + " - " + id_);
                                     if(id_ == id){
 
                                         bool podeAdd = true;
-                                        Debug.Log("TAQUI1111111111111111111111111111111111111111 " + id + " - " + peca_.id);
+                                        //Debug.Log("TAQUI1111111111111111111111111111111111111111 " + id + " - " + peca_.id);
                                         foreach (int num_ in ListaInstancia_)
                                         {
-                                            Debug.Log("TAQUI222222222222222222222222222222222222222" + num_);
+                                            //Debug.Log("TAQUI222222222222222222222222222222222222222" + num_);
                                             if(peca_.id == num_){
-                                                Debug.Log("*****REMOVIDO EM POS1: " + peca_.id);
+                                                //Debug.Log("*****REMOVIDO EM POS1: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
                                             
                                             ListaInstancia_.Add(peca_.id);
-                                            Debug.Log("-----ADICIONADO EM POS1: " + peca_.id);
+                                            //Debug.Log("-----ADICIONADO EM POS1: " + peca_.id);
                                         }
                                         
                                     }
-                                }
+                                }*/
                             }
                             
                             if(i == 1){
+
+                                ListaInstancia_ = listaDePosicao(posX - 1,posZ);
+
+                                /*
                                 foreach (int id_ in peca_.conexao_3)
                                 {
                                     if(id_ == id){
@@ -116,20 +126,28 @@ public class terreno : MonoBehaviour
                                         foreach (int num_ in ListaInstancia_)
                                         {
                                             if(peca_.id == num_){
-                                                Debug.Log("*****REMOVIDO EM POS2: " + peca_.id);
+                                                //Debug.Log("*****REMOVIDO EM POS2: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
                                             ListaInstancia_.Add(peca_.id);
-                                            Debug.Log("-----ADICIONADO EM POS2: " + peca_.id);
+                                            //Debug.Log("-----ADICIONADO EM POS2: " + peca_.id);
                                         }
                                         
                                     }
+                                }*/
+
+                                if(posZ == 1){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto1).ToList();
                                 }
+
                             }
 
                             if(i == 2){
+                                ListaInstancia_ = listaDePosicao(posX + 1,posZ);
+
+                                /*
                                 foreach (int id_ in peca_.conexao_2)
                                 {
                                     if(id_ == id){
@@ -138,20 +156,28 @@ public class terreno : MonoBehaviour
                                         foreach (int num_ in ListaInstancia_)
                                         {
                                             if(peca_.id == num_){
-                                                Debug.Log("*****REMOVIDO EM POS3: " + peca_.id);
+                                                //Debug.Log("*****REMOVIDO EM POS3: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
                                             ListaInstancia_.Add(peca_.id);
-                                            Debug.Log("-----ADICIONADO EM POS3: " + peca_.id);
+                                            //Debug.Log("-----ADICIONADO EM POS3: " + peca_.id);
                                         }
                                         
                                     }
+                                }*/
+
+                                if(posZ == 1){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto1).ToList();
                                 }
                             }
 
                             if(i == 3){
+
+                                ListaInstancia_ = listaDePosicao(posX,posZ - 1);
+
+                                /*
                                 foreach (int id_ in peca_.conexao_1)
                                 {
                                     if(id_ == id){
@@ -160,17 +186,29 @@ public class terreno : MonoBehaviour
                                         foreach (int num_ in ListaInstancia_)
                                         {
                                             if(peca_.id == num_){
-                                                Debug.Log("*****REMOVIDO EM POS4: " + peca_.id);
+                                                //Debug.Log("*****REMOVIDO EM POS4: " + peca_.id);
                                                 podeAdd = false;
                                             }
                                         }
                                         if(podeAdd){
                                             ListaInstancia_.Add(peca_.id);
-                                            Debug.Log("-----ADICIONADO EM POS4: " + peca_.id);
+                                            //Debug.Log("-----ADICIONADO EM POS4: " + peca_.id);
                                         }
                                         
                                     }
+                                }*/
+                                if(posZ == 1){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto0).ToList();
+                                }else
+                                {
+                                    ListaInstancia_ = ListaInstancia_.Distinct().ToList();
+                                    ListaInstancia_.Remove(0);
                                 }
+
+                                if(posZ == 2){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto0).ToList();
+                                }
+                                
                             }
                         }
 
@@ -178,7 +216,7 @@ public class terreno : MonoBehaviour
                         
                         foreach (int id_ in ListaInstancia_)
                         {
-                            Debug.Log("tah na lista" + id_);
+                            //Debug.Log("tah na lista" + id_);
                         }
 
                         int maxRand_ = 0;
@@ -297,5 +335,37 @@ public class terreno : MonoBehaviour
         }
 
         //gatilho = gatilho_;
+    }
+
+    public List<int> listaDePosicao(int pX, int pZ){
+        List<int> lista_ = new List<int>();
+
+        foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+        {
+            lista_.Add(peca_.id);
+        }
+
+        if(gerenciador.instancia.pegar_terreno(pX,pZ+1) != null){
+            
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ+1).GetComponent<terreno>().id).conexao_4).ToList();
+        }
+
+        if(gerenciador.instancia.pegar_terreno(pX-1,pZ) != null){
+            
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX-1,pZ).GetComponent<terreno>().id).conexao_4).ToList();
+        }
+
+        if(gerenciador.instancia.pegar_terreno(pX,pZ+1) != null){
+            
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ+1).GetComponent<terreno>().id).conexao_4).ToList();
+        }
+
+        if(gerenciador.instancia.pegar_terreno(pX,pZ-1) != null){
+            
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ-1).GetComponent<terreno>().id).conexao_4).ToList();
+        }
+
+        return lista_;
+
     }
 }

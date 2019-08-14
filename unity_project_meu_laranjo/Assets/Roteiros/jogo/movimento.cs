@@ -35,6 +35,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     public Collider col_;
     [HideInInspector]
     public Rigidbody rb_;
+    public GameObject HITHIT_;
 
 
     void Start()
@@ -87,6 +88,9 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 if(pode_andar){
                     if(!canva.instancia.ClickouUi()){
                         if(Physics.Raycast(raioMouse, out RaycastHit hit_)){
+
+                            HITHIT_ = hit_.transform.gameObject;
+                            Debug.Log("H I T H I T + +");
                             //Debug.Log(hit_.transform.tag);
                             if(!apertou_ui){
                                 if(hit_.transform.tag == "chao"){
@@ -156,7 +160,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             if(andar){
                 
                 velz += sensizmais * Time.deltaTime;
-                transform.rotation = Quaternion.Lerp(transform.rotation,direcao,0.1f * velz);
+                transform.rotation = Quaternion.Lerp(transform.rotation,direcao,0.1f);
             }else
             {
                 velz -= sensizmenos * Time.deltaTime;
@@ -224,8 +228,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 entrou_carro = false;
             }
             
-
-            controle_carro.SetActive(true);
+            GameObject.Find("controle_carro_0"+indice_carro).transform.Find("controle").gameObject.SetActive(true);
+            //controle_carro.SetActive(true);
 
         }
 
@@ -256,7 +260,13 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         col_.enabled = true;
         rb_.constraints = RigidbodyConstraints.None;
         rb_.constraints = RigidbodyConstraints.FreezeRotation;
-        controle_carro.SetActive(false);
+
+
+        // desativar controles de carro
+        for (int i = 1; i <= 3; i++){
+            GameObject.Find("controle_carro_0" + i).transform.Find("controle").gameObject.SetActive(false);
+        }
+
         ani_.SetTrigger("sair_esq");
         entrada_carro.transform.DetachChildren();
         dentro_carro = false;

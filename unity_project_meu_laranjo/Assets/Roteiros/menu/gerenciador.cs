@@ -23,8 +23,11 @@ public class gerenciador : MonoBehaviour
 
     public int render_area = 600;
 
+
+    public GameObject primeiro_terreno;
     public peca_terreno[] pecas;
     public List<terreno> todosTerrenos;
+    public List<int> ter_canto0, ter_canto1;
     public List<item_casa> casas;
     public GameObject[] casa_pivot;
     public GameObject carro_base;
@@ -41,6 +44,10 @@ public class gerenciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject prim_ter_ = Instantiate (primeiro_terreno,GameObject.Find("pivot_terreno").transform);
+
+        todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
+
         instanciar_casa();
         for(int i_ = 1; i_ <= 3; i_++){
             instanciar_carro(i_);
@@ -319,8 +326,10 @@ public class gerenciador : MonoBehaviour
             
             car_ = Instantiate(carro_base, casa_pivot[i_].transform.position + new Vector3(0,0.35f,-2), Quaternion.Euler(0,0,0));
 
+            car_.transform.SetParent(casa_quintal.transform);
+
             car_.name = "carro_0" + (i_);
-            Debug.Log("INTANCIADO O CARRO LAH OH! id: " + i_);
+            Debug.Log("INSTANCIADO O CARRO LAH OH! id: " + i_);
 
             chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
 
@@ -330,6 +339,8 @@ public class gerenciador : MonoBehaviour
             car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
 
             
+            // intanciar rodas
+
 
             for (int rodaid_ = 0; rodaid_ < car_.GetComponent<veiculo>().transf_roda.Length; rodaid_++)
             {
@@ -344,10 +355,28 @@ public class gerenciador : MonoBehaviour
                 car_.GetComponent<veiculo>().transf_roda[rodaid_] = rod_.transform;
 
             }
+            
 
             SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
+
+            //instanciar carroceria, airvent teto, airvent capo e aerofolio
+
+            GameObject obj_chassi_ = null;
             
-            GameObject obj_chassi_ = Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
+            if (itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab == null)
+            {
+                Debug.Log("CHASSI NULL---------------------------------------------");
+            }else
+            {
+                if (chas_.GetComponent<chassi>().acessorios[0].transform == null)
+                {
+                    Debug.Log("CHASSI PARENT NULL---------------------------------------------");
+                }else
+                {
+                    obj_chassi_ = Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[0],PosicaoItemCarro.Carroceria,gerDados.instancia.dados_.carro[i_].id_chassi).prefab,chas_.GetComponent<chassi>().acessorios[0].transform);
+                }
+            }
+            
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[1],PosicaoItemCarro.ArTeto).prefab,chas_.GetComponent<chassi>().acessorios[1].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[2],PosicaoItemCarro.ArCapo).prefab,chas_.GetComponent<chassi>().acessorios[2].transform);
             Instantiate(itemCarroDeId(gerDados.instancia.dados_.carro[i_].acessorios[3],PosicaoItemCarro.Aerofolio).prefab,chas_.GetComponent<chassi>().acessorios[3].transform);
@@ -383,8 +412,11 @@ public class gerenciador : MonoBehaviour
         item_casa casa_ = null;
 
         foreach (item_casa cas_ in casas){
-            if(cas_.id == id_){
-                casa_ = cas_;
+            if (cas_ != null)
+            {
+                if(cas_.id == id_){
+                    casa_ = cas_;
+                }
             }
         }
 
@@ -396,9 +428,11 @@ public class gerenciador : MonoBehaviour
         item_carro chassi_ = null;
 
         foreach (item_carro chas_ in itens_carro){
-            if(chas_.posicao == PosicaoItemCarro.Chassi){
-                if(chas_.id == id_){
-                    chassi_ = chas_;
+            if (chas_ != null){
+                if(chas_.posicao == PosicaoItemCarro.Chassi){
+                    if(chas_.id == id_){
+                        chassi_ = chas_;
+                    }
                 }
             }
         }
@@ -410,9 +444,11 @@ public class gerenciador : MonoBehaviour
         item_pneu roda_ = null;
 
         foreach (item_carro chas_ in itens_carro){
-            if(chas_.posicao == PosicaoItemCarro.Roda){
-                if(chas_.id == id_){
-                    roda_ = chas_ as item_pneu;
+            if (chas_ != null){
+                if(chas_.posicao == PosicaoItemCarro.Roda){
+                    if(chas_.id == id_){
+                        roda_ = chas_ as item_pneu;
+                    }
                 }
             }
         }
@@ -424,9 +460,11 @@ public class gerenciador : MonoBehaviour
         item_carro item_ = null;
 
         foreach (item_carro chas_ in itens_carro){
-            if(chas_.posicao == pos_){
-                if(chas_.id == id_){
-                    item_ = chas_;
+            if (chas_ != null){
+                if(chas_.posicao == pos_){
+                    if(chas_.id == id_){
+                        item_ = chas_;
+                    }
                 }
             }
         }
@@ -439,12 +477,14 @@ public class gerenciador : MonoBehaviour
         item_carroceria temp_ = null;
 
         foreach (item_carro chas_ in itens_carro){
-            if(chas_.posicao == pos_){
-                
-                temp_ = chas_ as item_carroceria;
+            if (chas_ != null){
+                if(chas_.posicao == pos_){
+                    
+                    temp_ = chas_ as item_carroceria;
 
-                if(chas_.id == id_ && temp_.id_chassi == idChassi_){
-                    item_ = chas_ as item_carro;
+                    if(chas_.id == id_ && temp_.id_chassi == idChassi_){
+                        item_ = chas_ as item_carro;
+                    }
                 }
             }
         }
@@ -452,15 +492,30 @@ public class gerenciador : MonoBehaviour
         return item_;
     }
 
-    public item_cor itemCorDeId(int id_){
+    public item_cor itemCorDeId (int id_){
         item_cor cor_ = null;
 
-            foreach (item_cor itemcor_ in itens_cor){
+        foreach (item_cor itemcor_ in itens_cor){
+            if (itemcor_ != null){
                 if(itemcor_.id == id_){
                     cor_ = itemcor_;
                 }
             }
+        }
 
         return cor_;
+    }
+
+    public peca_terreno pecaDeId (int id_){
+        
+        peca_terreno peca_ = null;
+
+        foreach(peca_terreno peca_i_ in pecas){
+            if(peca_i_.id == id_){
+                peca_ = peca_i_;
+            }
+        }
+
+        return peca_;
     }
 }
