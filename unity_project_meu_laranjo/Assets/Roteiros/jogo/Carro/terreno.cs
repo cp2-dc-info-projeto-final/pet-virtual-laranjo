@@ -138,6 +138,19 @@ public class terreno : MonoBehaviour
                                     }
                                 }*/
 
+                                if(posZ == 0){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto0).ToList();
+                                }else
+                                {
+                                    ListaInstancia_ = ListaInstancia_.Distinct().ToList();
+                                    
+                                    
+                                    foreach (int i_i_ in gerenciador.instancia.ter_canto0)
+                                    {
+                                        ListaInstancia_.Remove(i_i_);
+                                    }
+                                }
+
                                 if(posZ == 1){
                                     ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto1).ToList();
                                 }
@@ -167,6 +180,18 @@ public class terreno : MonoBehaviour
                                         
                                     }
                                 }*/
+
+                                if(posZ == 0){
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto0).ToList();
+                                }else
+                                {
+                                    ListaInstancia_ = ListaInstancia_.Distinct().ToList();
+                                    
+                                    foreach (int i_i_ in gerenciador.instancia.ter_canto0)
+                                    {
+                                        ListaInstancia_.Remove(i_i_);
+                                    }
+                                }
 
                                 if(posZ == 1){
                                     ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto1).ToList();
@@ -202,11 +227,16 @@ public class terreno : MonoBehaviour
                                 }else
                                 {
                                     ListaInstancia_ = ListaInstancia_.Distinct().ToList();
-                                    ListaInstancia_.Remove(0);
+
+                                    foreach (int i_i_ in gerenciador.instancia.ter_canto0)
+                                    {
+                                        ListaInstancia_.Remove(i_i_);
+                                    }
+                                    
                                 }
 
                                 if(posZ == 2){
-                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto0).ToList();
+                                    ListaInstancia_ = ListaInstancia_.Intersect(gerenciador.instancia.ter_canto1).ToList();
                                 }
                                 
                             }
@@ -236,7 +266,7 @@ public class terreno : MonoBehaviour
 
                         //sorteando um numero no range da probabilidade maxima
 
-                        int numAleatorio = Random.Range(0,maxRand_ + 1);
+                        int numAleatorio = Random.Range(0,maxRand_) + 1;
 
                         maxRand_ = 0;
 
@@ -256,7 +286,7 @@ public class terreno : MonoBehaviour
                                 {
                                     if(peca.id == id_){
                                         maxRand_ += peca.probabilidade;
-                                        if(numAleatorio < maxRand_){
+                                        if(numAleatorio <= maxRand_){
                                             //Debug.Log("TAH AQUI PO");
                                             numId = id_;
                                             vizinho[i] = Instantiate(gerenciador.instancia.pecas[numId].prefabs[Random.Range(0,gerenciador.instancia.pecas[numId].prefabs.Length)],new Vector3(1000,1000,1000),Quaternion.Euler(0,0,0), pivotTerreno.transform);
@@ -345,14 +375,14 @@ public class terreno : MonoBehaviour
             lista_.Add(peca_.id);
         }
 
-        if(gerenciador.instancia.pegar_terreno(pX,pZ+1) != null){
+        if(gerenciador.instancia.pegar_terreno(pX+1,pZ) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ+1).GetComponent<terreno>().id).conexao_4).ToList();
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX+1,pZ).GetComponent<terreno>().id).conexao_2).ToList();
         }
 
         if(gerenciador.instancia.pegar_terreno(pX-1,pZ) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX-1,pZ).GetComponent<terreno>().id).conexao_4).ToList();
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX-1,pZ).GetComponent<terreno>().id).conexao_3).ToList();
         }
 
         if(gerenciador.instancia.pegar_terreno(pX,pZ+1) != null){
@@ -362,7 +392,7 @@ public class terreno : MonoBehaviour
 
         if(gerenciador.instancia.pegar_terreno(pX,pZ-1) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ-1).GetComponent<terreno>().id).conexao_4).ToList();
+            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ-1).GetComponent<terreno>().id).conexao_1).ToList();
         }
 
         return lista_;

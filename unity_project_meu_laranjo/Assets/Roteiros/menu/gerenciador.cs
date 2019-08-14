@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class gerenciador : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class gerenciador : MonoBehaviour
     public GameObject SHOWSHOW;
     public item_carro SHOWSHOWIC;
 
+    //public List<int> lista1 = new List<int>(), lista2 = new List<int>(), lista3 = new List<int>();
+
     private void Awake() {
         instancia = this;
     }
@@ -44,6 +47,8 @@ public class gerenciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         GameObject prim_ter_ = Instantiate (primeiro_terreno,GameObject.Find("pivot_terreno").transform);
 
         todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
@@ -57,6 +62,8 @@ public class gerenciador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //lista3 = lista1.Intersect(lista2).ToList();
         /*
         if(ambiente == "dentro"){
             laranjo.GetComponent<movimento>().cam_ = GameObject.Find("camera_dentro_1").GetComponent<Camera>();
