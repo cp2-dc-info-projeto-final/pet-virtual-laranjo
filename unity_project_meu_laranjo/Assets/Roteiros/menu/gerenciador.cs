@@ -49,9 +49,7 @@ public class gerenciador : MonoBehaviour
     {
 
 
-        GameObject prim_ter_ = Instantiate (primeiro_terreno,GameObject.Find("pivot_terreno").transform);
-
-        todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
+        restartTerrenos();
 
         instanciar_casa();
         for(int i_ = 1; i_ <= 3; i_++){
@@ -524,5 +522,20 @@ public class gerenciador : MonoBehaviour
         }
 
         return peca_;
+    }
+
+    public void restartTerrenos(){
+
+        for ( int i= GameObject.Find("pivot_terreno").transform.childCount-1; i>=0; --i )
+        {
+            GameObject child = GameObject.Find("pivot_terreno").transform.GetChild(i).gameObject;
+            Destroy(child );
+        }
+
+        GameObject prim_ter_ = Instantiate (primeiro_terreno,GameObject.Find("pivot_terreno").transform);
+
+        todosTerrenos = new List<terreno>();
+
+        todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
     }
 }

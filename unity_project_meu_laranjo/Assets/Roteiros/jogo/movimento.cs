@@ -265,6 +265,16 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         // desativar controles de carro
         for (int i = 1; i <= 3; i++){
             GameObject.Find("controle_carro_0" + i).transform.Find("controle").gameObject.SetActive(false);
+
+            if(gerenciador.instancia.carros[i] != null){
+                gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position;
+                gerenciador.instancia.carros[i].transform.rotation = Quaternion.Euler(0,0,0);//gerenciador.instancia.casa_pivot[i].transform.rotation;
+
+                foreach (WheelCollider roda_ in gerenciador.instancia.carros[i].GetComponent<veiculo>().coll_roda)
+                {
+                    roda_.brakeTorque = Mathf.Infinity;
+                }
+            }
         }
 
         ani_.SetTrigger("sair_esq");
@@ -273,6 +283,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         pode_andar = true;
         destino = Instantiate(prefab_destino,transform.position,Quaternion.Euler(0,0,0));
         gerenciador.instancia.mudar_camera("camera_fora");
+
+        gerenciador.instancia.restartTerrenos();
     }
 
 }
