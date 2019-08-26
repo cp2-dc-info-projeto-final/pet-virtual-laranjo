@@ -270,6 +270,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position;
                 gerenciador.instancia.carros[i].transform.rotation = Quaternion.Euler(0,0,0);//gerenciador.instancia.casa_pivot[i].transform.rotation;
 
+                gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+
                 foreach (WheelCollider roda_ in gerenciador.instancia.carros[i].GetComponent<veiculo>().coll_roda)
                 {
                     roda_.brakeTorque = Mathf.Infinity;
