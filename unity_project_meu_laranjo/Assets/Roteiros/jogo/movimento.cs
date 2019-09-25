@@ -12,9 +12,9 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     public float velz, velmax, sensizmais, sensizmenos, distanciaMax;
     
 
-    public GameObject cam_fora, entrada_carro, controle_carro;
+    public GameObject cam_fora, cam_fora2, entrada_carro, controle_carro;
 
-    public Quaternion cam_rot;
+    public Quaternion cam_rot, cam_rot2;
 
 
     SkinnedMeshRenderer sknd_;
@@ -24,7 +24,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
     public bool pode_andar = true, apertando = false, rodar_visao = false, apertou_ui = false;
 
-    public float visao_origem, mouse_origem;
+    public float visao_origem, visao_origem2, mouse_origem, mouse_origem2;
     public bool andar, indo_carro = false, dentro_carro= false, entrou_carro = false;
     Animator ani_;
     public Camera cam_;
@@ -57,6 +57,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     {
         cam_fora.transform.localRotation = Quaternion.Lerp(cam_fora.transform.localRotation ,cam_rot, Time.deltaTime * 8);
 
+        cam_fora2.transform.localRotation = Quaternion.Lerp(cam_fora2.transform.localRotation ,cam_rot2, Time.deltaTime * 8);
+
         if(Input.GetKeyDown(KeyCode.E)){
             gerenciador.instancia.colocaritemArmario(id_);
         }
@@ -71,6 +73,9 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 if(!dentro_carro){
                     mouse_origem = Input.mousePosition.x;
                     visao_origem = cam_rot.eulerAngles.y;
+
+                    mouse_origem2 = Input.mousePosition.y;
+                    visao_origem2 = cam_rot2.eulerAngles.x;
                     apertando = true;
                 }
                 
@@ -129,13 +134,19 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
         if(apertando){
             textoX.text = string.Format("{0:0.#}", Input.mousePosition.x);
-            if(Mathf.Abs(Input.mousePosition.x - mouse_origem) > 20){
+            if(Mathf.Abs(Input.mousePosition.x - mouse_origem) > 20 || Mathf.Abs(Input.mousePosition.y - mouse_origem2) > 20){
                 rodar_visao = true;
             }
         }
 
         if(rodar_visao){
             cam_rot = Quaternion.Euler(0,visao_origem + ((Input.mousePosition.x - mouse_origem)/Screen.width * 360),0);
+            cam_rot2 = Quaternion.Euler(90-Mathf.Clamp(visao_origem2 + ((Input.mousePosition.y - mouse_origem2)/Screen.width * 360),0,90),0,0);
+
+            if(cam_rot2.eulerAngles.x <= 0){
+                mouse_origem2 = Input.mousePosition.y;
+                visao_origem2 = cam_rot2.eulerAngles.x;
+            }
         }
 
         if(pode_andar){
