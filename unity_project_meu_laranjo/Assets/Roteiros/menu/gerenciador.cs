@@ -118,15 +118,15 @@ public class gerenciador : MonoBehaviour
     }
 
     public void botaoArmario(int id_){
-        textoArmario[0].text = itemDeId(id_).nome;
-        textoArmario[1].text = itemDeId(id_).descricao;
+        textoArmario[0].text = itemDeId(id_).nome[gerDados.instancia.dados_.lingua];
+        textoArmario[1].text = itemDeId(id_).descricao[gerDados.instancia.dados_.lingua];
 
         colocaritemArmario(id_);
     }
 
     public void botaoLoja(int id_){
-        textoLoja[0].text = itemDeId(id_).nome;
-        textoLoja[1].text = itemDeId(id_).descricao;
+        textoLoja[0].text = itemDeId(id_).nome[gerDados.instancia.dados_.lingua];
+        textoLoja[1].text = itemDeId(id_).descricao[gerDados.instancia.dados_.lingua];
         textoLoja[2].text = itemDeId(id_).preco.ToString();
 
         colocaritemLoja(id_);

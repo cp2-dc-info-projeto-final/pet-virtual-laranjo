@@ -24,7 +24,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
     public bool pode_andar = true, apertando = false, rodar_visao = false, apertou_ui = false;
 
-    public float visao_origem, visao_origem2, mouse_origem, mouse_origem2;
+    public float visao_origem, visao_origem2, mouse_origem, mouse_origem2, quantidade_rot = 0;
     public bool andar, indo_carro = false, dentro_carro= false, entrou_carro = false;
     Animator ani_;
     public Camera cam_;
@@ -36,10 +36,14 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
     [HideInInspector]
     public Rigidbody rb_;
     public GameObject HITHIT_;
+    int layer_mask;
 
 
     void Start()
     {
+
+        layer_mask = LayerMask.GetMask("Default", "TransparentFX");
+
         destino = Instantiate(prefab_destino, transform.position + new Vector3(0,0,0.1f),Quaternion.Euler(0,0,0));
 
         col_ = gameObject.GetComponent<Collider>();
@@ -92,7 +96,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             if(!rodar_visao){
                 if(pode_andar){
                     if(!canva.instancia.ClickouUi()){
-                        if(Physics.Raycast(raioMouse, out RaycastHit hit_)){
+                        if(Physics.Raycast(raioMouse, out RaycastHit hit_,Mathf.Infinity,layer_mask)){
 
                             HITHIT_ = hit_.transform.gameObject;
                             Debug.Log("H I T H I T + +");
@@ -134,19 +138,30 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
         if(apertando){
             textoX.text = string.Format("{0:0.#}", Input.mousePosition.x);
-            if(Mathf.Abs(Input.mousePosition.x - mouse_origem) > 20 || Mathf.Abs(Input.mousePosition.y - mouse_origem2) > 20){
+            if(Mathf.Abs(Input.mousePosition.x - mouse_origem) > 8 || Mathf.Abs(Input.mousePosition.y - mouse_origem2) > 8){
                 rodar_visao = true;
             }
         }
 
         if(rodar_visao){
             cam_rot = Quaternion.Euler(0,visao_origem + ((Input.mousePosition.x - mouse_origem)/Screen.width * 360),0);
-            cam_rot2 = Quaternion.Euler(90-Mathf.Clamp(visao_origem2 + ((Input.mousePosition.y - mouse_origem2)/Screen.width * 360),0,90),0,0);
 
-            if(cam_rot2.eulerAngles.x <= 0){
+            
+
+            quantidade_rot += (mouse_origem2 - Input.mousePosition.y) / 3;
+
+            mouse_origem2 = Input.mousePosition.y;
+
+            quantidade_rot = Mathf.Clamp(quantidade_rot,0f,90f);
+
+            cam_rot2 = Quaternion.Euler(quantidade_rot,0,0);
+            //cam_rot2 = Quaternion.Euler(90-Mathf.Clamp(visao_origem2 + ((Input.mousePosition.y - mouse_origem2)/Screen.width * 360),0,90),0,0);
+
+            /*if(cam_rot2.eulerAngles.x <= 0){
                 mouse_origem2 = Input.mousePosition.y;
                 visao_origem2 = cam_rot2.eulerAngles.x;
             }
+            */
         }
 
         if(pode_andar){

@@ -6,8 +6,8 @@ using UnityEngine;
 public class item_cor : ScriptableObject
 {
     public int id;
-    public string nome;
-    public string descricao;
+    public string[] nome;
+    public string[] descricao;
     public int preco;
     public Material material;
     public Sprite imagem;

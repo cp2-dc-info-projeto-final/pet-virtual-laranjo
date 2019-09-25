@@ -6,8 +6,8 @@ using UnityEngine;
 public class item : ScriptableObject
 {
     public int id, id_ordem;
-    public string nome;
-    public string descricao;
+    public string[] nome;
+    public string[] descricao;
     public int preco;
     public PosicaoItemRoupa posicao;
     public GameObject prefab;
