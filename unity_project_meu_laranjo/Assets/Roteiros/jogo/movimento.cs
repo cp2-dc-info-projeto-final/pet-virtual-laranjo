@@ -252,6 +252,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 rb_.constraints = RigidbodyConstraints.FreezePosition;
                 ani_.SetTrigger("entrar_esq");
                 entrou_carro = false;
+
+                gerGames.instancia.AbrirGame(1);
             }
             
             GameObject.Find("controle_carro_0"+indice_carro).transform.Find("controle").gameObject.SetActive(true);

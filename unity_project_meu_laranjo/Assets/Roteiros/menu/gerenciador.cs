@@ -35,6 +35,8 @@ public class gerenciador : MonoBehaviour
     public List<item_carro> itens_carro;
     public List<item_cor> itens_cor;
 
+    public GameObject rank_peca, rank_piv;
+
     public GameObject SHOWSHOW;
     public item_carro SHOWSHOWIC;
 
@@ -47,6 +49,11 @@ public class gerenciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        
+
+        
+        
 
 
         restartTerrenos();

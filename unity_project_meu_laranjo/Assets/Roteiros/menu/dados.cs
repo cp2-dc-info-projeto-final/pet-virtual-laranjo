@@ -19,4 +19,30 @@ public class dados
 
     public List<recorde> recordes;
 
+
+
+
+
+
+    public recorde recordeDeId(int id_){
+        recorde recorde_ = null;
+
+        foreach(recorde rcd_ in recordes){
+            if(rcd_.id_minigame == id_){
+                recorde_ = rcd_;
+            }
+        }
+
+        if(recorde_ == null){
+            recordes.Add(new recorde(id_));
+        }
+
+        foreach(recorde rcd_ in recordes){
+            if(rcd_.id_minigame == id_){
+                recorde_ = rcd_;
+            }
+        }
+
+        return recorde_;
+    }
 }

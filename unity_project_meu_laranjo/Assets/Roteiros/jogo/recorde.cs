@@ -4,5 +4,13 @@ using UnityEngine;
 
 public class recorde
 {
-    int id_minigame, pontuacao = 0, dinheiro = 0;
+    public int id_minigame, pontuacao = 0, dinheiro = 0;
+
+
+    public recorde(){
+        
+    }
+    public recorde(int id_){
+        id_minigame = id_;
+    }
 }
