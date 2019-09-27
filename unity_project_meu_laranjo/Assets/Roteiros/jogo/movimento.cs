@@ -81,6 +81,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                     mouse_origem2 = Input.mousePosition.y;
                     visao_origem2 = cam_rot2.eulerAngles.x;
                     apertando = true;
+
+                    apertou_ui = false;
                 }
                 
             }else
@@ -99,7 +101,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                         if(Physics.Raycast(raioMouse, out RaycastHit hit_,Mathf.Infinity,layer_mask)){
 
                             HITHIT_ = hit_.transform.gameObject;
-                            Debug.Log("H I T H I T + +");
+                            Debug.Log("H I T H I T + +" + hit_.transform.gameObject.name);
                             //Debug.Log(hit_.transform.tag);
                             if(!apertou_ui){
                                 if(hit_.transform.tag == "chao"){
