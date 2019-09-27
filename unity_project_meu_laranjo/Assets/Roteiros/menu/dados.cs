@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class dados
 {
@@ -17,7 +19,7 @@ public class dados
     public int quant_gar = 1;
     public carro_dados[] carro = new carro_dados[]{null,new carro_dados(1,0,0,0,0,1,3,19),null,null};
 
-    public List<recorde> recordes;
+    public List<recorde> recordes = new List<recorde>();
 
 
 
@@ -27,6 +29,8 @@ public class dados
     public recorde recordeDeId(int id_){
         recorde recorde_ = null;
 
+        Debug.Log("COM RECORDDDDDDDDDDDDDDD");
+
         foreach(recorde rcd_ in recordes){
             if(rcd_.id_minigame == id_){
                 recorde_ = rcd_;
@@ -35,7 +39,12 @@ public class dados
 
         if(recorde_ == null){
             recordes.Add(new recorde(id_));
+            Debug.Log("SEM RECORD");
+
+            gerDados.instancia.salvar();
         }
+        Debug.Log("COM RECORD");
+        
 
         foreach(recorde rcd_ in recordes){
             if(rcd_.id_minigame == id_){
