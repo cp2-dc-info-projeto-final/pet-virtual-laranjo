@@ -26,7 +26,7 @@ public class logar : MonoBehaviour
         avisoCarregando.SetActive(carregando);
 
         if(carregando){
-            barra_carregamento.value = Mathf.Lerp(barra_carregamento.value,link.uploadProgress,Time.deltaTime * 4);
+            barra_carregamento.value = Mathf.Lerp(barra_carregamento.value, (link.uploadProgress + link.downloadProgress) / 2,Time.deltaTime * 4);
         }
     }
 

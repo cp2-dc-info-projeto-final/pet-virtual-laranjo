@@ -21,6 +21,89 @@ public class registrar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(reg_nick.text.Length >= 3){
+            campoOk[0] = true;
+        }else
+        {
+            campoOk[0] = false;
+        }
+
+
+        if(reg_nome.text.Length >= 3){
+            campoOk[1] = true;
+        }else
+        {
+            campoOk[1] = false;
+        }
+
+
+        if(reg_sobrenome.text.Length >= 3){
+            campoOk[2] = true;
+        }else
+        {
+            campoOk[2] = false;
+        }
+
+
+        if(reg_email.text.Length >= 6){
+
+            bool tem_arroba = false, tem_ponto = false;
+            int quant_arroba = 0;
+
+            for(int i_ = 0; i_ < reg_email.text.Length; i_ ++){
+                if(reg_email.text[i_] == '@'){
+                    tem_arroba = true;
+                    quant_arroba ++;
+                }
+            }
+
+            for(int i_ = 0; i_ < reg_email.text.Length; i_ ++){
+                if(reg_email.text[i_] == '.'){
+                    tem_ponto = true;
+                }
+            }
+
+            if(tem_arroba && tem_ponto && quant_arroba == 1){
+                campoOk[3] = true;
+            }else
+            {
+                campoOk[3] = false;
+            }
+
+            
+        }else
+        {
+            campoOk[3] = false;
+        }
+
+
+        if(reg_senha1.text.Length >= 6){
+            campoOk[4] = true;
+        }else
+        {
+            campoOk[4] = false;
+        }
+
+
+        if(reg_senha2.text.Length >= 6){
+            campoOk[5] = true;
+        }else
+        {
+            campoOk[5] = false;
+        }
+
+        
+
+
+
+        if(reg_nascimento_dia.text.Length >= 1 && reg_nascimento_mes.text.Length >= 1 && reg_nascimento_ano.text.Length == 4){
+            campoOk[6] = true;
+        }else
+        {
+            campoOk[6] = false;
+        }
+
         if(campoOk[0] && campoOk[1] && campoOk[2] && campoOk[3] && campoOk[4] && campoOk[5] && campoOk[6]){
             botao_registrar.interactable = true;
         }else{
