@@ -39,6 +39,8 @@ public class logar : MonoBehaviour
     }
 
     IEnumerator fazerLogin(string login_, string senha_){
+
+        Debug.Log("aaaa");
         
 
         WWWForm form = new WWWForm();
