@@ -7,7 +7,13 @@ using TMPro;
 
 public class confirmar : MonoBehaviour
 {
-    public string email, senha;
+    public GameObject menuConfirmacao, confirmado,excessoDeTentativas;
+    UnityWebRequest link;
+    public string site, id;
+    public TMP_InputField conf_codigo;
+    public Image borda;
+    public string[] resposta;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +23,49 @@ public class confirmar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void botaoConfirma(){
+        borda.color = new Color(1,0.5f,0);
+
+        if(conf_codigo.text.Length == 6){
+            StartCoroutine(fazerConfirmacao());
+        }
+        
+    }
+
+    IEnumerator fazerConfirmacao(){
+        
+        WWWForm form = new WWWForm();
+
+        form.AddField("id", id);
+        form.AddField("codigo", conf_codigo.text);
+
+        link = UnityWebRequest.Post(site,form);
+
+        conf_codigo.interactable = false;
+
+        yield return link.SendWebRequest();
+
+        conf_codigo.interactable = true;
+
+        resposta = link.downloadHandler.text.Split(',');
+
+        if(resposta[0] == "1"){
+            menuConfirmacao.SetActive(false);
+            confirmado.SetActive(true);
+        }else
+        {
+            if(resposta[1] == "0"){
+                menuConfirmacao.SetActive(false);
+                excessoDeTentativas.SetActive(true);
+            }else
+            {
+                borda.color = new Color(1,0,0);
+            }
+        }
+        
         
     }
 }
