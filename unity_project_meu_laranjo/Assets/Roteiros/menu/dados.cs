@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class dados
 {
     public long id = 0;
+    public string nick = "laranjo";
+    public float nivel;
 
     public string ult_ctt = "";
 

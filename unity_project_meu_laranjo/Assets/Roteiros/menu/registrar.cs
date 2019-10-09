@@ -17,8 +17,9 @@ public class registrar : MonoBehaviour
     public Sprite[] senha_visivel = new Sprite[2];
     public Image[] bordas = new Image[7];
     public bool[] campoOk = new bool[7], mudouValor = new bool[7];
-
+    public bool fim_reg = false;
     public Button botao_registrar;
+    public GameObject menu_conf;
     // Start is called before the first frame update
     void Start()
     {
@@ -146,11 +147,12 @@ public class registrar : MonoBehaviour
 
 
 
-
-        if(campoOk[0] && campoOk[1] && campoOk[2] && campoOk[3] && campoOk[4] && campoOk[5] && campoOk[6]){
-            botao_registrar.interactable = true;
-        }else{
-            botao_registrar.interactable = false;
+        if(!fim_reg){
+            if(campoOk[0] && campoOk[1] && campoOk[2] && campoOk[3] && campoOk[4] && campoOk[5] && campoOk[6]){
+                botao_registrar.interactable = true;
+            }else{
+                botao_registrar.interactable = false;
+            }
         }
 
         mudarDia();
@@ -293,8 +295,34 @@ public class registrar : MonoBehaviour
 
         link = UnityWebRequest.Post(site,form);
 
+        fim_reg = true;
+
+        botao_registrar.interactable = false;
+
         yield return link.SendWebRequest();
+
+        resposta = link.downloadHandler.text.Split(',');
         
+        botao_registrar.interactable = true;
+
+        fim_reg = false;
+
+        if(resposta[1] == "1"){
+            menu_conf.SetActive(true);
+
+            reg_nick.text = "";
+            reg_nome.text = "";
+            reg_sobrenome.text = "";
+            reg_email.text = "";
+            reg_senha1.text = "";
+            reg_senha2.text = "";
+            reg_nascimento_dia.text = "";
+            reg_nascimento_mes.text = "";
+            reg_nascimento_ano.text = "";
+            
+            menu_conf.GetComponent<confirmar>().id = resposta[2];
+        }
+
     }
 
     IEnumerator checarCampo(string campo_, int verif_){

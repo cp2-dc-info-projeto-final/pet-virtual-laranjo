@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class gerDados : MonoBehaviour
 {
+    UnityWebRequest link;
     public string site, cont_;
-
-    public UnityWebRequest link;
+    public string[] resposta;
 
     public static gerDados instancia {get; set;}
     public dados dados_;
@@ -16,6 +18,7 @@ public class gerDados : MonoBehaviour
     public int[] itemAtual = new int[10]; 
 
     public TextMeshProUGUI textoMoeda, textoDolar;
+    bool online = false;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -46,6 +49,7 @@ public class gerDados : MonoBehaviour
     }
 
     private IEnumerator Start() {
+
         link = UnityWebRequest.Get(site);
 
 
@@ -109,9 +113,23 @@ public class gerDados : MonoBehaviour
     public void carregar(){
         if(PlayerPrefs.HasKey("dados")){
             dados_ = ferramentas.Desserializar<dados>(PlayerPrefs.GetString("dados"));
+            if(EstaOnline()){
+                if(dados_.id!= 0){
+                    
+                }else
+                {
+                    dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
+                    salvar();
+                }
+            }else
+            {
+                dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
+                salvar();
+            }
         }else
         {
             dados_ = new dados();
+            dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
             salvar();
         }
     }
@@ -145,4 +163,72 @@ public class gerDados : MonoBehaviour
         itemAtual[(int)gerenciador.instancia.itemDeId(id_).posicao] = gerenciador.instancia.itemDeId(id_).id;
         adicionarOutFit(id_);
     }
+
+    public bool EstaOnline(){
+
+        StartCoroutine(checarConexao());
+
+        return online;
+    }
+
+    IEnumerator checarConexao(){
+        link = UnityWebRequest.Post(site,new WWWForm());
+
+        yield return link.SendWebRequest();
+
+        if(link.isNetworkError || link.isHttpError){
+
+            online = false;
+            //st1 = "ERROOOU " + link.error;
+            //if(link.error == UnityWebRequest.)
+        }else
+        {
+            //return true;
+            online = true;
+        }
+    }
+
+    IEnumerator salvarDadosOnline(int acao_){
+
+        WWWForm form = new WWWForm();
+
+        form.AddField("acao",acao_);
+        form.AddField("id", dados_.id.ToString());
+        form.AddField("nick",dados_.nick);
+        form.AddField("moedas",dados_.moedas);
+        form.AddField("dolares",dados_.dolares);
+        form.AddField("nivel",dados_.nivel.ToString());
+        form.AddField("id_casa",dados_.id_casa);
+        form.AddField("quant_gar",dados_.quant_gar);
+        form.AddField("ult_ctt",dados_.ult_ctt);
+
+        link = UnityWebRequest.Post(site,form);
+
+        yield return link.SendWebRequest();
+
+        if(link.isNetworkError || link.isHttpError){
+
+            Debug.Log("deu ruim :l");
+
+        }else
+        {
+            
+            resposta = link.downloadHandler.text.Split(',');
+            
+            if(resposta[0] == "1"){
+                dados_.ult_ctt = resposta[1];
+            }
+
+        }
+    }
+
+    public string timeStampDeDate(DateTime data_){
+        string dataString_ = "";
+
+        dataString_ = data_.Year.ToString() + "-"+ data_.Month.ToString() + "-"+ data_.Day.ToString() + " " + data_.Hour.ToString() + ":" + data_.Minute.ToString() + ":" + data_.Second.ToString();
+
+        return dataString_;
+    }
+
+
 }

@@ -13,7 +13,7 @@ public class logar : MonoBehaviour
     public string[] resposta; // = new List<string>(); 
     public bool carregando = false;
     public Slider barra_carregamento;
-    public GameObject avisoCarregando;
+    public GameObject avisoCarregando, menu_conf;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +40,7 @@ public class logar : MonoBehaviour
 
     IEnumerator fazerLogin(string login_, string senha_){
 
-        Debug.Log("aaaa");
+        //Debug.Log("aaaa");
         
 
         WWWForm form = new WWWForm();
@@ -61,6 +61,13 @@ public class logar : MonoBehaviour
         }else
         {
             resposta = link.downloadHandler.text.Split(',');
+        }
+
+        if(resposta[0]=="3"){
+            
+            menu_conf.SetActive(true);
+
+            menu_conf.GetComponent<confirmar>().id = resposta[1];
         }
 
     }

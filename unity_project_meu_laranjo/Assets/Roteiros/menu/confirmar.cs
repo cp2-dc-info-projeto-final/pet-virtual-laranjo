@@ -11,6 +11,7 @@ public class confirmar : MonoBehaviour
     UnityWebRequest link;
     public string site, id;
     public TMP_InputField conf_codigo;
+    public Button conf_botao;
     public Image borda;
     public string[] resposta;
 
@@ -45,10 +46,12 @@ public class confirmar : MonoBehaviour
         link = UnityWebRequest.Post(site,form);
 
         conf_codigo.interactable = false;
+        conf_botao.interactable = false;
 
         yield return link.SendWebRequest();
 
         conf_codigo.interactable = true;
+        conf_botao.interactable = true;
 
         resposta = link.downloadHandler.text.Split(',');
 
