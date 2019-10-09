@@ -18,7 +18,7 @@ public class gerDados : MonoBehaviour
     public int[] itemAtual = new int[10]; 
 
     public TextMeshProUGUI textoMoeda, textoDolar;
-    bool online = false;
+    public bool online = false, inFirst = false;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -48,8 +48,8 @@ public class gerDados : MonoBehaviour
         }
     }
 
-    private IEnumerator Start() {
-
+    private void Start() {
+        /*
         link = UnityWebRequest.Get(site);
 
 
@@ -59,7 +59,7 @@ public class gerDados : MonoBehaviour
         }else
         {
             cont_ = link.downloadHandler.text;
-        }
+        }*/
 
 
     }
@@ -107,6 +107,17 @@ public class gerDados : MonoBehaviour
         }
     }
     public void salvar(){
+
+        if(EstaOnline()){
+
+            StartCoroutine(salvarDadosOnline(1));
+
+        }else{
+
+            Debug.Log("NAO FOI POSSIVEL SALVAR DADOS. SEM CONEXAO COM A INTENET");
+
+        }
+
         PlayerPrefs.SetString("dados",ferramentas.Serializar<dados>(dados_));
     }
 
@@ -168,10 +179,23 @@ public class gerDados : MonoBehaviour
 
         StartCoroutine(checarConexao());
 
+        ///////////////////WaitForSeconds(5);
+        StartCoroutine(DoLast());
+
         return online;
     }
 
+    IEnumerator DoLast() {
+ 
+        while(inFirst)       
+        yield return new WaitForSeconds(0.1f);
+        print("Do stuff.");
+    }
+
     IEnumerator checarConexao(){
+
+        inFirst = true;
+
         link = UnityWebRequest.Post(site,new WWWForm());
 
         yield return link.SendWebRequest();
@@ -179,13 +203,17 @@ public class gerDados : MonoBehaviour
         if(link.isNetworkError || link.isHttpError){
 
             online = false;
+            Debug.Log("OFFFF");
             //st1 = "ERROOOU " + link.error;
             //if(link.error == UnityWebRequest.)
         }else
         {
             //return true;
             online = true;
+            Debug.Log("ONNNN");
         }
+
+        inFirst = false;
     }
 
     IEnumerator salvarDadosOnline(int acao_){

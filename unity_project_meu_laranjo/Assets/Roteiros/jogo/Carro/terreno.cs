@@ -276,7 +276,7 @@ public class terreno : MonoBehaviour
                         
                         int numId;
 
-                        Debug.Log("SORTEADO: " + numAleatorio);
+                        //Debug.Log("SORTEADO: " + numAleatorio);
 
                         foreach (int id_ in ListaInstancia_)
                         {
