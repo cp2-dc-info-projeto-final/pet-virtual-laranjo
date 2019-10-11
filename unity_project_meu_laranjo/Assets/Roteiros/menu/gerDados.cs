@@ -111,10 +111,11 @@ public class gerDados : MonoBehaviour
         if(EstaOnline()){
 
             StartCoroutine(salvarDadosOnline(1));
+            Debug.Log("DADOS SALVOS ON LINE");
 
         }else{
 
-            Debug.Log("NAO FOI POSSIVEL SALVAR DADOS. SEM CONEXAO COM A INTENET");
+            Debug.Log("NAO FOI POSSIVEL SALVAR DADOS ONLINE. SEM CONEXAO COM A INTENET");
 
         }
 
@@ -240,6 +241,7 @@ public class gerDados : MonoBehaviour
 
         }else
         {
+            Debug.Log("deu bom :)");
             
             resposta = link.downloadHandler.text.Split(',');
             
