@@ -83,7 +83,7 @@ public class gerDados : MonoBehaviour
         if(PlayerPrefs.HasKey("logado")){
             if(PlayerPrefs.GetInt("logado") == 1){
                 print("Voce esta logado como '");
-                print(PlayerPrefs.GetString("login" + "' "));
+                print(PlayerPrefs.GetString("login") + "' ");
                 for(int i = 1; i <= PlayerPrefs.GetString("senha").Length;i++){
                     print("*");
                 }
@@ -125,11 +125,14 @@ public class gerDados : MonoBehaviour
     public void carregar(){
         if(PlayerPrefs.HasKey("dados")){
             dados_ = ferramentas.Desserializar<dados>(PlayerPrefs.GetString("dados"));
-            if(EstaOnline()){
+            if(online){
                 if(dados_.id!= 0){
+                    Debug.Log("SALVANDO");
+                    salvar();
                     
                 }else
                 {
+                    Debug.Log("ID 0000");
                     dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
                     salvar();
                 }
@@ -181,7 +184,7 @@ public class gerDados : MonoBehaviour
         StartCoroutine(checarConexao());
 
         ///////////////////WaitForSeconds(5);
-        StartCoroutine(DoLast());
+        //StartCoroutine(DoLast());
 
         return online;
     }
@@ -219,6 +222,8 @@ public class gerDados : MonoBehaviour
 
     IEnumerator salvarDadosOnline(int acao_){
 
+        Debug.Log("salvando dados online de..." + dados_.id.ToString());
+
         WWWForm form = new WWWForm();
 
         form.AddField("acao",acao_);
@@ -250,6 +255,8 @@ public class gerDados : MonoBehaviour
             }
 
         }
+
+        Debug.Log("dados solvos! (ou nao k k)");
     }
 
     public string timeStampDeDate(DateTime data_){
