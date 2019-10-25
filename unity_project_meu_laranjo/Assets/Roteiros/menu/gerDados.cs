@@ -82,17 +82,13 @@ public class gerDados : MonoBehaviour
     public void loginConfigs(){
         if(PlayerPrefs.HasKey("logado")){
             if(PlayerPrefs.GetInt("logado") == 1){
-                print("Voce esta logado como '");
-                print(PlayerPrefs.GetString("login") + "' ");
-                for(int i = 1; i <= PlayerPrefs.GetString("senha").Length;i++){
-                    print("*");
-                }
-                print(" c:");
+                
+                Debug.Log("voce esta logado com o id: " + PlayerPrefs.GetString("id"));
 
                 //quando estiver com login:
 
             }else{
-                print("Voce nao esta logado :c");
+                Debug.Log("Voce nao esta logado :c");
 
                 //quando estiver sem login:
 
@@ -100,7 +96,7 @@ public class gerDados : MonoBehaviour
         }else
         {
             PlayerPrefs.SetInt("logado", 0);
-            print("Primeiro uso, registrando dados...");
+            Debug.Log("Primeiro uso, registrando dados...");
 
             //quando estiver entrando plea primeira vez:
             
@@ -149,6 +145,10 @@ public class gerDados : MonoBehaviour
         }
     }
 
+    public void baixarDados(){
+        StartCoroutine(salvarDadosOnline(1));
+    }
+
     public bool temItem(int id_){
         return (dados_.itens[id_/64] &  (1 << (id_ % 64))) != 0;
     }
@@ -159,6 +159,12 @@ public class gerDados : MonoBehaviour
 
     public void removerItem(int id_){
         dados_.itens[id_/64] ^= 1 << (id_ % 64);
+    }
+
+    public void deslogar(){
+        dados_ = new dados();
+        PlayerPrefs.SetString("id",dados_.id.ToString());
+        PlayerPrefs.SetInt("logado", 0);
     }
 
 
@@ -222,15 +228,15 @@ public class gerDados : MonoBehaviour
 
     IEnumerator salvarDadosOnline(int acao_){
 
-        Debug.Log("salvando dados online de..." + dados_.id.ToString());
+        Debug.Log("salvando dados online de..." + dados_.id.ToString() + ". UTC: " + dados_.ult_ctt);
 
         WWWForm form = new WWWForm();
 
         form.AddField("acao",acao_);
         form.AddField("id", dados_.id.ToString());
         form.AddField("nick",dados_.nick);
-        form.AddField("moedas",dados_.moedas);
-        form.AddField("dolares",dados_.dolares);
+        form.AddField("moedas",dados_.moedas.ToString());
+        form.AddField("dolares",dados_.dolares.ToString());
         form.AddField("nivel",dados_.nivel.ToString());
         form.AddField("id_casa",dados_.id_casa);
         form.AddField("quant_gar",dados_.quant_gar);
@@ -242,16 +248,25 @@ public class gerDados : MonoBehaviour
 
         if(link.isNetworkError || link.isHttpError){
 
-            Debug.Log("deu ruim :l");
+            Debug.Log("erro de rede :l");
 
         }else
         {
-            Debug.Log("deu bom :)");
+            Debug.Log("rede ok :)");
             
             resposta = link.downloadHandler.text.Split(',');
             
             if(resposta[0] == "1"){
+                Debug.Log("DADOS ATUALIZADOS ONLINE, UTC: " + resposta[1]);
                 dados_.ult_ctt = resposta[1];
+            }
+
+            if(resposta[0] == "3"){
+                Debug.Log("DADOS ONLINE BAIXADOS, UTC: " + resposta[8]);
+
+                int lingua_ = dados_.lingua;
+
+                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3]),lingua_,long.Parse(resposta[4]),long.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
             }
 
         }

@@ -63,8 +63,41 @@ public class logar : MonoBehaviour
             resposta = link.downloadHandler.text.Split(',');
         }
 
-        if(resposta[0]=="3"){
+        if(resposta[0]=="0"){
+            // usuario nao encontrado
             
+            log_nick.text = "";
+            log_senha.text = "";
+        }
+
+        if(resposta[0]=="1"){
+            // login bem sucedido
+            
+            if(resposta[1] == "1"){
+                //dados existentes
+
+                gerDados.instancia.dados_.id = long.Parse(resposta[2]);
+                gerDados.instancia.dados_.ult_ctt = "2001-01-01 23:59:59";
+
+                gerDados.instancia.baixarDados();
+            }
+
+            if(resposta[1] == "2"){
+                //dados inexistentes
+                
+            }
+        }
+
+        
+
+        if(resposta[0]=="2"){
+            // senha incorreta
+            
+            log_senha.text = "";
+        }
+
+        if(resposta[0]=="3"){
+            // conta nao confirmada
             menu_conf.SetActive(true);
 
             menu_conf.GetComponent<confirmar>().id = resposta[1];
