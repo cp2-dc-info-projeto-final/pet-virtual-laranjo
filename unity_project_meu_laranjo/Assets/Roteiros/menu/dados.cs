@@ -5,17 +5,17 @@ using System;
 
 public class dados
 {
-    public long id = 1111;
+    public long id = 0;
     public string nick = "laranjo";
-    public float nivel;
+    public float nivel = 0;
 
     public string ult_ctt = "2000-05-29 23:59:59";
 
     public int lingua = 0;
     public long moedas = 0;
     public long  dolares = 0;
-    public long[] itens = new long[64];
-    public long[] outfit = new long[64];
+    public long[] itens = new long[4];
+    public long[] outfit = new long[4];
 
     public int id_casa = 1;
 

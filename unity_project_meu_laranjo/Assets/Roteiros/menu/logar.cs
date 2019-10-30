@@ -7,13 +7,13 @@ using TMPro;
 
 public class logar : MonoBehaviour
 {
-    UnityWebRequest link;
+    UnityWebRequest link_log;
     public TMP_InputField log_nick, log_senha;
-    public string site, nick, senha, st1, st2;
+    public string site_log, nick, senha, st1, st2;
     public string[] resposta; // = new List<string>(); 
     public bool carregando = false;
     public Slider barra_carregamento;
-    public GameObject avisoCarregando, menu_conf;
+    public GameObject avisoCarregando, menu_conf, menu_logreg;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,7 @@ public class logar : MonoBehaviour
         avisoCarregando.SetActive(carregando);
 
         if(carregando){
-            barra_carregamento.value = Mathf.Lerp(barra_carregamento.value, (link.uploadProgress + link.downloadProgress) / 2,Time.deltaTime * 4);
+            barra_carregamento.value = Mathf.Lerp(barra_carregamento.value, (link_log.uploadProgress + link_log.downloadProgress) / 2,Time.deltaTime * 4);
         }
     }
 
@@ -47,61 +47,87 @@ public class logar : MonoBehaviour
         form.AddField("nickPost", login_);
         form.AddField("senhaPost", senha_);
 
-        link = UnityWebRequest.Post(site,form);
+        link_log = UnityWebRequest.Post(site_log,form);
 
         carregando = true;
 
-        yield return link.SendWebRequest();
+        yield return link_log.SendWebRequest();
 
         carregando = false;
 
-        if(link.isNetworkError || link.isHttpError){
-            st1 = "ERROOOU " + link.error;
-            //if(link.error == UnityWebRequest.)
+        if(link_log.isNetworkError || link_log.isHttpError){
+
+            Debug.Log("erro na rede (" + link_log.error + ")");
+
+            avisoCarregando.SetActive(false);
+            
         }else
         {
-            resposta = link.downloadHandler.text.Split(',');
-        }
+            resposta = link_log.downloadHandler.text.Split(',');
 
-        if(resposta[0]=="0"){
-            // usuario nao encontrado
-            
-            log_nick.text = "";
-            log_senha.text = "";
-        }
+            if(resposta[0]=="0"){
+                // usuario nao encontrado
 
-        if(resposta[0]=="1"){
-            // login bem sucedido
-            
-            if(resposta[1] == "1"){
-                //dados existentes
-
-                gerDados.instancia.dados_.id = long.Parse(resposta[2]);
-                gerDados.instancia.dados_.ult_ctt = "2001-01-01 23:59:59";
-
-                gerDados.instancia.baixarDados();
-            }
-
-            if(resposta[1] == "2"){
-                //dados inexistentes
+                Debug.Log("usuario nao encontrado");
                 
+                log_nick.text = "";
+                log_senha.text = "";
+            }
+
+            if(resposta[0]=="1"){
+                // login bem sucedido
+                
+                if(resposta[1] == "1"){
+                    //dados existentes
+
+                    gerDados.instancia.dados_.id = long.Parse(resposta[2]);
+                    gerDados.instancia.dados_.ult_ctt = "2001-10-28 22:10:04";
+
+                    PlayerPrefs.SetInt("logado", 1);
+
+                    gerDados.instancia.baixarDados();
+
+                    Debug.Log("login bem sucedido, dados existentes");
+
+                    avisoCarregando.SetActive(false);
+                    menu_logreg.SetActive(false);
+                    gerDados.instancia.botao_logout.SetActive(true);
+                }
+
+                if(resposta[1] == "2"){
+                    //dados inexistentes
+                    
+                    gerDados.instancia.dados_.id = long.Parse(resposta[2]);
+                    gerDados.instancia.dados_.nick = resposta[3];
+
+                    PlayerPrefs.SetInt("logado", 1);
+
+                    gerDados.instancia.salvar();
+
+                    Debug.Log("login bem sucedido, dados inexistentes");
+
+                    avisoCarregando.SetActive(false);
+                    menu_logreg.SetActive(false);
+                    gerDados.instancia.botao_logout.SetActive(true);
+                }
+            }
+
+            
+
+            if(resposta[0]=="2"){
+                // senha incorreta
+
+                Debug.Log("senha incorreta");
+                
+                log_senha.text = "";
+            }
+
+            if(resposta[0]=="3"){
+                // conta nao confirmada
+                menu_conf.SetActive(true);
+
+                menu_conf.GetComponent<confirmar>().id = resposta[1];
             }
         }
-
-        
-
-        if(resposta[0]=="2"){
-            // senha incorreta
-            
-            log_senha.text = "";
-        }
-
-        if(resposta[0]=="3"){
-            // conta nao confirmada
-            menu_conf.SetActive(true);
-
-            menu_conf.GetComponent<confirmar>().id = resposta[1];
-        }
-
     }
 }

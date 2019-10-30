@@ -83,16 +83,16 @@ public class gerenciador : MonoBehaviour
         }
         */
 
-        if(nivel_lar < 0.5f){
+        if(gerDados.instancia.dados_.nivel < 0.5f){
 
-            mat_lar_final.color = Color.Lerp(mat_lar_0.color,mat_lar_meio.color,nivel_lar * 2);
+            mat_lar_final.color = Color.Lerp(mat_lar_0.color,mat_lar_meio.color,gerDados.instancia.dados_.nivel * 2);
 
         }else
         {
-            mat_lar_final.color = Color.Lerp(mat_lar_meio.color,mat_lar_1.color,(nivel_lar - 0.5f) * 2);
+            mat_lar_final.color = Color.Lerp(mat_lar_meio.color,mat_lar_1.color,(gerDados.instancia.dados_.nivel - 0.5f) * 2);
         }
         
-        slider_nivel.value = nivel_lar;
+        slider_nivel.value = gerDados.instancia.dados_.nivel;
 
         foreach(Image cor_ in cor_nivel){
             cor_.color = mat_lar_1.color;
