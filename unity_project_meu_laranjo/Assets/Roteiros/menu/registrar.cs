@@ -19,7 +19,7 @@ public class registrar : MonoBehaviour
     public bool[] campoOk = new bool[7], mudouValor = new bool[7];
     public bool fim_reg = false;
     public Button botao_registrar;
-    public GameObject menu_conf;
+    public GameObject menu_conf, menu_ERRO;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +31,7 @@ public class registrar : MonoBehaviour
     {
         if(mudouValor[0]){
             if(reg_nick.text.Length >= 3){
+                StopCoroutine(checarCampo("",0));
                 StartCoroutine(checarCampo(reg_nick.text,2));
                 mudouValor[0] = false;
             }else
@@ -84,6 +85,7 @@ public class registrar : MonoBehaviour
                 }
 
                 if(tem_arroba && tem_ponto && quant_arroba == 1){
+                    StopCoroutine(checarCampo(",",0));
                     StartCoroutine(checarCampo(reg_email.text,1));
                     mudouValor[3] = false;
                 }else
@@ -135,7 +137,7 @@ public class registrar : MonoBehaviour
 
 
         if(mudouValor[6]){
-            if(reg_nascimento_dia.text.Length >= 1 && reg_nascimento_mes.text.Length >= 1 && reg_nascimento_ano.text.Length == 4){
+            if(reg_nascimento_dia.text.Length >= 1 && reg_nascimento_mes.text.Length >= 1 && reg_nascimento_ano.text.Length == 4 && int.Parse(reg_nascimento_dia.text) >= 1 && int.Parse(reg_nascimento_mes.text) >= 1 && int.Parse(reg_nascimento_ano.text) >= 1920){
                 campoOk[6] = true;
                 bordas[6].color = Color.green;
             }else
@@ -166,7 +168,7 @@ public class registrar : MonoBehaviour
     public void mudarDia(){
         if(reg_nascimento_dia.text != ""){
             if(int.Parse(reg_nascimento_dia.text) > 31 || int.Parse(reg_nascimento_dia.text) < 1){
-                if(int.Parse(reg_nascimento_dia.text) < 1){
+                if(int.Parse(reg_nascimento_dia.text) < 0){
                     reg_nascimento_dia.text = "1";
                 }
 
@@ -207,7 +209,7 @@ public class registrar : MonoBehaviour
             if(int.Parse(reg_nascimento_mes.text) > 12){
                 reg_nascimento_mes.text = "12";
             }
-            if(int.Parse(reg_nascimento_mes.text) < 1){
+            if(int.Parse(reg_nascimento_mes.text) < 0){
                 reg_nascimento_mes.text = "1";
             }
         }
@@ -301,27 +303,36 @@ public class registrar : MonoBehaviour
 
         yield return link.SendWebRequest();
 
-        resposta = link.downloadHandler.text.Split(',');
-        
-        botao_registrar.interactable = true;
+        if(link.isNetworkError || link.isHttpError){
 
-        fim_reg = false;
+            menu_ERRO.SetActive(true);
 
-        if(resposta[1] == "1"){
-            menu_conf.SetActive(true);
-
-            reg_nick.text = "";
-            reg_nome.text = "";
-            reg_sobrenome.text = "";
-            reg_email.text = "";
-            reg_senha1.text = "";
-            reg_senha2.text = "";
-            reg_nascimento_dia.text = "";
-            reg_nascimento_mes.text = "";
-            reg_nascimento_ano.text = "";
+        }else
+        {
+            resposta = link.downloadHandler.text.Split(',');
             
-            menu_conf.GetComponent<confirmar>().id = resposta[2];
+            botao_registrar.interactable = true;
+
+            fim_reg = false;
+
+            if(resposta[1] == "1"){
+                menu_conf.SetActive(true);
+
+                reg_nick.text = "";
+                reg_nome.text = "";
+                reg_sobrenome.text = "";
+                reg_email.text = "";
+                reg_senha1.text = "";
+                reg_senha2.text = "";
+                reg_nascimento_dia.text = "";
+                reg_nascimento_mes.text = "";
+                reg_nascimento_ano.text = "";
+                
+                menu_conf.GetComponent<confirmar>().id = resposta[2];
+            }
         }
+
+        
 
     }
 
@@ -357,6 +368,8 @@ public class registrar : MonoBehaviour
             if(verif_ == 2){
                 bordas[0].color = Color.red;
             }
+
+            menu_ERRO.SetActive(true);
         }else
         {
             resposta = link.downloadHandler.text.Split(',');

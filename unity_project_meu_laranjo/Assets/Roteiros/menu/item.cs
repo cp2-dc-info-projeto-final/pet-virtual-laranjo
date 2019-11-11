@@ -8,7 +8,9 @@ public class item : ScriptableObject
     public int id, id_ordem;
     public string[] nome;
     public string[] descricao;
-    public int preco;
+    public bool listado = true;
+    public ulong preco_moedas;
+    public ulong preco_dolares;
     public PosicaoItemRoupa posicao;
     public GameObject prefab;
     public Sprite imagem;
@@ -26,7 +28,8 @@ public class item : ScriptableObject
         Oculos,
         Colar,
         Roupa,
-        Sapato
+        Sapato,
+        Skin
     }
 
     public enum raridadeItemRoupa

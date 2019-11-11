@@ -12,22 +12,22 @@ public class dados
     public string ult_ctt = "2000-05-29 23:59:59";
 
     public int lingua = 0;
-    public long moedas = 0;
-    public long  dolares = 0;
-    public long[] itens = new long[4];
-    public long[] outfit = new long[4];
+    public ulong moedas = 0;
+    public ulong  dolares = 0;
+    public int[] itens = new int[4]{1023,0,0,0};
+    public int[] outfit = new int[4]{1023,0,0,0};
 
     public int id_casa = 1;
 
     public int quant_gar = 1;
-    public carro_dados[] carro = new carro_dados[]{null,new carro_dados(1,0,0,0,0,1,3,19),null,null};
+    public carro_dados[] carro = new carro_dados[]{null,new carro_dados(1,0,0,0,0,1,3,39),null,null};
 
-    public List<recorde> recordes = new List<recorde>();
+    public long[] recordes = new long[4]{0,0,0,0};
 
     public dados(){
 
     }
-    public dados(long id_, string nick_, float nivel_, int lingua_, long moedas_, long dolares_, int id_casa_, int quant_gar_, string ult_ctt_){
+    public dados(long id_, string nick_, float nivel_, int lingua_, ulong moedas_, ulong dolares_, int id_casa_, int quant_gar_, string ult_ctt_){
         id = id_;
         nick = nick_;
         nivel = nivel_;
@@ -39,7 +39,7 @@ public class dados
         quant_gar = quant_gar_;
     }
 
-    public dados(long id_, string nick_, float nivel_, int lingua_, long moedas_, long dolares_, int id_casa_, int quant_gar_, string ult_ctt_, long[] itens_, long[] outfit_){
+    public dados(long id_, string nick_, float nivel_, int lingua_, ulong moedas_, ulong dolares_, int id_casa_, int quant_gar_, string ult_ctt_, int[] itens_, int[] outfit_){
         id = id_;
         nick = nick_;
         nivel = nivel_;
@@ -56,7 +56,7 @@ public class dados
 
 
 
-    public void setarDados(string nick_, float nivel_, string ult_ctt_, int lingua_, int moedas_, int dolares_, long[] itens_, long[] outfit_, int id_casa_, int quant_gar_){
+    public void setarDados(string nick_, float nivel_, string ult_ctt_, int lingua_, ulong moedas_, ulong dolares_, int[] itens_, int[] outfit_, int id_casa_, int quant_gar_){
         nick = nick_;
         nivel = nivel_;
         ult_ctt = ult_ctt_;
@@ -69,6 +69,7 @@ public class dados
         quant_gar = quant_gar_;
     }
 
+    /*
     public recorde recordeDeId(int id_){
         recorde recorde_ = null;
 
@@ -96,5 +97,5 @@ public class dados
         }
 
         return recorde_;
-    }
+    }*/
 }

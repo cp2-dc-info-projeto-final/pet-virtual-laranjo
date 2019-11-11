@@ -19,9 +19,6 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
     SkinnedMeshRenderer sknd_;
 
-    [HideInInspector]
-    public bool item = false, item2;
-
     public bool pode_andar = true, apertando = false, rodar_visao = false, apertou_ui = false;
 
     public float visao_origem, visao_origem2, mouse_origem, mouse_origem2, quantidade_rot = 0;
@@ -62,10 +59,6 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         cam_fora.transform.localRotation = Quaternion.Lerp(cam_fora.transform.localRotation ,cam_rot, Time.deltaTime * 8);
 
         cam_fora2.transform.localRotation = Quaternion.Lerp(cam_fora2.transform.localRotation ,cam_rot2, Time.deltaTime * 8);
-
-        if(Input.GetKeyDown(KeyCode.E)){
-            gerenciador.instancia.colocaritemArmario(id_);
-        }
 
 
         //---mover camera ou andar---
@@ -139,7 +132,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         }
 
         if(apertando){
-            textoX.text = string.Format("{0:0.#}", Input.mousePosition.x);
+            //textoX.text = string.Format("{0:0.#}", Input.mousePosition.x);
             if(Mathf.Abs(Input.mousePosition.x - mouse_origem) > 8 || Mathf.Abs(Input.mousePosition.y - mouse_origem2) > 8){
                 rodar_visao = true;
             }
@@ -238,8 +231,6 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             transform.Translate(0,0,velz * Time.deltaTime * velmax);
 
             ani_.SetFloat("velz", velz);
-
-            ani_.SetBool("item", item);
         }
 
         if(dentro_carro){
@@ -255,7 +246,8 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 ani_.SetTrigger("entrar_esq");
                 entrou_carro = false;
 
-                gerGames.instancia.AbrirGame(1);
+                gerGames.instancia.AbrirGame(0);
+                gerGames.instancia.indice_carro = indice_carro;
             }
             
             GameObject.Find("controle_carro_0"+indice_carro).transform.Find("controle").gameObject.SetActive(true);
@@ -297,7 +289,13 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
             GameObject.Find("controle_carro_0" + i).transform.Find("controle").gameObject.SetActive(false);
 
             if(gerenciador.instancia.carros[i] != null){
-                gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position;
+
+                gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position  + new Vector3(0,0.35f,-2);
+
+                gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+
                 gerenciador.instancia.carros[i].transform.rotation = Quaternion.Euler(0,0,0);//gerenciador.instancia.casa_pivot[i].transform.rotation;
 
                 gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -305,6 +303,9 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
                 foreach (WheelCollider roda_ in gerenciador.instancia.carros[i].GetComponent<veiculo>().coll_roda)
                 {
                     roda_.brakeTorque = Mathf.Infinity;
+                    roda_.brakeTorque = 0;
+
+                    roda_.transform.rotation = Quaternion.Euler(0,0,0);
                 }
             }
         }
@@ -316,7 +317,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         destino = Instantiate(prefab_destino,transform.position,Quaternion.Euler(0,0,0));
         gerenciador.instancia.mudar_camera("camera_fora");
 
-        gerenciador.instancia.restartTerrenos();
+        gerenciador.instancia.destruirTerrenos();
     }
 
 }

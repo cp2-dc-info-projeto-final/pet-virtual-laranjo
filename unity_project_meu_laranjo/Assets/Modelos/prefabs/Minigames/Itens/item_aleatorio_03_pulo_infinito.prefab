@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8992869944813920724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8992869944813920726}
+  - component: {fileID: 8992869944813920725}
+  m_Layer: 0
+  m_Name: item_aleatorio_02_flepi_laranjo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8992869944813920726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8992869944813920724}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8992869944813920725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8992869944813920724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db44c491a14e7cf4f822155ab6a758b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tem_gasolina: 0
+  prefab_moeda: {fileID: 1012728374851791629, guid: 3663ee43c29cb0e488358b44c1c471d6,
+    type: 3}
+  prefab_dolar: {fileID: 2425134212541222526, guid: ce074185efadca8429fa357d6f1b0d46,
+    type: 3}
+  prefab_gasolina: {fileID: 9203506074419120280, guid: b792a17f394292845b53ad2a1d0d0dce,
+    type: 3}
+  prob_moeda: 300
+  prob_dolar: 1
+  prob_gasolina: 100

@@ -14,6 +14,7 @@ public class confirmar : MonoBehaviour
     public Button conf_botao;
     public Image borda;
     public string[] resposta;
+    public GameObject menu_ERRO;
 
     // Start is called before the first frame update
     void Start()
@@ -50,24 +51,33 @@ public class confirmar : MonoBehaviour
 
         yield return link.SendWebRequest();
 
-        conf_codigo.interactable = true;
-        conf_botao.interactable = true;
+        if(link.isNetworkError || link.isHttpError){
 
-        resposta = link.downloadHandler.text.Split(',');
+            menu_ERRO.SetActive(true);
 
-        if(resposta[0] == "1"){
-            menuConfirmacao.SetActive(false);
-            confirmado.SetActive(true);
         }else
         {
-            if(resposta[1] == "0"){
+            conf_codigo.interactable = true;
+            conf_botao.interactable = true;
+
+            resposta = link.downloadHandler.text.Split(',');
+
+            if(resposta[0] == "1"){
                 menuConfirmacao.SetActive(false);
-                excessoDeTentativas.SetActive(true);
+                confirmado.SetActive(true);
             }else
             {
-                borda.color = new Color(1,0,0);
+                if(resposta[1] == "0"){
+                    menuConfirmacao.SetActive(false);
+                    excessoDeTentativas.SetActive(true);
+                }else
+                {
+                    borda.color = new Color(1,0,0);
+                }
             }
         }
+
+        
         
         
     }

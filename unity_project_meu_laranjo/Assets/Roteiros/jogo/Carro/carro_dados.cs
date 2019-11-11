@@ -1,7 +1,14 @@
-﻿public class carro_dados
+﻿using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+
+[Serializable]
+public class carro_dados
 {
-    public int id_chassi = 2;
-    public int[] nivel = new int[]{1,1,1,1}, cor_id = new int[]{16,16}, acessorios = new int[]{3,2,3,2,1};
+    public int id_chassi = 1;
+    public int[] nivel = new int[4]{1,1,1,1}, cor_id = new int[2]{3,39}, acessorios = new int[5]{0,0,0,0,1};
 
     public carro_dados(){
 
@@ -11,4 +18,31 @@
         cor_id = new int[]{id_cor1_,id_cor2_};
         acessorios = new int[]{carroceria_,ar_teto_,ar_capo_,aerofolio_,pneu_};
     }
+
+    public carro_dados(carro_dados carro_){
+        id_chassi = carro_.id_chassi;
+        nivel = carro_.nivel;
+        cor_id = carro_.cor_id;
+        acessorios = carro_.acessorios;
+    }
+
+
+    
 }
+
+public static class ClassExtensions
+    {
+        public static T CloneProfundo<T>(this T source) where T : class
+        {
+            using (Stream cloneStream = new MemoryStream())
+            {
+                IFormatter formatter = new BinaryFormatter();
+                 
+                formatter.Serialize(cloneStream, source);
+                cloneStream.Position = 0;
+                T clone = (T)formatter.Deserialize(cloneStream);
+ 
+                return clone;
+            }
+        }
+    }

@@ -9,36 +9,53 @@ public class gerenciador : MonoBehaviour
 {
     public static gerenciador instancia;
     public string ambiente;
-    public GameObject casa_interior, casa_quintal,spawn_fora,spawn_dentro, laranjo,laranjo_preview, prefab_botao, lista_loja, lista_armario;
+    public GameObject casa_interior, casa_quintal,spawn_fora,spawn_dentro, laranjo,laranjo_preview, prefab_botao, lista_loja, lista_armario, camera_preview_loja;
     public GameObject[] cameras, carros, UIs_casa, UIs_fora;
+    
 
-    public TextMeshProUGUI[] textoLoja = new TextMeshProUGUI[3], textoArmario = new TextMeshProUGUI[3];
-    public List<item> itens;
-
-    public Material mat_lar_0, mat_lar_meio, mat_lar_1, mat_lar_final;
-
+    // NIVEL
+    [Space(30)]
+    public Material mat_lar_0;
+    public Material mat_lar_meio;
+    public Material mat_lar_1;
+    public Material mat_lar_final;
     public float nivel_lar = 0;
     public Slider slider_nivel;
     public Image[] cor_nivel;
+
+
+    // LOJA
+    [Space(30)]
+    public int item_selecionado;
+    public List<item> itens;
+    public TextMeshProUGUI[] textoLoja = new TextMeshProUGUI[3], textoArmario = new TextMeshProUGUI[3];
+    public Button botao_loja_comprar;
     public Sprite[] raridade;
+    public GameObject menu_confirmar_compra, menu_confirmar_compra_pivot, menu_comprar_moedas, menu_comprar_dolares;
 
-    public int render_area = 600;
 
-
+    // TERRENOS
+    [Space(30)]
     public GameObject primeiro_terreno;
     public peca_terreno[] pecas;
     public List<terreno> todosTerrenos;
     public List<int> ter_canto0, ter_canto1;
-    public List<item_casa> casas;
-    public GameObject[] casa_pivot;
+    public int render_area = 600;
+
+    // CARROS
+    [Space(30)]
     public GameObject carro_base;
     public List<item_carro> itens_carro;
     public List<item_cor> itens_cor;
+    
+
+    // CASAS
+    [Space(30)]
+    public List<item_casa> casas;
+    public GameObject[] casa_pivot;
 
     public GameObject rank_peca, rank_piv;
 
-    public GameObject SHOWSHOW;
-    public item_carro SHOWSHOWIC;
 
     //public List<int> lista1 = new List<int>(), lista2 = new List<int>(), lista3 = new List<int>();
 
@@ -56,12 +73,15 @@ public class gerenciador : MonoBehaviour
         
 
 
-        restartTerrenos();
+        destruirTerrenos();
 
-        instanciar_casa();
-        for(int i_ = 1; i_ <= 3; i_++){
-            instanciar_carro(i_);
-        }
+        //instanciar_casa();
+
+        //instanciar_carros();
+
+        casa_entrar(laranjo);
+        laranjo.transform.position = new Vector3(-0.4f,0,-1);
+        
     }
 
     // Update is called once per frame
@@ -109,19 +129,30 @@ public class gerenciador : MonoBehaviour
     }
 
     public void colocaritemArmario(int id_){
-        for(int i = 0; i < itens.Count - 1; i++){
-            if(itens[i] != null){
-                if(itens[i].id == id_){
-                    laranjo_preview.GetComponent<design>().MudarMesh(itens[i]);
-                    laranjo.GetComponent<design>().MudarMesh(itens[i]);
 
-                    if((int)itens[i].posicao == 5){
-                        laranjo_preview.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
-                        laranjo.GetComponent<Animator>().SetBool("item",itens[i].seguraItem);
-                    }
-                }
-            }
+        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_));
+        laranjo.GetComponent<design>().MudarMesh(itemDeId(id_));
+
+        gerDados.instancia.adicionarOutFit(id_, gerDados.instancia.dados_.outfit);
+
+        if((int)itemDeId(id_).posicao == 5){
+            laranjo_preview.GetComponent<Animator>().SetBool("item",itemDeId(id_).seguraItem);
+            laranjo.GetComponent<Animator>().SetBool("item",itemDeId(id_).seguraItem);
         }
+        
+    }
+
+    public void botaoOpcoes(){
+        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+        ligarCameraPreview();
+    }
+
+    public void ligarCameraPreview(){
+        camera_preview_loja.SetActive(true);
+    }
+
+    public void desligarCameraPreview(){
+        camera_preview_loja.SetActive(false);
     }
 
     public void botaoArmario(int id_){
@@ -129,14 +160,96 @@ public class gerenciador : MonoBehaviour
         textoArmario[1].text = itemDeId(id_).descricao[gerDados.instancia.dados_.lingua];
 
         colocaritemArmario(id_);
+
+        gerDados.instancia.salvarDadosOffline();
     }
 
     public void botaoLoja(int id_){
-        textoLoja[0].text = itemDeId(id_).nome[gerDados.instancia.dados_.lingua];
-        textoLoja[1].text = itemDeId(id_).descricao[gerDados.instancia.dados_.lingua];
-        textoLoja[2].text = itemDeId(id_).preco.ToString();
+
+        
+
+        if(id_ > 11){
+            textoLoja[0].text = itemDeId(id_).nome[gerDados.instancia.dados_.lingua];
+            textoLoja[1].text = itemDeId(id_).descricao[gerDados.instancia.dados_.lingua];
+
+            textoLoja[2].text = itemDeId(id_).preco_moedas.ToString();
+            textoLoja[3].text = itemDeId(id_).preco_dolares.ToString();
+
+            textoLoja[4].text = itemDeId(id_).preco_moedas.ToString();
+            textoLoja[5].text = itemDeId(id_).preco_dolares.ToString();
+
+            item_selecionado = id_;
+
+            botao_loja_comprar.interactable = true;
+        }else
+        {
+            textoLoja[2].text = "";
+            textoLoja[3].text = "";
+
+            textoLoja[4].text = "";
+            textoLoja[5].text = "";
+
+            botao_loja_comprar.interactable = false;
+
+        }
 
         colocaritemLoja(id_);
+    }
+
+    public void botaoConfirmarCompra(int opcao_){
+        if(opcao_ == 1){
+            //compra em moedas
+
+            if(gerDados.instancia.dados_.moedas >= itemDeId(item_selecionado).preco_moedas){
+
+                gerDados.instancia.adicionarItem(item_selecionado);
+
+                gerDados.instancia.adicionarOutFit(item_selecionado, gerDados.instancia.dados_.outfit);
+
+                gerDados.instancia.dados_.moedas -= itemDeId(item_selecionado).preco_moedas;
+
+                gerDados.instancia.salvar(true);
+
+                gerarloja(0);
+
+                menu_confirmar_compra.GetComponent<animar_UI>().mostrar_ocultar();
+
+                menu_confirmar_compra_pivot.SetActive(false);
+
+            }else
+            {
+
+                menu_comprar_moedas.GetComponent<animar_UI>().mostrar_ocultar();
+            }
+        }
+
+        if(opcao_ == 2){
+            //compra em dolares
+
+            if(gerDados.instancia.dados_.dolares >= itemDeId(item_selecionado).preco_dolares){
+
+                gerDados.instancia.adicionarItem(item_selecionado);
+
+                gerDados.instancia.adicionarOutFit(item_selecionado, gerDados.instancia.dados_.outfit);
+
+                gerDados.instancia.dados_.dolares -= itemDeId(item_selecionado).preco_dolares;
+
+                gerDados.instancia.salvar(true);
+
+                gerarloja(0);
+
+                menu_confirmar_compra.GetComponent<animar_UI>().mostrar_ocultar();
+
+                menu_confirmar_compra_pivot.SetActive(false);
+
+            }else
+            {
+
+                menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
+            }
+
+
+        }
     }
 
     public void gerarloja(int posi_){
@@ -147,6 +260,19 @@ public class gerenciador : MonoBehaviour
         }
         */
 
+        ligarCameraPreview();
+
+        textoLoja[0].text = "";
+        textoLoja[1].text = "";
+
+        textoLoja[2].text = "";
+        textoLoja[3].text = "";
+
+        textoLoja[4].text = "";
+        textoLoja[5].text = "";
+
+        botao_loja_comprar.interactable = false;
+
         for ( int i= lista_loja.transform.childCount-1; i>=0; --i )
         {
             GameObject child = lista_loja.transform.GetChild(i).gameObject;
@@ -154,18 +280,22 @@ public class gerenciador : MonoBehaviour
         }
 
         if(posi_ == 0){
+            gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+            
             foreach(item item_ in itens)
             {
                 if(item_ != null){
-                    
-                    
 
-                    GameObject botao_ = Instantiate(prefab_botao,lista_loja.transform);
-                    botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
-                    botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
-                    botao_.GetComponent<Button>().onClick.AddListener(() => botaoLoja(item_.id));
+                    if(item_.listado && item_.id > 11 && !gerDados.instancia.temItem(item_.id)){
 
-                    item_.id_ordem = item_.id;
+                        GameObject botao_ = Instantiate(prefab_botao,lista_loja.transform);
+                        botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
+                        botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
+                        botao_.GetComponent<Button>().onClick.AddListener(() => botaoLoja(item_.id));
+
+                        item_.id_ordem = item_.id;
+                    }
+
                 }
             }
             
@@ -173,7 +303,7 @@ public class gerenciador : MonoBehaviour
             foreach(item item_ in itens)
             {
                 if(item_ != null){
-                    if((int)item_.posicao == posi_){
+                    if((int)item_.posicao == posi_ && item_.listado && (!gerDados.instancia.temItem(item_.id) || (int)item_.posicao <= 11)){
                         GameObject botao_ = Instantiate(prefab_botao,lista_loja.transform);
                         botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
                         botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
@@ -192,6 +322,14 @@ public class gerenciador : MonoBehaviour
         }
         */
 
+        ligarCameraPreview();
+
+        textoArmario[0].text = "";
+        textoArmario[1].text = "";
+
+        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+        
+
         for ( int i= lista_armario.transform.childCount-1; i>=0; --i )
         {
             GameObject child = lista_armario.transform.GetChild(i).gameObject;
@@ -203,7 +341,7 @@ public class gerenciador : MonoBehaviour
             {
                 if(item_ != null){
                     
-                    if(gerDados.instancia.temItem(item_.id)){
+                    if(gerDados.instancia.temItem(item_.id) && item_.id > 11){
 
                         GameObject botao_ = Instantiate(prefab_botao,lista_armario.transform);
                         botao_.GetComponent<Image>().sprite = raridade[(int)item_.raridade];
@@ -276,6 +414,10 @@ public class gerenciador : MonoBehaviour
         casa_interior.SetActive(false);
         casa_quintal.SetActive(true);
 
+        instanciar_carros();
+
+        instanciar_casa();
+
         lar_.transform.position = spawn_fora.transform.position;
 
         lar_.GetComponent<movimento>().destino = spawn_fora;
@@ -324,16 +466,89 @@ public class gerenciador : MonoBehaviour
 
     //                                                                 -------------------------------------Instacia as casas do save---------------------------
     public void instanciar_casa(){
-        Instantiate(CasaDeId(gerDados.instancia.dados_.id_casa).prefab_casa, casa_pivot[0].transform);
+
+        if(casa_pivot[0].transform.childCount >= 1){
+            Destroy(casa_pivot[0].transform.GetChild(0).gameObject);
+        }
+        
+        Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_casa, casa_pivot[0].transform);
+
+        for(int i_ = 2; i_ <= 3; i_++){
+
+            if(casa_pivot[i_].transform.childCount >= 1){
+                Destroy(casa_pivot[i_].transform.GetChild(0).gameObject);
+            }
+
+        }
 
         for(int i_ = 2; i_ <= gerDados.instancia.dados_.quant_gar; i_++){
-            Instantiate(CasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
+
+            Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
+        }
+    }
+
+    public void instanciar_casa(int id_){
+        
+        if(casa_pivot[0].transform.childCount >= 1){
+            Destroy(casa_pivot[0].transform.GetChild(0).gameObject);
+        }
+
+        for(int i_ = 2; i_ <= 3; i_++){
+
+            if(casa_pivot[i_].transform.childCount >= 1){
+                Destroy(casa_pivot[i_].transform.GetChild(0).gameObject);
+            }
+
+        }
+        
+        Instantiate(itemCasaDeId(id_).prefab_casa, casa_pivot[0].transform);
+
+        for(int i_ = 2; i_ <= gerDados.instancia.dados_.quant_gar; i_++){
+
+            Instantiate(itemCasaDeId(id_).prefab_garagem, casa_pivot[i_].transform);
+
+        }
+    }
+
+    public void instanciar_casa(int quant_garagem, bool preview_garagem){
+        if(casa_pivot[0].transform.childCount >= 1){
+            Destroy(casa_pivot[0].transform.GetChild(0).gameObject);
+        }
+        
+        Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_casa, casa_pivot[0].transform);
+
+        for(int i_ = 2; i_ <= 3; i_++){
+
+            
+            if(casa_pivot[i_].transform.childCount >= 1){
+                Destroy(casa_pivot[i_].transform.GetChild(0).gameObject);
+            }
+
+        }
+
+        for(int i_ = 2; i_ <= quant_garagem; i_++){
+
+            Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
+
+        }
+    }
+
+    public void instanciar_carros(){
+        for(int i_ = 1; i_ <= 3; i_++){
+            instanciar_carro(i_);
         }
     }
 
     public void instanciar_carro(int i_){
         GameObject car_, chas_;
+
+        if(carros[i_] != null){
+            Destroy(carros[i_]);
+        }
+
         if(gerDados.instancia.dados_.carro[i_] != null){
+
+            
 
             
             car_ = Instantiate(carro_base, casa_pivot[i_].transform.position + new Vector3(0,0.35f,-2), Quaternion.Euler(0,0,0));
@@ -341,11 +556,11 @@ public class gerenciador : MonoBehaviour
             car_.transform.SetParent(casa_quintal.transform);
 
             car_.name = "carro_0" + (i_);
-            Debug.Log("INSTANCIADO O CARRO LAH OH! id: " + i_);
+            //Debug.Log("INSTANCIADO O CARRO LAH OH! id: " + i_);
 
             chas_ = Instantiate(ChassiDeId(gerDados.instancia.dados_.carro[i_].id_chassi).prefab,car_.transform);
 
-            Debug.Log("-  -  -" + i_);
+            //Debug.Log("-  -  -" + i_);
 
             car_.GetComponent<veiculo>().entrada = chas_.GetComponent<chassi>().entradas;
             car_.GetComponent<veiculo>().coll_roda = chas_.GetComponent<chassi>().rodas_coll;
@@ -367,9 +582,6 @@ public class gerenciador : MonoBehaviour
                 car_.GetComponent<veiculo>().transf_roda[rodaid_] = rod_.transform;
 
             }
-            
-
-            SHOWSHOW = chas_.GetComponent<chassi>().acessorios[3];
 
             //instanciar carroceria, airvent teto, airvent capo e aerofolio
 
@@ -402,7 +614,7 @@ public class gerenciador : MonoBehaviour
 
             obj_chassi_.GetComponent<MeshRenderer>().materials = tempMats_;
 
-            SHOWSHOW = obj_chassi_;
+
             foreach(GameObject porta_ in chas_.GetComponent<chassi>().portas){
 
                 tempMats_ = porta_.GetComponent<MeshRenderer>().materials;
@@ -420,7 +632,7 @@ public class gerenciador : MonoBehaviour
   
     }
 
-    public item_casa CasaDeId(int id_){
+    public item_casa itemCasaDeId(int id_){
         item_casa casa_ = null;
 
         foreach (item_casa cas_ in casas){
@@ -531,7 +743,9 @@ public class gerenciador : MonoBehaviour
         return peca_;
     }
 
-    public void restartTerrenos(){
+    public void destruirTerrenos(){
+
+        GameObject.Find("portao_000").GetComponent<Animator>().SetTrigger("fechar");
 
         for ( int i= GameObject.Find("pivot_terreno").transform.childCount-1; i>=0; --i )
         {
@@ -539,10 +753,15 @@ public class gerenciador : MonoBehaviour
             Destroy(child );
         }
 
+        todosTerrenos = new List<terreno>();
+    }
+
+    public void instanciarTerrenos(){
+
         GameObject prim_ter_ = Instantiate (primeiro_terreno,GameObject.Find("pivot_terreno").transform);
 
-        todosTerrenos = new List<terreno>();
-
         todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
+
+        GameObject.Find("portao_000").GetComponent<Animator>().SetTrigger("abrir");
     }
 }

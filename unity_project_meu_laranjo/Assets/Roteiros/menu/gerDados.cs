@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Linq;
 
 public class gerDados : MonoBehaviour
 {
@@ -15,41 +16,25 @@ public class gerDados : MonoBehaviour
     public static gerDados instancia {get; set;}
     public dados dados_;
 
-    public int[] itemAtual = new int[10]; 
-
-    public TextMeshProUGUI textoNick, textoMoeda, textoMoeda2, textoDolar, textoDolar2;
+    public TextMeshProUGUI textoNick;
+    public TextMeshProUGUI[] textosMoedas;
+    public TextMeshProUGUI[] textosDolar;
     public bool online = false, inFirst = false;
-    public GameObject botao_logout;
+    public GameObject botao_logout, menu_carregando, menu_ERRO;
 
     private void Awake() {
 
         DontDestroyOnLoad(gameObject);
         instancia = this;
-
-        loginConfigs();
         
         gerenciador.instancia = GameObject.Find("ger_jogo").GetComponent<gerenciador>();
+
+        loginConfigs();
         //carregar();
         //Debug.Log(ferramentas.Serializar<dados>(dados_));
 
-        for(int i = 0; i < (dados_.outfit.Length * 64);i++){
-            if(temItemOutfFit(i)){
-                for(int i_ = 0; i_ < gerenciador.instancia.itens.Count - 1; i++){
-                    if(gerenciador.instancia.itens[i_] != null){
-                        if(gerenciador.instancia.itens[i_].id == i){
-                            gerenciador.instancia.laranjo.GetComponent<design>().MudarMesh(gerenciador.instancia.itens[i]);
 
-                            if((int)gerenciador.instancia.itens[i_].posicao == 5){
-                                gerenciador.instancia.laranjo.GetComponent<Animator>().SetBool("item",gerenciador.instancia.itens[i].seguraItem);
-                            }
-                            itemAtual[(int)gerenciador.instancia.itens[i_].posicao] = i;
-                        }
-                    }
-                }
-            }
-        }
-
-        aplicarDados();
+        // colocar roupas do outfit
     }
 
     private void Start() {
@@ -83,14 +68,19 @@ public class gerDados : MonoBehaviour
     }
 
     public void aplicarDados(){
-
-        textoMoeda.text = dados_.moedas.ToString();
-        textoDolar.text = dados_.dolares.ToString();
-
-        textoMoeda2.text = dados_.moedas.ToString();
-        textoDolar2.text = dados_.dolares.ToString();
-
+        
         textoNick.text = dados_.nick;
+
+        foreach(TextMeshProUGUI txt_ in textosMoedas){
+            txt_.text = dados_.moedas.ToString();
+        }
+
+        foreach(TextMeshProUGUI txt_ in textosDolar){
+            txt_.text = dados_.dolares.ToString();
+        }
+
+
+        aplicarOutfit(gerenciador.instancia.laranjo,dados_.outfit);
     }
 
     public void loginConfigs(){
@@ -126,7 +116,7 @@ public class gerDados : MonoBehaviour
 
             salvarDadosOffline();
 
-            //aplicarDados();
+            aplicarDados();
 
             //quando estiver entrando plea primeira vez:
             
@@ -137,7 +127,26 @@ public class gerDados : MonoBehaviour
         ///////////////////////////////////////
 
         if(PlayerPrefs.GetInt("logado") == 1){
-                StartCoroutine(salvarDadosOnline(1));
+                StartCoroutine(salvarDadosOnline(1, false));
+                Debug.Log("LOGADO, TENTANDO SALVAR DADOS ONLINE...");
+        }else{
+            salvarDadosOffline();
+            Debug.Log("DESLOGADO, DADOS SALVOS OFFLINE");
+
+            aplicarDados();
+        }
+
+        //////////////////////////////////////
+
+        
+    }
+
+    public void salvar(bool importante_){
+
+        ///////////////////////////////////////
+
+        if(PlayerPrefs.GetInt("logado") == 1){
+                StartCoroutine(salvarDadosOnline(1, importante_));
                 Debug.Log("LOGADO, TENTANDO SALVAR DADOS ONLINE...");
         }else{
             PlayerPrefs.SetString("dados",ferramentas.Serializar<dados>(dados_));
@@ -175,19 +184,36 @@ public class gerDados : MonoBehaviour
     }
 
     public void baixarDados(){
-        StartCoroutine(salvarDadosOnline(1));
+        StartCoroutine(salvarDadosOnline(1, false));
+    }
+
+    public void aplicarOutfit(GameObject laranjo_, int[] outfit_){
+
+        for(int i = 1; i < (outfit_.Length * 32 + 1);i++){
+            if(temItemOutfFit(i - 1, outfit_)){
+
+                //Debug.Log("i = " + i +",item de tipo: \"" + gerenciador.instancia.itemDeId(i).posicao + "\", com idex: "+ ((int)gerenciador.instancia.itemDeId(i).posicao-1));
+
+                laranjo_.GetComponent<design>().MudarMesh(gerenciador.instancia.itemDeId(i));
+
+                if((int)gerenciador.instancia.itemDeId(i).posicao == 5){
+                    laranjo_.GetComponent<Animator>().SetBool("item",gerenciador.instancia.itemDeId(i).seguraItem);
+                }
+            }
+        }
     }
 
     public bool temItem(int id_){
-        return (dados_.itens[id_/64] &  (1 << (id_ % 64))) != 0;
+        
+        return (dados_.itens[(id_-1)/32] &  (1 << ((id_-1) % 32))) != 0;
     }
 
     public void adicionarItem(int id_){
-        dados_.itens[id_/64] |= 1 << (id_ % 64);
+        dados_.itens[(id_-1)/32] |= 1 << ((id_-1) % 32);
     }
 
     public void removerItem(int id_){
-        dados_.itens[id_/64] ^= 1 << (id_ % 64);
+        dados_.itens[(id_-1)/32] ^= 1 << ((id_-1) % 32);
     }
 
     public void deslogar(){
@@ -200,65 +226,27 @@ public class gerDados : MonoBehaviour
     }
 
 
-    public bool temItemOutfFit(int id_){
-        return (dados_.outfit[id_/64] &  (1 << (id_ % 64))) != 0;
+    public bool temItemOutfFit(int id_, int[] outfit_){
+
+        return (outfit_[(id_)/32] &  (1 << (((id_) % 32)))) != 0;
     }
-    public void adicionarOutFit(int id_){
-        dados_.outfit[id_/64] |= 1 << (id_ % 64);
-    }
-
-    public void removerOutFit(int id_){
-        dados_.outfit[id_/64] ^= 1 << (id_ % 64);
-    }
-
-    public void trocarOutFit(int id_){
-        removerOutFit(itemAtual[(int)gerenciador.instancia.itemDeId(id_).posicao]);
-        itemAtual[(int)gerenciador.instancia.itemDeId(id_).posicao] = gerenciador.instancia.itemDeId(id_).id;
-        adicionarOutFit(id_);
-    }
-
-    public bool EstaOnline(){
-
-        StartCoroutine(checarConexao());
-
-        ///////////////////WaitForSeconds(5);
-        //StartCoroutine(DoLast());
-
-        return online;
-    }
-
-    IEnumerator DoLast() {
- 
-        while(inFirst)       
-        yield return new WaitForSeconds(0.1f);
-        print("Do stuff.");
-    }
-
-    IEnumerator checarConexao(){
-
-        inFirst = true;
-
-        link = UnityWebRequest.Post(site,new WWWForm());
-
-        yield return link.SendWebRequest();
-
-        if(link.isNetworkError || link.isHttpError){
-
-            online = false;
-            Debug.Log("OFFFF");
-            //st1 = "ERROOOU " + link.error;
-            //if(link.error == UnityWebRequest.)
-        }else
-        {
-            //return true;
-            online = true;
-            Debug.Log("ONNNN");
+    public void adicionarOutFit(int id_, int[] outfit_){
+        foreach(item item_ in gerenciador.instancia.itens){
+            if(item_ != null){
+                if(item_.posicao == gerenciador.instancia.itemDeId(id_).posicao){
+                    removerOutFit(item_.id,outfit_);
+                }
+            }
         }
 
-        inFirst = false;
+        outfit_[(id_-1)/32] |= 1 << ((id_-1) % 32);
     }
 
-    IEnumerator salvarDadosOnline(int acao_){
+    public void removerOutFit(int id_, int[] outfit_){
+        outfit_[(id_-1)/32] ^= 1 << ((id_-1) % 32);
+    }
+
+    IEnumerator salvarDadosOnline(int acao_, bool importante_){
 
         Debug.Log("salvando dados online de..." + dados_.id.ToString() + ". UTC: " + dados_.ult_ctt);
 
@@ -273,11 +261,47 @@ public class gerDados : MonoBehaviour
         form.AddField("id_casa",dados_.id_casa);
         form.AddField("quant_gar",dados_.quant_gar);
         form.AddField("ult_ctt",dados_.ult_ctt);
+
+        
+
+        dados base_ = new dados();
+
+        for(int i_ = 0; i_ < dados_.itens.Length; i_++){
+            base_.itens[i_] = dados_.itens[i_];
+        }
+
+        dados_.itens = base_.itens;
+
+
+
+        for(int i_ = 0; i_ < dados_.outfit.Length; i_++){
+            base_.outfit[i_] = dados_.outfit[i_];
+        }
+
+        dados_.outfit = base_.outfit;
+
+
+
+        for(int i_ = 0; i_ < dados_.recordes.Length; i_++){
+            base_.recordes[i_] = dados_.recordes[i_];
+        }
+
+        dados_.recordes = base_.recordes;
+
+        
+
         form.AddField("itens",string.Join("-",dados_.itens));
         form.AddField("outfit",string.Join("-",dados_.outfit));
+        form.AddField("records",string.Join("-",dados_.recordes));
+
+        form.AddField("carros",stringDeCarro(dados_.carro[1]) + "-" + stringDeCarro(dados_.carro[2]) + "-" + stringDeCarro(dados_.carro[3]));
 
 
         link = UnityWebRequest.Post(site,form);
+
+        if(importante_){
+            menu_carregando.SetActive(true);
+        }
 
         yield return link.SendWebRequest();
 
@@ -290,6 +314,12 @@ public class gerDados : MonoBehaviour
             salvarDadosOffline();
 
             aplicarDados();
+
+            if(importante_){
+                menu_carregando.SetActive(false);
+            }
+
+            menu_ERRO.SetActive(true);
 
         }else
         {
@@ -329,11 +359,15 @@ public class gerDados : MonoBehaviour
 
                 int lingua_ = dados_.lingua;
 
-                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,long.Parse(resposta[4]),long.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
+                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,ulong.Parse(resposta[4]),ulong.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
 
-                dados_.itens = Array.ConvertAll(resposta[9].Split('-'),long.Parse);
+                dados_.itens = Array.ConvertAll(resposta[9].Split('-'),int.Parse);
 
-                dados_.outfit = Array.ConvertAll(resposta[10].Split('-'),long.Parse);
+                dados_.outfit = Array.ConvertAll(resposta[10].Split('-'),int.Parse);
+
+                dados_.recordes = Array.ConvertAll(resposta[11].Split('-'),long.Parse);
+                
+                dados_.carro = Array.ConvertAll(new string[4] {null,string.Join("-",resposta[12].Split('-').Skip(0).Take(12).ToArray()),string.Join("-",resposta[12].Split('-').Skip(12).Take(12).ToArray()),string.Join("-",resposta[12].Split('-').Skip(24).Take(12).ToArray())},new Converter<string,carro_dados>(carroDeString));
 
                 salvarDadosOffline();
 
@@ -354,6 +388,9 @@ public class gerDados : MonoBehaviour
                 aplicarDados();
 
             }
+            if(importante_){
+                menu_carregando.SetActive(false);
+            }
 
         }
     }
@@ -364,6 +401,43 @@ public class gerDados : MonoBehaviour
         dataString_ = data_.Year.ToString() + "-"+ data_.Month.ToString() + "-"+ data_.Day.ToString() + " " + data_.Hour.ToString().PadLeft(2,'0') + ":" + data_.Minute.ToString() + ":" + data_.Second.ToString();
 
         return dataString_;
+    }
+
+    public string stringDeCarro(carro_dados car_){
+        string textoCarro_ = "";
+
+        if(car_ == null){
+            textoCarro_ = "0-0-0-0-0-0-0-0-0-0-0-0";
+        }else
+        {
+            textoCarro_ = car_.id_chassi.ToString() + "-" + string.Join("-",car_.nivel) + "-" + string.Join("-",car_.cor_id) + "-" + string.Join("-",car_.acessorios);
+        }
+
+        return textoCarro_;
+    }
+
+
+    public carro_dados carroDeString(string dads_)
+    {
+        carro_dados carroTexto_ = null;
+
+        if(dads_ != null){
+            if(dads_.Split('-')[0] != "0"){
+                carroTexto_ = new carro_dados();
+
+                carroTexto_.id_chassi = int.Parse(dads_.Split('-')[0]);
+
+                carroTexto_.nivel = new int[4]{int.Parse(dads_.Split('-')[1]),int.Parse(dads_.Split('-')[2]),int.Parse(dads_.Split('-')[3]),int.Parse(dads_.Split('-')[4])};
+
+                carroTexto_.cor_id = new int[2]{int.Parse(dads_.Split('-')[5]),int.Parse(dads_.Split('-')[6])};
+
+                carroTexto_.acessorios = new int[5]{int.Parse(dads_.Split('-')[7]),int.Parse(dads_.Split('-')[8]),int.Parse(dads_.Split('-')[9]),int.Parse(dads_.Split('-')[10]),int.Parse(dads_.Split('-')[11])};
+            }
+        }
+
+        
+
+        return carroTexto_;
     }
 
 

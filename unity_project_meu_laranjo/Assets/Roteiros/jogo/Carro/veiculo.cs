@@ -61,12 +61,14 @@ public class veiculo : MonoBehaviour
             teclado = false;
         }
 
+        /*
         if(entrada[0].transform.childCount == 1){
             ligado = true;
         }else
         {
             ligado = false;
         }
+        */
 
         if(ligado){
             if(teclado){

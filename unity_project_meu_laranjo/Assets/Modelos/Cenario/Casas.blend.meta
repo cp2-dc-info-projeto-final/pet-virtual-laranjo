@@ -30,6 +30,22 @@ ModelImporter:
     100048: 000_laranjo_002
     100050: garagem_1_LOD0
     100052: garagem_1_LOD1
+    100054: 000casa_limite
+    100056: 000garagem_limite
+    100058: 000laranjo_005
+    100060: casa_01_LOD0
+    100062: casa_01_LOD1
+    100064: casa_01_MESH
+    100066: casa_10_LOD0
+    100068: casa_10_MESH
+    100070: casa_20_LOD0
+    100072: casa_20_LOD1
+    100074: garagem_01_LOD0
+    100076: garagem_01_LOD1
+    100078: garagem_01_MESH
+    100080: garagem_10_LOD0
+    100082: garagem_10_MESH
+    100084: garagem_20_LOD0
     400000: carro_base
     400002: carro_base_001
     400004: carroceria_mr_bean
@@ -57,6 +73,22 @@ ModelImporter:
     400048: 000_laranjo_002
     400050: garagem_1_LOD0
     400052: garagem_1_LOD1
+    400054: 000casa_limite
+    400056: 000garagem_limite
+    400058: 000laranjo_005
+    400060: casa_01_LOD0
+    400062: casa_01_LOD1
+    400064: casa_01_MESH
+    400066: casa_10_LOD0
+    400068: casa_10_MESH
+    400070: casa_20_LOD0
+    400072: casa_20_LOD1
+    400074: garagem_01_LOD0
+    400076: garagem_01_LOD1
+    400078: garagem_01_MESH
+    400080: garagem_10_LOD0
+    400082: garagem_10_MESH
+    400084: garagem_20_LOD0
     2100000: Material
     2100002: unnamed
     2100004: cor_olho_1_001
@@ -102,6 +134,22 @@ ModelImporter:
     2300046: 000_laranjo_002
     2300048: garagem_1_LOD0
     2300050: garagem_1_LOD1
+    2300052: 000casa_limite
+    2300054: 000garagem_limite
+    2300056: 000laranjo_005
+    2300058: casa_01_LOD0
+    2300060: casa_01_LOD1
+    2300062: casa_01_MESH
+    2300064: casa_10_LOD0
+    2300066: casa_10_MESH
+    2300068: casa_20_LOD0
+    2300070: casa_20_LOD1
+    2300072: garagem_01_LOD0
+    2300074: garagem_01_LOD1
+    2300076: garagem_01_MESH
+    2300078: garagem_10_LOD0
+    2300080: garagem_10_MESH
+    2300082: garagem_20_LOD0
     3300000: carro_base
     3300002: carro_base_001
     3300004: carroceria_mr_bean
@@ -128,6 +176,22 @@ ModelImporter:
     3300046: 000_laranjo_002
     3300048: garagem_1_LOD0
     3300050: garagem_1_LOD1
+    3300052: 000casa_limite
+    3300054: 000garagem_limite
+    3300056: 000laranjo_005
+    3300058: casa_01_LOD0
+    3300060: casa_01_LOD1
+    3300062: casa_01_MESH
+    3300064: casa_10_LOD0
+    3300066: casa_10_MESH
+    3300068: casa_20_LOD0
+    3300070: casa_20_LOD1
+    3300072: garagem_01_LOD0
+    3300074: garagem_01_LOD1
+    3300076: garagem_01_MESH
+    3300078: garagem_10_LOD0
+    3300080: garagem_10_MESH
+    3300082: garagem_20_LOD0
     4300000: garagem_limite_002
     4300002: Cube_002
     4300004: Cube_001
@@ -154,6 +218,22 @@ ModelImporter:
     4300046: 000_laranjo_002
     4300048: garagem_1_LOD1
     4300050: garagem_1_LOD0
+    4300052: garagem_20_LOD0
+    4300054: casa_20_LOD0
+    4300056: casa_20_LOD1
+    4300058: garagem_10_MESH
+    4300060: casa_10_MESH
+    4300062: garagem_10_LOD0
+    4300064: casa_10_LOD0
+    4300066: garagem_01_LOD1
+    4300068: casa_01_LOD1
+    4300070: casa_01_MESH
+    4300072: garagem_01_MESH
+    4300074: garagem_01_LOD0
+    4300076: casa_01_LOD0
+    4300078: 000casa_limite
+    4300080: 000laranjo_005
+    4300082: 000garagem_limite
     7400000: Default Take
     9500000: //RootNode
     20500000: //RootNode
@@ -202,6 +282,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: casa_cor_madeira
+    second: {fileID: 2100000, guid: a6f173b4d4315a34580ac673ac059684, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: casa_cor_pintura
     second: {fileID: 2100000, guid: d09af7080b18bce468b6f7c91462fb4e, type: 2}
   - first:
@@ -212,6 +297,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: casa_cor_preta
+    second: {fileID: 2100000, guid: 4c34296b91f36f94e90ae114a515513a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: casa_cor_teto
     second: {fileID: 2100000, guid: 3562ed265185c0c40a237a0432ad7d39, type: 2}
   - first:
@@ -219,6 +309,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: casa_cor_teto__textura_casa_1
     second: {fileID: 2100000, guid: a40b5b45aa7bd184dbb9aa952d72aa1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: casa_cor_vidro
+    second: {fileID: 2100000, guid: b1ed9cfcdd5d6f845babc501d29cce55, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
