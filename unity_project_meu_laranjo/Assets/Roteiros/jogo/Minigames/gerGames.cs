@@ -7,7 +7,7 @@ using TMPro;
 public class gerGames : MonoBehaviour
 {
     public int minigame_atual = -1, indice_carro = 0, chances_extras = 1;
-    public ulong  moedas_atuais = 0, dolares_atuais = 0;
+    public int  moedas_atuais = 0, dolares_atuais = 0;
     public float pontuacao_atual = 0, tempo_restante = 0;
     public bool iniciado = false, reiniciado = false, gameOver = false;
     public static gerGames instancia;
@@ -48,6 +48,14 @@ public class gerGames : MonoBehaviour
                 }else
                 {
                     gerenciador.instancia.carros[indice_carro].GetComponent<veiculo>().ligado = false;
+
+
+
+                    if(!gameOver){
+                        StartCoroutine(checharGameOver());
+
+                        gameOver = true;
+                    }
                     
                 }
 
@@ -377,7 +385,7 @@ public class gerGames : MonoBehaviour
     public IEnumerator checharGameOver(){
         yield return new WaitForSeconds(3);
 
-        if(tempo_restante > 0){
+        if(tempo_restante == 0){
             if(chances_extras > 0){
                 menu_game_over.GetComponent<animar_UI>().mostrar_ocultar();
             }

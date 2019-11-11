@@ -359,7 +359,7 @@ public class gerDados : MonoBehaviour
 
                 int lingua_ = dados_.lingua;
 
-                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,ulong.Parse(resposta[4]),ulong.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
+                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,int.Parse(resposta[4]),int.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
 
                 dados_.itens = Array.ConvertAll(resposta[9].Split('-'),int.Parse);
 

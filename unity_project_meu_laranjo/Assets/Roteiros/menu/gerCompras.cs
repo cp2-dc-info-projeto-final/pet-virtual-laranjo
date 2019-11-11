@@ -96,12 +96,12 @@ public class gerCompras : MonoBehaviour, IStoreListener
 
     public void comprar999Moedas(){
         if(gerDados.instancia.dados_.dolares >= 1){
-
-        }
-        gerDados.instancia.dados_.dolares -= 1;
+            gerDados.instancia.dados_.dolares -= 1;
             menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(999);
 
-        gerDados.instancia.salvar(true);
+            gerDados.instancia.salvar(true);
+        }
+        
     }
 
     public void comprar9999Moedas(){

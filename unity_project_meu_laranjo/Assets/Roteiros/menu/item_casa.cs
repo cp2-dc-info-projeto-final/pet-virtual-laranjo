@@ -10,8 +10,8 @@ public class item_casa : ScriptableObject
     public string[] nome;
     public string[] descricao;
     public bool listado = true;
-    public ulong preco_moedas;
-    public ulong preco_dolares;
+    public int preco_moedas;
+    public int preco_dolares;
 
     public TipoItemCasa tipo = TipoItemCasa.arquitetura;
     public GameObject prefab_casa, prefab_garagem;

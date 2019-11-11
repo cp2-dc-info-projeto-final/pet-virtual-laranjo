@@ -42,7 +42,6 @@ public class gerAnuncios : MonoBehaviour
         string appId = "unexpected_platform";
 #endif
 
-        MobileAds.SetiOSAppPauseOnBackground(true);
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
@@ -56,20 +55,16 @@ public class gerAnuncios : MonoBehaviour
 
     public void Update()
     {
-        // Calculate simple moving average for time to render screen. 0.1 factor used as smoothing
-        // value.
-        this.deltaTime += (Time.deltaTime - this.deltaTime) * 0.1f;
-
+        
     }
 
     public void prepararAnuncioDolares(){
         AdRequest request_ = new AdRequest.Builder().Build();
 
         if(!eventos1setados){
-            anuncio_video_dolares.OnAdLoaded += HandleRewardBasedVideoLoaded;
-            anuncio_video_dolares.OnAdFailedToLoad += HandleRewardBasedVideoFailedToLoad;
-            anuncio_video_dolares.OnAdRewarded += HandleRewardBasedVideoRewarded;
-            anuncio_video_dolares.OnAdClosed += HandleRewardBasedVideoClosed;
+
+            anuncio_video_dolares.OnAdRewarded += recompensaDolares;
+            anuncio_video_dolares.OnAdClosed += anuncioDolaresFechado;
 
             eventos1setados = true;
         }
@@ -81,10 +76,9 @@ public class gerAnuncios : MonoBehaviour
         AdRequest request_ = new AdRequest.Builder().Build();
 
         if(!eventos2setados){
-            anuncio_video_gasolina.OnAdLoaded += HandleRewardBasedVideoLoaded;
-            anuncio_video_gasolina.OnAdFailedToLoad += HandleRewardBasedVideoFailedToLoad;
-            anuncio_video_gasolina.OnAdRewarded += HandleRewardBasedVideoRewarded;
-            anuncio_video_gasolina.OnAdClosed += HandleRewardBasedVideoClosed;
+            
+            anuncio_video_gasolina.OnAdRewarded += recompensaGasolina;
+            anuncio_video_gasolina.OnAdClosed += anuncioGasolinaFechado;
 
             eventos2setados = true;
         }
@@ -92,10 +86,14 @@ public class gerAnuncios : MonoBehaviour
         anuncio_video_gasolina.LoadAd(request_,id_anuncio_video_gasolina);
     }
 
+    
+
     public void mostrarAnuncioDolares(){
         if(anuncio_video_gasolina.IsLoaded()){
             ultimo_anuncio = 1;
             anuncio_video_gasolina.Show();
+
+            Debug.Log("anunucio da dolares esta pronto");
         }else
         {
             Debug.Log("anunucio dos dolares nao esta pronto");
@@ -106,6 +104,8 @@ public class gerAnuncios : MonoBehaviour
         if(anuncio_video_gasolina.IsLoaded()){
             ultimo_anuncio = 2;
             anuncio_video_gasolina.Show();
+
+            Debug.Log("anunucio da gasolina esta pronto");
         }else
         {
             Debug.Log("anunucio da gasolina nao esta pronto");
@@ -115,7 +115,7 @@ public class gerAnuncios : MonoBehaviour
 
 
 
-    public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
+    public void  video (object sender, EventArgs args)
     {
         Debug.Log("Rewarded Video ad loaded successfully");
 
@@ -134,34 +134,38 @@ public class gerAnuncios : MonoBehaviour
 
 
 
-    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
+    public void recompensaDolares(object sender, Reward args)
     {
         string type = args.Type;
         double amount = args.Amount;
 
         Debug.Log("You have been rewarded with  " + amount.ToString() + " " + type);
 
-        if(ultimo_anuncio == 1){
-            gerGames.instancia.recompensaVideo();
-        }
+        menu_recompensa.GetComponent<menuReceberDolares>().receber(3);
 
-        if(ultimo_anuncio == 2){
-            menu_recompensa.GetComponent<menuReceberDolares>().receber(3);
-        }
+    }
 
+    public void recompensaGasolina(object sender, Reward args)
+    {
+        string type = args.Type;
+        double amount = args.Amount;
+
+        Debug.Log("You have been rewarded with  " + amount.ToString() + " " + type);
+
+        gerGames.instancia.recompensaVideo();
 
     }
 
 
-    public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
+    public void anuncioDolaresFechado(object sender, EventArgs args)
     {
-        if(ultimo_anuncio == 1){
-            prepararAnuncioDolares();
-        }
+        prepararAnuncioDolares();
 
-        if(ultimo_anuncio == 2){
-            prepararAnuncioGasolina();
-        }
+    }
+
+    public void anuncioGasolinaFechado(object sender, EventArgs args)
+    {
+        prepararAnuncioGasolina();
 
     }
 }

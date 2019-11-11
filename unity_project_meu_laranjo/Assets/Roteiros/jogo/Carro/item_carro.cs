@@ -9,7 +9,7 @@ public class item_carro : ScriptableObject
     public string[] nome;
     public string[] descricao;
     public bool listado = true;
-    public ulong preco_moedas, preco_dolares;
+    public int preco_moedas, preco_dolares;
     public PosicaoItemCarro posicao;
     public GameObject prefab;
     public Sprite imagem;

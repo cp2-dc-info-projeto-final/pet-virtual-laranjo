@@ -66,7 +66,7 @@ public class menuReceberDolares : MonoBehaviour
         
         yield return new WaitForSeconds(0.4f);
 
-        gerDados.instancia.dados_.dolares += ulong.Parse(quant_dolares.ToString());
+        gerDados.instancia.dados_.dolares += quant_dolares;
 
         gerDados.instancia.salvar(true);
     }
@@ -83,7 +83,7 @@ public class menuReceberDolares : MonoBehaviour
         
         yield return new WaitForSeconds(0.4f);
 
-        gerDados.instancia.dados_.moedas += ulong.Parse(quant_moedas.ToString());
+        gerDados.instancia.dados_.moedas += quant_moedas;
 
         gerDados.instancia.salvar(true);
     }

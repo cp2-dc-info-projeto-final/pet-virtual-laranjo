@@ -12,8 +12,8 @@ public class dados
     public string ult_ctt = "2000-05-29 23:59:59";
 
     public int lingua = 0;
-    public ulong moedas = 0;
-    public ulong  dolares = 0;
+    public int moedas = 0;
+    public int  dolares = 0;
     public int[] itens = new int[4]{1023,0,0,0};
     public int[] outfit = new int[4]{1023,0,0,0};
 
@@ -27,7 +27,7 @@ public class dados
     public dados(){
 
     }
-    public dados(long id_, string nick_, float nivel_, int lingua_, ulong moedas_, ulong dolares_, int id_casa_, int quant_gar_, string ult_ctt_){
+    public dados(long id_, string nick_, float nivel_, int lingua_, int moedas_, int dolares_, int id_casa_, int quant_gar_, string ult_ctt_){
         id = id_;
         nick = nick_;
         nivel = nivel_;
@@ -39,7 +39,7 @@ public class dados
         quant_gar = quant_gar_;
     }
 
-    public dados(long id_, string nick_, float nivel_, int lingua_, ulong moedas_, ulong dolares_, int id_casa_, int quant_gar_, string ult_ctt_, int[] itens_, int[] outfit_){
+    public dados(long id_, string nick_, float nivel_, int lingua_, int moedas_, int dolares_, int id_casa_, int quant_gar_, string ult_ctt_, int[] itens_, int[] outfit_){
         id = id_;
         nick = nick_;
         nivel = nivel_;
@@ -56,7 +56,7 @@ public class dados
 
 
 
-    public void setarDados(string nick_, float nivel_, string ult_ctt_, int lingua_, ulong moedas_, ulong dolares_, int[] itens_, int[] outfit_, int id_casa_, int quant_gar_){
+    public void setarDados(string nick_, float nivel_, string ult_ctt_, int lingua_, int moedas_, int dolares_, int[] itens_, int[] outfit_, int id_casa_, int quant_gar_){
         nick = nick_;
         nivel = nivel_;
         ult_ctt = ult_ctt_;

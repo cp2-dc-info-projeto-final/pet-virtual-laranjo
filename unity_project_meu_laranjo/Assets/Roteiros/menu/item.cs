@@ -9,8 +9,8 @@ public class item : ScriptableObject
     public string[] nome;
     public string[] descricao;
     public bool listado = true;
-    public ulong preco_moedas;
-    public ulong preco_dolares;
+    public int preco_moedas;
+    public int preco_dolares;
     public PosicaoItemRoupa posicao;
     public GameObject prefab;
     public Sprite imagem;
