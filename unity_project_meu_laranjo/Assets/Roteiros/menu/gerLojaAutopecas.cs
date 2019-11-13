@@ -373,15 +373,18 @@ public class gerLojaAutopecas : MonoBehaviour
                     if(tem_carro){
 
                         gerDados.instancia.dados_.carro[indice_carro_atual].id_chassi = item_selecionado;
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,0,1};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
+
+                        carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
 
                     }else{
 
                         gerDados.instancia.dados_.carro[indice_carro_atual] = new carro_dados();
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,0,1};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
+                        carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
                     }
                     
                 }
@@ -437,11 +440,15 @@ public class gerLojaAutopecas : MonoBehaviour
                         gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
+                        carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
+
                     }else{
 
                         gerDados.instancia.dados_.carro[indice_carro_atual] = new carro_dados();
                         gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
+
+                        carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
 
                     }
                     

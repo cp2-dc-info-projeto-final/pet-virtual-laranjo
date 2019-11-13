@@ -413,11 +413,7 @@ public class gerenciador : MonoBehaviour
     public void casa_sair(GameObject lar_){
         casa_interior.SetActive(false);
         casa_quintal.SetActive(true);
-
-        instanciar_carros();
-
-        instanciar_casa();
-
+        
         lar_.transform.position = spawn_fora.transform.position;
 
         lar_.GetComponent<movimento>().destino = spawn_fora;
@@ -435,6 +431,11 @@ public class gerenciador : MonoBehaviour
         }
 
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        
+        instanciar_carros();
+
+        instanciar_casa();
+
     }
 
     public void mudar_camera(string nome_cam_){

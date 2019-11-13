@@ -243,7 +243,7 @@ public class gerDados : MonoBehaviour
     }
 
     public void removerOutFit(int id_, int[] outfit_){
-        outfit_[(id_-1)/32] ^= 1 << ((id_-1) % 32);
+        outfit_[(id_-1)/32] &= ~(1 << ((id_-1) % 32));
     }
 
     IEnumerator salvarDadosOnline(int acao_, bool importante_){

@@ -60,6 +60,8 @@ public class logar : MonoBehaviour
             avisoCarregando.SetActive(false);
 
             menu_ERRO.SetActive(true);
+
+            menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "erro na rede (" + link_log.error + ")";
             
         }else
         {

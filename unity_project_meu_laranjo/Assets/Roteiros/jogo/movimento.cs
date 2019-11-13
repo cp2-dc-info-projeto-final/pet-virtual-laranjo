@@ -311,7 +311,7 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
         }
 
         ani_.SetTrigger("sair_esq");
-        entrada_carro.transform.DetachChildren();
+        transform.SetParent(gerGames.instancia.cenario_0.transform);
         dentro_carro = false;
         pode_andar = true;
         destino = Instantiate(prefab_destino,transform.position,Quaternion.Euler(0,0,0));
