@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 8240895189690862083}
   - component: {fileID: 8240895189690862082}
   - component: {fileID: 8240895189690862081}
+  - component: {fileID: 4073583440972210636}
   m_Layer: 0
   m_Name: 000_carro_BASE
   m_TagString: carro
@@ -76,6 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd65a0b5c892e5d4eb7142c2019ff8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SHOW_torque1: 0
+  SHOW_torque2: 0
+  SHOW_B_torque1: 0
+  SHOW_B_torque2: 0
+  SHOW_RPM_1: 0
+  SHOW_RPM_2: 0
   entrada:
   - {fileID: 0}
   - {fileID: 0}
@@ -87,11 +94,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  peso: 1500
+  motor: 1
   tracao: 0
-  torque: 900
   cambio: 0
-  suspencao: 0
+  suspensao: 1
+  sensibilidade_frente: 8
+  sensibilidade_traz: 4
+  peso: 1500
+  torque: 900
+  rmp_maximo: 230
+  forca_freios: 1200
   transf_roda:
   - {fileID: 0}
   - {fileID: 0}
@@ -112,9 +124,11 @@ MonoBehaviour:
   direcao: 0
   dir_esq: 0
   dir_dir: 0
-  velocida: 0
+  velocidade: 0
   vel_fre: 0
   vel_tra: 0
+  freio_natural: 500
+  frfr: 0
 --- !u!54 &8240895189690862082
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -144,3 +158,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 0.40189958, z: 8}
   m_Center: {x: 0, y: 1.034786, z: 0.728425}
+--- !u!114 &4073583440972210636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240895189690862087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef59a341b100c8743ac845beef43a891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodaTrazEsq: {fileID: 0}
+  rodaTrazDir: {fileID: 0}
+  forca: 10000
+  estabilidadeXvel: 800

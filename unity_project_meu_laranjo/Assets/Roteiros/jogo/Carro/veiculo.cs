@@ -5,17 +5,28 @@ using UnityEngine.UI;
 
 public class veiculo : MonoBehaviour
 {
+    public float SHOW_torque1, SHOW_torque2;
+    public float SHOW_B_torque1, SHOW_B_torque2;
+
+    public float SHOW_RPM_1, SHOW_RPM_2;
+
     public GameObject[] entrada;
     public GameObject menu_entrar;
     public botao_ui[] botao_ui_;
-    public float peso = 1500, tracao,torque = 1000 ,cambio, suspencao;
+
+    public int motor = 1, tracao = 1, cambio = 1, suspensao = 1;
+
+    public float sensibilidade_frente = 8, sensibilidade_traz = 4; 
+
+    public float peso = 1500, torque = 1000, rmp_maximo = 230, forca_freios = 1200;
     public Transform[] transf_roda;
     public WheelCollider[] coll_roda;
     Rigidbody rb_;
 
     //[HideInInspector]
     public bool ligado = false, teclado, press_dir, press_esq, press_fre, press_tra;
-    public float angulo, direcao, dir_esq, dir_dir, velocida, vel_fre, vel_tra;
+    public float angulo, direcao, dir_esq, dir_dir, velocidade, vel_fre, vel_tra, freio_natural;
+    public bool frfr = false;
     void Start()
     {
         rb_ = GetComponent<Rigidbody>();
@@ -44,6 +55,7 @@ public class veiculo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(botao_ui_[0] == null){
         
         } 
@@ -127,17 +139,17 @@ public class veiculo : MonoBehaviour
         
 
         if(press_esq){
-            dir_esq -= Time.deltaTime;
+            dir_esq -= Time.deltaTime * 4;
         }else
         {
-            dir_esq += Time.deltaTime * 8;
+            dir_esq += Time.deltaTime * 4;
         }
         
         if(press_dir){
-            dir_dir += Time.deltaTime;
+            dir_dir += Time.deltaTime * 4;
         }else
         {
-            dir_dir -= Time.deltaTime * 8;
+            dir_dir -= Time.deltaTime * 4;
         }
 
         dir_esq = Mathf.Clamp(dir_esq,-1,0);
@@ -147,31 +159,63 @@ public class veiculo : MonoBehaviour
 
 
         if(press_fre){
-            vel_fre += Time.deltaTime * 8;
+            vel_fre += Time.deltaTime * sensibilidade_frente;
         }else
         {
-            vel_fre -= Time.deltaTime * 4;
+            vel_fre -= Time.deltaTime * (sensibilidade_frente / 2);
         }
         
         if(press_tra){
-            vel_tra -= Time.deltaTime *8;
+            vel_tra -= Time.deltaTime *sensibilidade_frente;
         }else
         {
-            vel_tra += Time.deltaTime * 4;
+            vel_tra += Time.deltaTime * (sensibilidade_frente / 2);
         }
 
         vel_tra = Mathf.Clamp(vel_tra,-1,0);
         vel_fre = Mathf.Clamp(vel_fre,0,1);
 
-        velocida = vel_fre + vel_tra;
+        velocidade = vel_fre + vel_tra;
 
         angulo = Mathf.Lerp(angulo,direcao,Time.deltaTime * 4);
 
-        coll_roda[0].steerAngle = angulo * 35;
-        coll_roda[1].steerAngle = angulo * 35;
+        coll_roda[0].steerAngle = angulo * 25;
+        coll_roda[1].steerAngle = angulo * 25;
 
-        coll_roda[2].motorTorque = velocida*torque;
-        coll_roda[3].motorTorque = velocida*torque;
+        
+
+        
+
+        if(!press_fre && !press_tra){
+            coll_roda[2].brakeTorque = freio_natural;
+            coll_roda[3].brakeTorque = freio_natural;
+
+            frfr = true;
+        }else
+        {
+
+            coll_roda[2].brakeTorque = 0;
+            coll_roda[3].brakeTorque = 0;
+                  
+
+            frfr = false;
+        }
+
+        if(((coll_roda[2].rpm + coll_roda[3].rpm) / 2) > 10 && press_tra){
+            coll_roda[2].brakeTorque = forca_freios;
+            coll_roda[3].brakeTorque = forca_freios;
+        }
+
+
+        if(((coll_roda[2].rpm + coll_roda[3].rpm) / 2) < rmp_maximo && ((coll_roda[2].rpm + coll_roda[3].rpm) / 2) > - rmp_maximo / 2){
+            coll_roda[2].motorTorque = velocidade*torque;
+            coll_roda[3].motorTorque = velocidade*torque;
+        }else
+        {
+            coll_roda[2].motorTorque = 0;
+            coll_roda[3].motorTorque = 0;
+        }
+        
 
         for(int i = 0; i < coll_roda.Length; i++){
             Quaternion rot_;
@@ -180,6 +224,15 @@ public class veiculo : MonoBehaviour
             transf_roda[i].position = pos_;
             transf_roda[i].rotation = rot_;
         }
+
+        SHOW_torque1 = coll_roda[2].motorTorque;
+        SHOW_torque2 = coll_roda[3].motorTorque;
+
+        SHOW_B_torque1 = coll_roda[2].brakeTorque;
+        SHOW_B_torque2 = coll_roda[3].brakeTorque;
+
+        SHOW_RPM_1 = coll_roda[2].rpm;
+        SHOW_RPM_2 = coll_roda[3].rpm;
 
     }
 }

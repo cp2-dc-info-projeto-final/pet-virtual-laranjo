@@ -625,6 +625,10 @@ public class gerenciador : MonoBehaviour
 
                 porta_.GetComponent<MeshRenderer>().materials = tempMats_;
             }
+
+            car_.GetComponent<veiculo_estab>().rodaTrazEsq = chas_.GetComponent<chassi>().rodas_coll[2];
+            car_.GetComponent<veiculo_estab>().rodaTrazDir = chas_.GetComponent<chassi>().rodas_coll[3];
+            
             
             
             
