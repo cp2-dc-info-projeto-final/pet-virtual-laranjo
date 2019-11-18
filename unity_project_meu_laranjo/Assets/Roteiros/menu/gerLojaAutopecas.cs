@@ -15,10 +15,13 @@ public class gerLojaAutopecas : MonoBehaviour
 
     public GameObject lista_loja;
     public Button botao_loja_confirmar_compra_moeda, botao_loja_comprar;
-    public Button[] botao_indice;
-    public TextMeshProUGUI[] textoLoja;
+    public Button[] botao_indice, botao_melhoria_mais, botao_melhoria_menos;
+    public TextMeshProUGUI[] textoLoja, nivel_melhoria;
     public GameObject chas_, menu_confirmar_compra, menu_confirmar_compra_pivot, menu_comprar_moedas, menu_comprar_dolares;
+    public GameObject lista_itens, lista_melhorias;
     public GameObject[] preview_loja, camera_preview_loja;
+
+    int preco_melhoria_carro = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -363,17 +366,119 @@ public class gerLojaAutopecas : MonoBehaviour
         //gerenciador.instancia.instanciar_casa(id_);
     }
 
+    public void botaoCor(int id_, int tipo_){
+        textoLoja[0].text = gerenciador.instancia.itemCorDeId(id_).nome[gerDados.instancia.dados_.lingua];
+        textoLoja[1].text = gerenciador.instancia.itemCorDeId(id_).descricao[gerDados.instancia.dados_.lingua];
+
+        textoLoja[2].text = gerenciador.instancia.itemCorDeId(id_).preco_moedas.ToString();
+        textoLoja[3].text = gerenciador.instancia.itemCorDeId(id_).preco_dolares.ToString();
+
+        textoLoja[4].text = gerenciador.instancia.itemCorDeId(id_).preco_moedas.ToString();
+        textoLoja[5].text = gerenciador.instancia.itemCorDeId(id_).preco_dolares.ToString();
+
+        item_selecionado = id_;
+        item_tipo_selecionado = tipo_;
+
+        botao_loja_comprar.interactable = true;
+
+        botao_loja_confirmar_compra_moeda.interactable = true;
+
+        if(tipo_ == 6){
+            carro_atual.cor_id[0] = id_;
+        }
+
+        if(tipo_ == 7){
+            carro_atual.cor_id[1] = id_;
+        }
+
+        instanciarCarro();
+        
+    }
+    public void botaoMelhoria(int id_){
+        item_selecionado = id_;
+        item_tipo_selecionado = 8;
+
+        botao_loja_comprar.interactable = true;
+
+        int acrescimo = 3;
+
+        preco_melhoria_carro = 0;
+
+        for(int i_ = 0; i_ < gerDados.instancia.dados_.carro[indice_carro_atual].nivel[id_]; i_++){
+            preco_melhoria_carro += acrescimo;
+            acrescimo += 1;
+        }
+
+
+        if(id_ == 0){
+            textoLoja[0].text = "Motor+";
+            textoLoja[1].text = "Almenta a velocidade máxima";
+        }
+        if(id_ == 1){
+            textoLoja[0].text = "Transmissão+";
+            textoLoja[1].text = "Almenta a aceleração";
+        }
+        if(id_ == 2){
+            textoLoja[0].text = "Freio+";
+            textoLoja[1].text = "Almenta a velocidade máxima forca dos freios";
+        }
+        if(id_ == 3){
+            textoLoja[0].text = "Tração+";
+            textoLoja[1].text = "Almenta a fricção das rodas";
+        }
+
+
+        textoLoja[2].text = (preco_melhoria_carro * 100).ToString();
+        textoLoja[3].text = preco_melhoria_carro.ToString();
+
+        textoLoja[4].text = (preco_melhoria_carro * 100).ToString();
+        textoLoja[5].text = preco_melhoria_carro.ToString();
+    }
+
+    public void botaoPioria(int id_){
+        item_selecionado = id_;
+        item_tipo_selecionado = 8;
+
+        botao_loja_comprar.interactable = true;
+
+        if(id_ == 0){
+            textoLoja[0].text = "Motor-";
+            textoLoja[1].text = "Diminui a velocidade máxima";
+        }
+        if(id_ == 1){
+            textoLoja[0].text = "Transmissão-";
+            textoLoja[1].text = "Diminui a aceleração";
+        }
+        if(id_ == 2){
+            textoLoja[0].text = "Freio-";
+            textoLoja[1].text = "Diminui a velocidade máxima forca dos freios";
+        }
+        if(id_ == 3){
+            textoLoja[0].text = "Tração-";
+            textoLoja[1].text = "Diminui a fricção das rodas";
+        }
+
+        preco_melhoria_carro = 0;
+
+
+        textoLoja[2].text = preco_melhoria_carro.ToString();
+        textoLoja[3].text = preco_melhoria_carro.ToString();
+
+        textoLoja[4].text = preco_melhoria_carro.ToString();
+        textoLoja[5].text = preco_melhoria_carro.ToString();
+    }
+
     public void botaoConfirmarCompra(int opcao_){
         if(opcao_ == 1){
             //compra em moedas
 
-            if(gerDados.instancia.dados_.moedas >= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_moedas){
+            if(item_tipo_selecionado == 8 ? gerDados.instancia.dados_.moedas >= preco_melhoria_carro * 100 : item_tipo_selecionado == 6 || item_tipo_selecionado == 7 ? gerenciador.instancia.itemCorDeId(item_selecionado).preco_moedas >= gerDados.instancia.dados_.moedas : gerDados.instancia.dados_.moedas >= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_moedas){
 
                 if(item_tipo_selecionado == 0){
                     if(tem_carro){
 
                         gerDados.instancia.dados_.carro[indice_carro_atual].id_chassi = item_selecionado;
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,1,0};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
                         carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
@@ -381,7 +486,7 @@ public class gerLojaAutopecas : MonoBehaviour
                     }else{
 
                         gerDados.instancia.dados_.carro[indice_carro_atual] = new carro_dados();
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,1,0};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
                         carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
@@ -409,7 +514,38 @@ public class gerLojaAutopecas : MonoBehaviour
                     gerDados.instancia.dados_.carro[indice_carro_atual].acessorios[3] = item_selecionado;
                 }
 
-                gerDados.instancia.dados_.moedas -= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_moedas;
+                if(item_tipo_selecionado == 6){
+                    gerDados.instancia.dados_.carro[indice_carro_atual].cor_id[0] = item_selecionado;
+                }
+
+                if(item_tipo_selecionado == 7){
+                    gerDados.instancia.dados_.carro[indice_carro_atual].cor_id[1] = item_selecionado;
+                }
+
+                if(item_tipo_selecionado == 8){
+                    if(preco_melhoria_carro != 0){
+                        gerDados.instancia.dados_.carro[indice_carro_atual].nivel[item_selecionado] += 1;
+                    }else
+                    {
+                        gerDados.instancia.dados_.carro[indice_carro_atual].nivel[item_selecionado] -= 1;
+                    }
+                }
+
+                if(item_tipo_selecionado == 6 || item_tipo_selecionado == 7){
+
+                    gerDados.instancia.dados_.moedas -= gerenciador.instancia.itemCorDeId(item_selecionado).preco_moedas;
+
+                }else
+
+                if(item_tipo_selecionado == 8){
+
+                    gerDados.instancia.dados_.moedas -= preco_melhoria_carro * 100;
+
+                }else
+                {
+                    gerDados.instancia.dados_.moedas -= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_moedas;
+                }
+
 
                 gerDados.instancia.salvar(true);
 
@@ -431,13 +567,13 @@ public class gerLojaAutopecas : MonoBehaviour
         if(opcao_ == 2){
             //compra em dolares
 
-            if(gerDados.instancia.dados_.dolares >= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_dolares){
+            if(item_tipo_selecionado == 8 ? gerDados.instancia.dados_.dolares >= preco_melhoria_carro : item_tipo_selecionado == 6 || item_tipo_selecionado == 7 ? gerDados.instancia.dados_.dolares >= gerenciador.instancia.itemCorDeId(item_selecionado).preco_dolares : gerDados.instancia.dados_.dolares >= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_dolares){
 
                 if(item_tipo_selecionado == 0){
                     if(tem_carro){
 
                         gerDados.instancia.dados_.carro[indice_carro_atual].id_chassi = item_selecionado;
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,1,0};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
                         carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
@@ -445,7 +581,7 @@ public class gerLojaAutopecas : MonoBehaviour
                     }else{
 
                         gerDados.instancia.dados_.carro[indice_carro_atual] = new carro_dados();
-                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[4]{0,0,0,1};
+                        gerDados.instancia.dados_.carro[indice_carro_atual].acessorios = new int[5]{0,0,0,1,0};
                         gerDados.instancia.dados_.carro[indice_carro_atual].nivel = new int[4]{1,1,1,1};
 
                         carro_atual = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo();
@@ -474,7 +610,37 @@ public class gerLojaAutopecas : MonoBehaviour
                     gerDados.instancia.dados_.carro[indice_carro_atual].acessorios[3] = item_selecionado;
                 }
 
-                gerDados.instancia.dados_.dolares -= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_dolares;
+                if(item_tipo_selecionado == 6){
+                    gerDados.instancia.dados_.carro[indice_carro_atual].cor_id[0] = item_selecionado;
+                }
+
+                if(item_tipo_selecionado == 7){
+                    gerDados.instancia.dados_.carro[indice_carro_atual].cor_id[1] = item_selecionado;
+                }
+
+                if(item_tipo_selecionado == 8){
+                    if(preco_melhoria_carro != 0){
+                        gerDados.instancia.dados_.carro[indice_carro_atual].nivel[item_selecionado] += 1;
+                    }else
+                    {
+                        gerDados.instancia.dados_.carro[indice_carro_atual].nivel[item_selecionado] -= 1;
+                    }
+                }
+
+                if(item_tipo_selecionado == 6 || item_tipo_selecionado == 7){
+
+                    gerDados.instancia.dados_.dolares -= gerenciador.instancia.itemCorDeId(item_selecionado).preco_dolares;
+
+                }else
+
+                if(item_tipo_selecionado == 8){
+
+                    gerDados.instancia.dados_.dolares -= preco_melhoria_carro;
+                    
+                }else
+                {
+                    gerDados.instancia.dados_.dolares -= gerenciador.instancia.itemCarroDeId(item_selecionado,(PosicaoItemCarro)item_tipo_selecionado).preco_dolares;
+                }
 
                 gerDados.instancia.salvar(true);
 
@@ -513,6 +679,52 @@ public class gerLojaAutopecas : MonoBehaviour
     }
 
     public void gerarloja(int posi_){
+
+        if(posi_ == 8){
+            lista_itens.SetActive(false);
+            lista_melhorias.SetActive(true);
+
+            if(gerDados.instancia.dados_.carro[indice_carro_atual] != null){
+
+                for(int i_ = 0; i_ <= 3; i_++){
+
+                    if(gerDados.instancia.dados_.carro[indice_carro_atual].nivel[i_] < 10){
+                        botao_melhoria_mais[i_].interactable = true;
+                    }else
+                    {
+                        botao_melhoria_mais[i_].interactable = false;
+                    }
+
+
+                    if(gerDados.instancia.dados_.carro[indice_carro_atual].nivel[i_] > 1){
+                        botao_melhoria_menos[i_].interactable = true;
+                    }else
+                    {
+                        botao_melhoria_menos[i_].interactable = false;
+                    }
+
+                    nivel_melhoria[i_].text = gerDados.instancia.dados_.carro[indice_carro_atual].nivel[i_].ToString();
+                }
+
+            }else
+            {
+                foreach(Button bot_ in botao_melhoria_mais){
+                    bot_.interactable = false;
+                }
+
+                foreach(Button bot_ in botao_melhoria_menos){
+                    bot_.interactable = false;
+                }
+
+                foreach(TextMeshProUGUI txt_ in nivel_melhoria){
+                    txt_.text = "-";
+                }
+            }
+        }else
+        {
+            lista_itens.SetActive(true);
+            lista_melhorias.SetActive(false);
+        }
 
         foreach(Button bot_ in botao_indice){
             bot_.interactable = false;
@@ -585,7 +797,25 @@ public class gerLojaAutopecas : MonoBehaviour
                 }
             }
             */
-        }else
+        }if(posi_ == 6 || posi_ == 7){
+            foreach (item_cor item_ in gerenciador.instancia.itens_cor)
+            {
+                if(item_ != null){
+                    if(item_.listado){
+
+                        item_tipo_selecionado = posi_;
+
+                        GameObject botao_ = Instantiate(gerenciador.instancia.prefab_botao,lista_loja.transform);
+                        botao_.GetComponent<Image>().sprite = null;
+                        botao_.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = item_.imagem;
+                        botao_.GetComponent<Button>().onClick.AddListener(() => botaoCor(item_.id, posi_));
+
+                    }
+                }
+            }
+        }
+        
+        else
         {
             if(tem_carro){
                 carro_atual.id_chassi = gerDados.instancia.dados_.carro[indice_carro_atual].CloneProfundo().id_chassi;

@@ -14,7 +14,7 @@ public class veiculo : MonoBehaviour
     public GameObject menu_entrar;
     public botao_ui[] botao_ui_;
 
-    public int motor = 1, tracao = 1, cambio = 1, suspensao = 1;
+    public int motor = 1, cambio = 1, freios = 1, tracao = 1;
 
     public float sensibilidade_frente = 8, sensibilidade_traz = 4; 
 
@@ -55,6 +55,35 @@ public class veiculo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rmp_maximo = 200 + (motor - 1) * (600 / 9);
+
+        torque = 800 + (cambio - 1) * (5000 / 9);
+
+        forca_freios = 1200 + (freios - 1) * (3000 / 9);
+
+        foreach(WheelCollider rod_ in coll_roda){
+
+            WheelFrictionCurve curvaF_ = new WheelFrictionCurve();
+
+            curvaF_.extremumSlip = 0.4f + (tracao - 1) * (0.6f / 9);
+            curvaF_.extremumValue = 1 + (tracao - 1) * (1f / 9);
+            curvaF_.asymptoteSlip = 0.8f + (tracao - 1) * (0.2f / 9);
+            curvaF_.asymptoteValue = 0.5f + (tracao - 1) * (1.5f / 9);
+            curvaF_.stiffness = 1 + (tracao - 1) * (1f / 9);
+
+            rod_.forwardFriction = curvaF_;
+
+            WheelFrictionCurve curvaS_ = new WheelFrictionCurve();
+
+            curvaS_.extremumSlip = 0.2f + (tracao - 1) * (0.8f / 9);
+            curvaS_.extremumValue = 1 + (tracao - 1) * (1f / 9);
+            curvaS_.asymptoteSlip = 0.5f + (tracao - 1) * (0.5f / 9);
+            curvaS_.asymptoteValue = 0.75f + (tracao - 1) * (1.25f / 9);
+            curvaS_.stiffness = 1 + (tracao - 1) * (2f / 9);
+
+            rod_.sidewaysFriction = curvaS_;
+        }
+        
 
         if(botao_ui_[0] == null){
         
@@ -139,17 +168,17 @@ public class veiculo : MonoBehaviour
         
 
         if(press_esq){
-            dir_esq -= Time.deltaTime * 4;
+            dir_esq -= Time.deltaTime * 12;
         }else
         {
-            dir_esq += Time.deltaTime * 4;
+            dir_esq += Time.deltaTime * 16;
         }
         
         if(press_dir){
-            dir_dir += Time.deltaTime * 4;
+            dir_dir += Time.deltaTime * 12;
         }else
         {
-            dir_dir -= Time.deltaTime * 4;
+            dir_dir -= Time.deltaTime * 16;
         }
 
         dir_esq = Mathf.Clamp(dir_esq,-1,0);
@@ -201,7 +230,7 @@ public class veiculo : MonoBehaviour
             frfr = false;
         }
 
-        if(((coll_roda[2].rpm + coll_roda[3].rpm) / 2) > 10 && press_tra){
+        if(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z > 0 && press_tra){
             coll_roda[2].brakeTorque = forca_freios;
             coll_roda[3].brakeTorque = forca_freios;
         }

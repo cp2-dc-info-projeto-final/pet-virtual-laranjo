@@ -8,7 +8,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class carro_dados
 {
     public int id_chassi = 1;
-    public int[] nivel = new int[4]{1,1,1,1}, cor_id = new int[2]{3,39}, acessorios = new int[5]{0,0,0,0,1};
+    //niveis: motor (velocidade maxima), cambio (aceleracao), freios, tracao (friccao)   acessorios: carroceria, passagem de ar do teto, passagem de ar do capo, aerofolio, pneu, vinil
+    public int[] nivel = new int[4]{1,1,1,1}, cor_id = new int[2]{3,39}, acessorios = new int[6]{0,0,0,0,1,0};
+    
 
     public carro_dados(){
 

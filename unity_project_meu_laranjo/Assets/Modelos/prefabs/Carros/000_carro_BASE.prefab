@@ -95,9 +95,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   motor: 1
-  tracao: 0
-  cambio: 0
-  suspensao: 1
+  cambio: 1
+  freios: 1
+  tracao: 1
   sensibilidade_frente: 8
   sensibilidade_traz: 4
   peso: 1500
@@ -141,7 +141,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

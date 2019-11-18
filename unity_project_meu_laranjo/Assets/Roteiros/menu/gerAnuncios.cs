@@ -17,7 +17,7 @@ public class gerAnuncios : MonoBehaviour
     private RewardedAd rewardedAd;
 
     private RewardBasedVideoAd anuncio_video_dolares, anuncio_video_gasolina;
-    private string id_anuncio_video_dolares = "ca-app-pub-3940256099942544/5224354917", id_anuncio_video_gasolina = "ca-app-pub-3940256099942544/5224354917";
+    private string id_anuncio_video_dolares = "ca-app-pub-7573135324040135/6565831590", id_anuncio_video_gasolina = "ca-app-pub-3940256099942544/5224354917";
 
     private float deltaTime = 0.0f;
     private static string outputMessage = string.Empty;
@@ -35,7 +35,7 @@ public class gerAnuncios : MonoBehaviour
     {
 
 #if UNITY_ANDROID
-        string appId = "ca-app-pub-3940256099942544~3347511713";
+        string appId = "ca-app-pub-7573135324040135~8855268808";
 #elif UNITY_IPHONE
         string appId = "ca-app-pub-3940256099942544~1458002511";
 #else
@@ -59,10 +59,14 @@ public class gerAnuncios : MonoBehaviour
     }
 
     public void prepararAnuncioDolares(){
+
+        botaoVideoDolares.interactable = false;
+        
         AdRequest request_ = new AdRequest.Builder().Build();
 
         if(!eventos1setados){
-
+            
+            anuncio_video_dolares.OnAdLoaded += videoDolaresCarregado;
             anuncio_video_dolares.OnAdRewarded += recompensaDolares;
             anuncio_video_dolares.OnAdClosed += anuncioDolaresFechado;
 
@@ -73,10 +77,14 @@ public class gerAnuncios : MonoBehaviour
     }
 
     public void prepararAnuncioGasolina(){
+
+        botaoVideoGasolina.interactable = false;
+
         AdRequest request_ = new AdRequest.Builder().Build();
 
         if(!eventos2setados){
             
+            anuncio_video_dolares.OnAdLoaded += videoGasolinaCarregado;
             anuncio_video_gasolina.OnAdRewarded += recompensaGasolina;
             anuncio_video_gasolina.OnAdClosed += anuncioGasolinaFechado;
 
@@ -115,13 +123,19 @@ public class gerAnuncios : MonoBehaviour
 
 
 
-    public void  video (object sender, EventArgs args)
+    public void  videoDolaresCarregado (object sender, EventArgs args)
     {
         Debug.Log("Rewarded Video ad loaded successfully");
 
-        botaoVideoDolares.interactable = anuncio_video_dolares.IsLoaded();
+        botaoVideoDolares.interactable = true;
 
-        botaoVideoGasolina.interactable = anuncio_video_gasolina.IsLoaded();
+    }
+
+    public void  videoGasolinaCarregado (object sender, EventArgs args)
+    {
+        Debug.Log("Rewarded Video ad loaded successfully");
+
+        botaoVideoGasolina.interactable = true;
 
     }
 

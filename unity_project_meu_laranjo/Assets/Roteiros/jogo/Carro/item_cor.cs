@@ -8,7 +8,8 @@ public class item_cor : ScriptableObject
     public int id;
     public string[] nome;
     public string[] descricao;
-    public int preco;
+    public bool listado = true;
+    public int preco_moedas, preco_dolares;
     public Material material;
     public Sprite imagem;
 }

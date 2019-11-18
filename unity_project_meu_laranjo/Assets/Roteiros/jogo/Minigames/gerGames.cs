@@ -42,6 +42,8 @@ public class gerGames : MonoBehaviour
 
                 if(tempo_restante > 0){
                     gerenciador.instancia.carros[indice_carro].GetComponent<veiculo>().ligado = true;
+                    
+                    gerenciador.instancia.carros[indice_carro].GetComponent<Rigidbody>().isKinematic = false;
 
                     pontuacao_atual += Time.deltaTime;
                 
@@ -268,7 +270,9 @@ public class gerGames : MonoBehaviour
             tempo_restante += Random.Range(20f,40f);
 
             if(gameOver){
-                menu_game_over.GetComponent<animar_UI>().mostrar_ocultar(true);
+                menu_game_over.GetComponent<animar_UI>().mostrar_ocultar(false);
+
+                gameOver = false;
             }
         }
     }
@@ -379,7 +383,7 @@ public class gerGames : MonoBehaviour
 
     public void videoFechado(){
         iniciado = true;
-        menu_game_over.GetComponent<animar_UI>().mostrar_ocultar(true);
+        menu_game_over.GetComponent<animar_UI>().mostrar_ocultar(false);
     }
 
     public IEnumerator checharGameOver(){

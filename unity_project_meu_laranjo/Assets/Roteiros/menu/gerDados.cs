@@ -367,7 +367,7 @@ public class gerDados : MonoBehaviour
 
                 dados_.recordes = Array.ConvertAll(resposta[11].Split('-'),long.Parse);
                 
-                dados_.carro = Array.ConvertAll(new string[4] {null,string.Join("-",resposta[12].Split('-').Skip(0).Take(12).ToArray()),string.Join("-",resposta[12].Split('-').Skip(12).Take(12).ToArray()),string.Join("-",resposta[12].Split('-').Skip(24).Take(12).ToArray())},new Converter<string,carro_dados>(carroDeString));
+                dados_.carro = Array.ConvertAll(new string[4] {null,string.Join("-",resposta[12].Split('-').Skip(0).Take(13).ToArray()),string.Join("-",resposta[12].Split('-').Skip(13).Take(13).ToArray()),string.Join("-",resposta[12].Split('-').Skip(26).Take(13).ToArray())},new Converter<string,carro_dados>(carroDeString));
 
                 salvarDadosOffline();
 
@@ -407,7 +407,7 @@ public class gerDados : MonoBehaviour
         string textoCarro_ = "";
 
         if(car_ == null){
-            textoCarro_ = "0-0-0-0-0-0-0-0-0-0-0-0";
+            textoCarro_ = "0-0-0-0-0-0-0-0-0-0-0-0-0";
         }else
         {
             textoCarro_ = car_.id_chassi.ToString() + "-" + string.Join("-",car_.nivel) + "-" + string.Join("-",car_.cor_id) + "-" + string.Join("-",car_.acessorios);
@@ -431,7 +431,7 @@ public class gerDados : MonoBehaviour
 
                 carroTexto_.cor_id = new int[2]{int.Parse(dads_.Split('-')[5]),int.Parse(dads_.Split('-')[6])};
 
-                carroTexto_.acessorios = new int[5]{int.Parse(dads_.Split('-')[7]),int.Parse(dads_.Split('-')[8]),int.Parse(dads_.Split('-')[9]),int.Parse(dads_.Split('-')[10]),int.Parse(dads_.Split('-')[11])};
+                carroTexto_.acessorios = new int[6]{int.Parse(dads_.Split('-')[7]),int.Parse(dads_.Split('-')[8]),int.Parse(dads_.Split('-')[9]),int.Parse(dads_.Split('-')[10]),int.Parse(dads_.Split('-')[11]),int.Parse(dads_.Split('-')[12])};
             }
         }
 

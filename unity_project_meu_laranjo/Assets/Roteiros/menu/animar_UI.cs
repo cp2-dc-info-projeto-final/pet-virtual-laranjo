@@ -13,12 +13,14 @@ public class animar_UI : MonoBehaviour
         if(escala){
             if(!aparecendo){
                 LeanTween.scale(gameObject,Vector3.zero,0).setEaseOutBack();
+                gameObject.SetActive(false);
             }
         }else{
             if(direcao_ == direcao_animacao.cima){
                 if(!aparecendo){
                     LeanTween.scaleX(gameObject,0,0).setEaseOutBack();
                     LeanTween.moveLocalY(gameObject,1280 * 2,0).setEaseOutCirc();
+                    gameObject.SetActive(false);
                 }
             }
 
@@ -26,6 +28,7 @@ public class animar_UI : MonoBehaviour
                 if(!aparecendo){
                     LeanTween.scaleX(gameObject,0,0).setEaseOutBack();
                     LeanTween.moveLocalY(gameObject, - 1280 * 2,0).setEaseOutCirc();
+                    gameObject.SetActive(false);
                 }
             }
 
@@ -33,6 +36,7 @@ public class animar_UI : MonoBehaviour
                 if(!aparecendo){
                     LeanTween.scaleY(gameObject,0,0).setEaseOutBack();
                     LeanTween.moveLocalX(gameObject, - 1280 * 2,0).setEaseOutCirc();
+                    gameObject.SetActive(false);
                 }
             }
 
@@ -40,6 +44,7 @@ public class animar_UI : MonoBehaviour
                 if(!aparecendo){
                     LeanTween.scaleY(gameObject,0,0).setEaseOutBack();
                     LeanTween.moveLocalX(gameObject, 1280 * 2,0).setEaseOutCirc();
+                    gameObject.SetActive(false);
                 }
             }
         }
@@ -52,7 +57,16 @@ public class animar_UI : MonoBehaviour
     }
 
     public void mostrar_ocultar(){
+
+        StopAllCoroutines();
         
+        if(aparecendo){
+            StartCoroutine(ativa_desativar());
+        }else
+        {
+            gameObject.SetActive(true);
+        }
+
         StopCoroutine(ajustarScrolls());
         if(scroll_vertical != null || scroll_horizontal != null){
             StartCoroutine(ajustarScrolls());
@@ -113,7 +127,15 @@ public class animar_UI : MonoBehaviour
 
     public void mostrar_ocultar(bool bool_){
 
+        if(aparecendo){
+            StartCoroutine(ativa_desativar());
+        }else
+        {
+            gameObject.SetActive(true);
+        }
+
         StopCoroutine(ajustarScrolls());
+        
 
         if(scroll_vertical != null || scroll_horizontal != null){
             StartCoroutine(ajustarScrolls());
@@ -122,6 +144,7 @@ public class animar_UI : MonoBehaviour
 
         if(bool_ == false){
             if(aparecendo){
+
                 if(escala){
                     if(aparecendo){
 
@@ -179,6 +202,17 @@ public class animar_UI : MonoBehaviour
         }
         
     }
+
+    public IEnumerator ativa_desativar(){
+
+        if(aparecendo){
+            yield return new WaitForSeconds(0.4f);
+            gameObject.SetActive(false);
+        }
+        
+    }
+
+    
 
     public IEnumerator ajustarScrolls(){
 

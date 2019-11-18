@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing;
+using TMPro;
 
 public class gerCompras : MonoBehaviour, IStoreListener
 {
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
 
-    public static string id_produto_99_dolares =    "99dolares";   
+    public static string id_produto_99_dolares = "99dolares";
     public static string id_produto_499_dolares = "499dolares";
-    public static string id_produto_999_dolares =  "999dolares"; 
+    public static string id_produto_999_dolares = "999dolares"; 
 
-    public GameObject menu_dolares, menu_moedas;
+    public GameObject menu_dolares, menu_moedas, menu_comprar_dolares;
     public GameObject erro_;
 
 
@@ -47,7 +48,7 @@ public class gerCompras : MonoBehaviour, IStoreListener
         builder.AddProduct(id_produto_99_dolares, ProductType.Consumable);
         builder.AddProduct(id_produto_499_dolares, ProductType.Consumable);
         builder.AddProduct(id_produto_999_dolares, ProductType.Consumable);
-
+        
 
 
         // Continue adding the non-consumable product.
@@ -59,11 +60,11 @@ public class gerCompras : MonoBehaviour, IStoreListener
         // one uses the general kProductIDSubscription handle inside the game - the store-specific IDs 
         // must only be referenced here. 
 
-        /*builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
+        //builder.AddProduct(kProductIDSubscription, ProductType.Subscription, new IDs(){
 
-            { kProductNameGooglePlaySubscription, GooglePlay.Name },
+            //{ kProductNameGooglePlaySubscription, GooglePlay.Name },
             
-        });*/
+        //});
 
         // Kick off the remainder of the set-up with an asynchrounous call, passing the configuration 
         // and this class' instance. Expect a response either in OnInitialized or OnInitializeFailed.
@@ -97,29 +98,38 @@ public class gerCompras : MonoBehaviour, IStoreListener
     public void comprar999Moedas(){
         if(gerDados.instancia.dados_.dolares >= 1){
             gerDados.instancia.dados_.dolares -= 1;
-            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(999);
+            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(99);
 
             gerDados.instancia.salvar(true);
+        }else
+        {
+            menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
         }
         
     }
 
     public void comprar9999Moedas(){
-        if(gerDados.instancia.dados_.dolares >= 1){
+        if(gerDados.instancia.dados_.dolares >= 10){
             gerDados.instancia.dados_.dolares -= 10;
-            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(9999);
+            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(999);
 
             gerDados.instancia.salvar(true);
+        }else
+        {
+            menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
         }
         
     }
 
     public void comprar99999Moedas(){
-        if(gerDados.instancia.dados_.dolares >= 1){
+        if(gerDados.instancia.dados_.dolares >= 100 ){
             gerDados.instancia.dados_.dolares -= 100;
-            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(99999);
+            menu_moedas.GetComponent<menuReceberDolares>().receberMoeda(9999);
 
             gerDados.instancia.salvar(true);
+        }else
+        {
+            menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
         }
         
     }
@@ -182,16 +192,19 @@ public class gerCompras : MonoBehaviour, IStoreListener
         // A consumable product has been purchased by this user.
         if (String.Equals(args.purchasedProduct.definition.id, id_produto_99_dolares, StringComparison.Ordinal))
         {
+            menu_dolares.SetActive(true);
             menu_dolares.GetComponentInParent<menuReceberDolares>().receber(99);
         }
         // Or ... a non-consumable product has been purchased by this user.
         else if (String.Equals(args.purchasedProduct.definition.id, id_produto_499_dolares, StringComparison.Ordinal))
         {
+            menu_dolares.SetActive(true);
             menu_dolares.GetComponentInParent<menuReceberDolares>().receber(499);
         }
         // Or ... a subscription product has been purchased by this user.
         else if (String.Equals(args.purchasedProduct.definition.id, id_produto_999_dolares, StringComparison.Ordinal))
         {
+            menu_dolares.SetActive(true);
             menu_dolares.GetComponentInParent<menuReceberDolares>().receber(999);
         }
         // Or ... an unknown product has been purchased by this user. Fill in additional products here....
@@ -214,6 +227,7 @@ public class gerCompras : MonoBehaviour, IStoreListener
         // this reason with the user to guide their troubleshooting actions.
 
         erro_.SetActive(true);
+        erro_.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "" + failureReason;
         Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
     }
 

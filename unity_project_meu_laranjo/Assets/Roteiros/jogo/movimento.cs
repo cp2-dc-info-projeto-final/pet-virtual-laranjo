@@ -290,9 +290,11 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
             if(gerenciador.instancia.carros[i] != null){
 
+                gerenciador.instancia.carros[i].GetComponent<Rigidbody>().isKinematic = true;
+
                 gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-                gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position  + new Vector3(0,0.35f,-2);
+                gerenciador.instancia.carros[i].transform.position = gerenciador.instancia.casa_pivot[i].transform.position  + new Vector3(0,0.01f,-2);
 
                 gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
 
@@ -300,8 +302,11 @@ public class movimento : MonoBehaviour//, IPointerDownHandler
 
                 gerenciador.instancia.carros[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
 
+                
+
                 foreach (WheelCollider roda_ in gerenciador.instancia.carros[i].GetComponent<veiculo>().coll_roda)
                 {
+                    roda_.motorTorque = 0;
                     roda_.brakeTorque = Mathf.Infinity;
                     roda_.brakeTorque = 0;
 

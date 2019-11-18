@@ -25,11 +25,12 @@ public class menuReceberDolares : MonoBehaviour
     }
 
     public void receber(int quant_dolares_){
+        GetComponent<animar_UI>().mostrar_ocultar();
 
         quant_dolares = quant_dolares_;
 
         texto_quant.text = "x " + quant_dolares_.ToString();
-        GetComponent<animar_UI>().mostrar_ocultar();
+        
         botao_confirmar.interactable = true;
     }
 
@@ -39,11 +40,12 @@ public class menuReceberDolares : MonoBehaviour
     }
 
     public void receberMoeda(int quant_moedas_){
+        GetComponent<animar_UI>().mostrar_ocultar();
 
         quant_moedas = quant_moedas_;
 
         texto_quant.text = "x " + quant_moedas_.ToString();
-        GetComponent<animar_UI>().mostrar_ocultar();
+        
         botao_confirmar.interactable = true;
     }
 
@@ -56,7 +58,7 @@ public class menuReceberDolares : MonoBehaviour
 
     public IEnumerator confirmado(){
 
-        for(int i_ = 0; i_ < quant_dolares / 4; i_++){
+        for(int i_ = 0; i_ < quant_dolares / (quant_dolares > 3 ? 4 : 1); i_++){
             StartCoroutine(instanciarDolar());
         }
 
@@ -64,11 +66,13 @@ public class menuReceberDolares : MonoBehaviour
 
         GetComponent<animar_UI>().mostrar_ocultar();
         
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
 
         gerDados.instancia.dados_.dolares += quant_dolares;
-
         gerDados.instancia.salvar(true);
+
+        yield return new WaitForSeconds(0.2f);
+
     }
 
      public IEnumerator confirmadoMoeda(){
@@ -81,11 +85,13 @@ public class menuReceberDolares : MonoBehaviour
 
         GetComponent<animar_UI>().mostrar_ocultar();
         
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.2f);
 
         gerDados.instancia.dados_.moedas += quant_moedas;
-
         gerDados.instancia.salvar(true);
+
+        yield return new WaitForSeconds(0.2f);
+        
     }
 
     public IEnumerator instanciarDolar(){

@@ -629,7 +629,10 @@ public class gerenciador : MonoBehaviour
             car_.GetComponent<veiculo_estab>().rodaTrazEsq = chas_.GetComponent<chassi>().rodas_coll[2];
             car_.GetComponent<veiculo_estab>().rodaTrazDir = chas_.GetComponent<chassi>().rodas_coll[3];
             
-            
+            car_.GetComponent<veiculo>().motor = gerDados.instancia.dados_.carro[i_].nivel[0];
+            car_.GetComponent<veiculo>().cambio = gerDados.instancia.dados_.carro[i_].nivel[1];
+            car_.GetComponent<veiculo>().freios = gerDados.instancia.dados_.carro[i_].nivel[2];
+            car_.GetComponent<veiculo>().tracao = gerDados.instancia.dados_.carro[i_].nivel[3];
             
             
         }
