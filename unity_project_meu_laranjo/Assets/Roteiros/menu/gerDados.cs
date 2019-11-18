@@ -297,7 +297,7 @@ public class gerDados : MonoBehaviour
         form.AddField("carros",stringDeCarro(dados_.carro[1]) + "-" + stringDeCarro(dados_.carro[2]) + "-" + stringDeCarro(dados_.carro[3]));
 
 
-        link = UnityWebRequest.Post(site,form);
+        link = UnityWebRequest.Post(gerenciador.host + site,form);
 
         if(importante_){
             menu_carregando.SetActive(true);
@@ -319,7 +319,10 @@ public class gerDados : MonoBehaviour
                 menu_carregando.SetActive(false);
             }
 
+
             menu_ERRO.SetActive(true);
+
+            menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "erro na rede (" + link.error + ")";
 
         }else
         {

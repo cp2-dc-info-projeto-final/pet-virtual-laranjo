@@ -62,7 +62,7 @@ public class gerAmizades : MonoBehaviour
             form.AddField("acao", 2);
 
 
-            link_amz = UnityWebRequest.Post(site_amz,form);
+            link_amz = UnityWebRequest.Post(gerenciador.host + site_amz,form);
 
             carregando = true;
 
@@ -135,7 +135,7 @@ public class gerAmizades : MonoBehaviour
         form.AddField("acao", 1);
 
 
-        link_amz = UnityWebRequest.Post(site_amz,form);
+        link_amz = UnityWebRequest.Post(gerenciador.host + site_amz,form);
 
         carregando = true;
 
@@ -223,7 +223,7 @@ public class gerAmizades : MonoBehaviour
         form.AddField("acao_2",acao_2_);
 
 
-        link_amz = UnityWebRequest.Post(site_amz,form);
+        link_amz = UnityWebRequest.Post(gerenciador.host + site_amz,form);
 
         carregando = true;
 
@@ -262,7 +262,7 @@ public class gerAmizades : MonoBehaviour
         form.AddField("acao", acao_);
 
 
-        link_amz = UnityWebRequest.Post(site_amz,form);
+        link_amz = UnityWebRequest.Post(gerenciador.host + site_amz,form);
 
         carregando = true;
 

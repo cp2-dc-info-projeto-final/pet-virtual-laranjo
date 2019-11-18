@@ -16,6 +16,7 @@ public class dados
     public int  dolares = 0;
     public int[] itens = new int[4]{1023,0,0,0};
     public int[] outfit = new int[4]{1023,0,0,0};
+    public int[] moveis = new int[24]{0,3,20,2,1,3,20,2,1,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
     public int id_casa = 1;
 

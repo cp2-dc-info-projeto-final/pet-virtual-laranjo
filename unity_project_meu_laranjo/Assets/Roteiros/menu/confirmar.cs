@@ -44,7 +44,7 @@ public class confirmar : MonoBehaviour
         form.AddField("id", id);
         form.AddField("codigo", conf_codigo.text);
 
-        link = UnityWebRequest.Post(site,form);
+        link = UnityWebRequest.Post(gerenciador.host + site,form);
 
         conf_codigo.interactable = false;
         conf_botao.interactable = false;

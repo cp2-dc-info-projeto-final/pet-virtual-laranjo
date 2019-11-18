@@ -295,7 +295,7 @@ public class registrar : MonoBehaviour
         form.AddField("lingua", lingua_);
         form.AddField("nascimento", nascimento_);
 
-        link = UnityWebRequest.Post(site,form);
+        link = UnityWebRequest.Post(gerenciador.host + site,form);
 
         fim_reg = true;
 
@@ -344,7 +344,7 @@ public class registrar : MonoBehaviour
         form.AddField("campo", campo_);
         form.AddField("verif", verif_.ToString());
 
-        link = UnityWebRequest.Post(site_ver,form);
+        link = UnityWebRequest.Post(gerenciador.host + site_ver,form);
 
         //carregando = true;
 

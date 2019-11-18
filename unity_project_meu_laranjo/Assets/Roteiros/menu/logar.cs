@@ -14,6 +14,7 @@ public class logar : MonoBehaviour
     public bool carregando = false;
     public Slider barra_carregamento;
     public GameObject avisoCarregando, menu_conf, menu_logreg, menu_ERRO;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +44,7 @@ public class logar : MonoBehaviour
         form.AddField("nickPost", login_);
         form.AddField("senhaPost", senha_);
 
-        link_log = UnityWebRequest.Post(site_log,form);
+        link_log = UnityWebRequest.Post(gerenciador.host + site_log,form);
 
         avisoCarregando.SetActive(true);
 

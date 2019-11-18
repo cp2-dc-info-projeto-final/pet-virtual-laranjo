@@ -7,7 +7,12 @@ using System.Linq;
 
 public class gerenciador : MonoBehaviour
 {
+    public static string host;
+    [Space(30)]
+    public string host_;
+
     public static gerenciador instancia;
+    [Space(30)]
     public string ambiente;
     public GameObject casa_interior, casa_quintal,spawn_fora,spawn_dentro, laranjo,laranjo_preview, prefab_botao, lista_loja, lista_armario, camera_preview_loja;
     public GameObject[] cameras, carros, UIs_casa, UIs_fora;
@@ -60,6 +65,7 @@ public class gerenciador : MonoBehaviour
     //public List<int> lista1 = new List<int>(), lista2 = new List<int>(), lista3 = new List<int>();
 
     private void Awake() {
+        host = host_;
         instancia = this;
     }
 
