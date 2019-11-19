@@ -42,14 +42,29 @@ T CopyComponent<T>(T original, GameObject destination) where T : Component
         return dst as T;
 }
 
-public void MudarMesh(item item_)
+public void MudarMesh(item item_, float nivel_)
 {
 
     if(item_.prefab != null){
-        Mesh meshInstance = Instantiate(item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMesh) as Mesh;
-        partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMesh = meshInstance;
+        if((int)item_.posicao != 11){
+            Mesh meshInstance = Instantiate(item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMesh) as Mesh;
+            partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMesh = meshInstance;
 
-        partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMaterials = item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMaterials;
+            partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMaterials = item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMaterials;
+        }else
+        {
+            Mesh meshInstance = Instantiate(item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMesh) as Mesh;
+            partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMesh = meshInstance;
+
+            Material[] mats_ = item_.prefab.GetComponent<SkinnedMeshRenderer>().sharedMaterials;
+
+            item_skin skin_ = item_ as item_skin;
+
+            mats_[3] = skin_.materialResultado(nivel_);
+
+            partes[(int)item_.posicao-1].GetComponent<SkinnedMeshRenderer>().sharedMaterials = mats_;
+        }
+        
     }else
     {
         //Debug.Log("---------item: " + item_.id + ", posicao: " + ((int)item_.posicao-1));

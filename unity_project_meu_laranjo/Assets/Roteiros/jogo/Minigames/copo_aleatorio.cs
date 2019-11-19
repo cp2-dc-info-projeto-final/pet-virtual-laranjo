@@ -77,7 +77,7 @@ public class copo_aleatorio : MonoBehaviour
                                 StartCoroutine(ganharMoeda());
                             }
 
-                            if(movimentos >= 55 && copos.Count == 3){
+                            if(movimentos >= 6 && copos.Count == 3){
                                 GameObject inst_ = Instantiate(prefab_copo,new Vector3(0,0,10), Quaternion.Euler(0,0,0),transform);
                                 copos.Add(inst_.GetComponent<copo>());
                             }
@@ -90,7 +90,7 @@ public class copo_aleatorio : MonoBehaviour
 
                             StartCoroutine(reembaralhar());
                             
-                            tempo_total += 0.3f;
+                            tempo_total += 0.1f;
                         }
                     }
                 }
@@ -147,11 +147,14 @@ public class copo_aleatorio : MonoBehaviour
 
         movimentos = 5;
 
+        tempo_total = 3;
+
         for ( int i= copos.Count - 1; i > 3; --i )
         {
-            GameObject child = copos[i].gameObject;
+            Debug.Log(i + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            GameObject child = copos[i-1].gameObject;
             Destroy(child);
-            copos.RemoveAt(i);
+            copos.RemoveAt(i-1);
         }
 
         copos[0].mudarPosicao(0,0.5f);

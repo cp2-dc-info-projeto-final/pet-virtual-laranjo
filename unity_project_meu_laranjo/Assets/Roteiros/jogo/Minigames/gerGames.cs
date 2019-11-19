@@ -209,7 +209,7 @@ public class gerGames : MonoBehaviour
         cenario_0.SetActive(false);
         cenarios_minigames[0].SetActive(true);
 
-        gerDados.instancia.aplicarOutfit(cenarios_minigames[0].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit);
+        gerDados.instancia.aplicarOutfit(cenarios_minigames[0].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
 
         cenarios_minigames[0].GetComponentInChildren<flepi_laranjo>().restartFlepiLaranjo();
         cenarios_minigames[0].GetComponentInChildren<flepi_laranjo>().vivo = false;
@@ -223,7 +223,7 @@ public class gerGames : MonoBehaviour
         cenario_0.SetActive(false);
         cenarios_minigames[1].SetActive(true);
 
-        gerDados.instancia.aplicarOutfit(cenarios_minigames[1].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit);
+        gerDados.instancia.aplicarOutfit(cenarios_minigames[1].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
 
         cenarios_minigames[1].GetComponentInChildren<pulo_infinito>().restartPuloInfinito();
         cenarios_minigames[1].GetComponentInChildren<pulo_infinito>().vivo = false;
@@ -239,7 +239,7 @@ public class gerGames : MonoBehaviour
         cenario_0.SetActive(false);
         cenarios_minigames[2].SetActive(true);
 
-        gerDados.instancia.aplicarOutfit(cenarios_minigames[2].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit);
+        gerDados.instancia.aplicarOutfit(cenarios_minigames[2].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
 
         StartCoroutine(cenarios_minigames[2].GetComponent<copo_aleatorio>().restartCopoAleatorio());
         cenarios_minigames[2].GetComponent<copo_aleatorio>().vivo = false;
@@ -317,7 +317,47 @@ public class gerGames : MonoBehaviour
         gerDados.instancia.dados_.moedas += moedas_atuais;
         gerDados.instancia.dados_.dolares += dolares_atuais;
 
+        float nivelMais = 0.01f;
+
+        if(minigame_atual == 0){
+            nivelMais *= (float)pontuacao_atual / 180f;
+        }
+
+        if(minigame_atual == 1){
+            nivelMais *= (float)pontuacao_atual / 15f;
+        }
+
+        if(minigame_atual == 2){
+            nivelMais *= (float)pontuacao_atual / 120f;
+        }
+
+        if(minigame_atual == 3){
+            nivelMais *= (float)pontuacao_atual / 25f;
+        }
+
+        gerDados.instancia.dados_.nivel += nivelMais;
+
+        gerDados.instancia.dados_.nivel = Mathf.Clamp(gerDados.instancia.dados_.nivel,0,1);
+
         gerDados.instancia.salvar();
+
+
+        if(minigame_atual == 0){
+            nivelMais *= (float)pontuacao_atual / 180f;
+        }
+
+        if(minigame_atual == 1){
+            gerDados.instancia.aplicarOutfit(cenarios_minigames[0].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
+        }
+
+        if(minigame_atual == 2){
+            gerDados.instancia.aplicarOutfit(cenarios_minigames[1].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
+        }
+
+        if(minigame_atual == 3){
+            gerDados.instancia.aplicarOutfit(cenarios_minigames[2].GetComponentInChildren<design>().gameObject,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
+        }
+        
 
         moedas_atuais = 0;
         dolares_atuais = 0;
@@ -368,6 +408,28 @@ public class gerGames : MonoBehaviour
 
         gerDados.instancia.dados_.moedas += moedas_atuais;
         gerDados.instancia.dados_.dolares += dolares_atuais;
+
+        float nivelMais = 0.01f;
+
+        if(minigame_atual == 0){
+            nivelMais *= (float)pontuacao_atual / 180f;
+        }
+
+        if(minigame_atual == 1){
+            nivelMais *= (float)pontuacao_atual / 15f;
+        }
+
+        if(minigame_atual == 2){
+            nivelMais *= (float)pontuacao_atual / 120f;
+        }
+
+        if(minigame_atual == 3){
+            nivelMais *= (float)pontuacao_atual / 25f;
+        }
+
+        gerDados.instancia.dados_.nivel += nivelMais;
+
+        gerDados.instancia.dados_.nivel = Mathf.Clamp(gerDados.instancia.dados_.nivel,0,1);
 
         gerDados.instancia.salvar();
 

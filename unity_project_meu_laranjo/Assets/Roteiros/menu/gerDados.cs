@@ -80,7 +80,7 @@ public class gerDados : MonoBehaviour
         }
 
 
-        aplicarOutfit(gerenciador.instancia.laranjo,dados_.outfit);
+        aplicarOutfit(gerenciador.instancia.laranjo,dados_.outfit,dados_.nivel);
     }
 
     public void loginConfigs(){
@@ -187,14 +187,14 @@ public class gerDados : MonoBehaviour
         StartCoroutine(salvarDadosOnline(1, false));
     }
 
-    public void aplicarOutfit(GameObject laranjo_, int[] outfit_){
+    public void aplicarOutfit(GameObject laranjo_, int[] outfit_, float nivel_){
 
         for(int i = 1; i < (outfit_.Length * 32 + 1);i++){
             if(temItemOutfFit(i - 1, outfit_)){
 
                 //Debug.Log("i = " + i +",item de tipo: \"" + gerenciador.instancia.itemDeId(i).posicao + "\", com idex: "+ ((int)gerenciador.instancia.itemDeId(i).posicao-1));
 
-                laranjo_.GetComponent<design>().MudarMesh(gerenciador.instancia.itemDeId(i));
+                laranjo_.GetComponent<design>().MudarMesh(gerenciador.instancia.itemDeId(i),nivel_);
 
                 if((int)gerenciador.instancia.itemDeId(i).posicao == 5){
                     laranjo_.GetComponent<Animator>().SetBool("item",gerenciador.instancia.itemDeId(i).seguraItem);

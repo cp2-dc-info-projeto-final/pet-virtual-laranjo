@@ -7,15 +7,15 @@ public class dados
 {
     public long id = 0;
     public string nick = "laranjo";
-    public float nivel = 0;
+    public float nivel = 0f;
 
     public string ult_ctt = "2000-05-29 23:59:59";
 
     public int lingua = 0;
     public int moedas = 0;
     public int  dolares = 0;
-    public int[] itens = new int[4]{1023,0,0,0};
-    public int[] outfit = new int[4]{1023,0,0,0};
+    public int[] itens = new int[4]{2047,0,0,0};
+    public int[] outfit = new int[4]{2047,0,0,0};
     public int[] moveis = new int[24]{0,3,20,2,1,3,20,2,1,20,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
     public int id_casa = 1;

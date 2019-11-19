@@ -170,7 +170,7 @@ public class gerAmizades : MonoBehaviour
 
                 //mostrar outfit (resposta[6])
 
-                gerDados.instancia.aplicarOutfit(gerenciador.instancia.laranjo_preview,Array.ConvertAll(resposta[6].Split('-'),int.Parse));
+                gerDados.instancia.aplicarOutfit(gerenciador.instancia.laranjo_preview,Array.ConvertAll(resposta[6].Split('-'),int.Parse),float.Parse(resposta[2].ToString().Replace('.',',')));
 
                 //mostrar botao relativo as acoes
 

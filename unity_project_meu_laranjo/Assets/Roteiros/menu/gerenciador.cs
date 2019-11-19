@@ -19,12 +19,15 @@ public class gerenciador : MonoBehaviour
     
 
     // NIVEL
-    [Space(30)]
+    /*
     public Material mat_lar_0;
     public Material mat_lar_meio;
     public Material mat_lar_1;
     public Material mat_lar_final;
     public float nivel_lar = 0;
+    */
+    
+    [Space(30)]
     public Slider slider_nivel;
     public Image[] cor_nivel;
 
@@ -109,6 +112,7 @@ public class gerenciador : MonoBehaviour
         }
         */
 
+        /*
         if(gerDados.instancia.dados_.nivel < 0.5f){
 
             mat_lar_final.color = Color.Lerp(mat_lar_0.color,mat_lar_meio.color,gerDados.instancia.dados_.nivel * 2);
@@ -116,18 +120,25 @@ public class gerenciador : MonoBehaviour
         }else
         {
             mat_lar_final.color = Color.Lerp(mat_lar_meio.color,mat_lar_1.color,(gerDados.instancia.dados_.nivel - 0.5f) * 2);
-        }
+        }*/
         
         slider_nivel.value = gerDados.instancia.dados_.nivel;
 
         foreach(Image cor_ in cor_nivel){
-            cor_.color = mat_lar_1.color;
+            foreach(item it_ in itens){
+                if(it_ != null){
+                    if(gerDados.instancia.temItem(it_.id) && (int)it_.posicao == 11){
+                        item_skin it_sk_ = it_ as item_skin;
+                        cor_.color = it_sk_.material[2].color;
+                    }
+                }
+            }
         }
     }
 
     public void colocaritemLoja(int id_){
         
-        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_));
+        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_),gerDados.instancia.dados_.nivel);
         
         if((int)itemDeId(id_).posicao == 5){
             laranjo_preview.GetComponent<Animator>().SetBool("item",itemDeId(id_).seguraItem);
@@ -136,8 +147,8 @@ public class gerenciador : MonoBehaviour
 
     public void colocaritemArmario(int id_){
 
-        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_));
-        laranjo.GetComponent<design>().MudarMesh(itemDeId(id_));
+        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_),gerDados.instancia.dados_.nivel);
+        laranjo.GetComponent<design>().MudarMesh(itemDeId(id_),gerDados.instancia.dados_.nivel);
 
         gerDados.instancia.adicionarOutFit(id_, gerDados.instancia.dados_.outfit);
 
@@ -149,7 +160,7 @@ public class gerenciador : MonoBehaviour
     }
 
     public void botaoOpcoes(){
-        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
         ligarCameraPreview();
     }
 
@@ -286,7 +297,7 @@ public class gerenciador : MonoBehaviour
         }
 
         if(posi_ == 0){
-            gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+            gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
             
             foreach(item item_ in itens)
             {
@@ -333,7 +344,7 @@ public class gerenciador : MonoBehaviour
         textoArmario[0].text = "";
         textoArmario[1].text = "";
 
-        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit);
+        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
         
 
         for ( int i= lista_armario.transform.childCount-1; i>=0; --i )
