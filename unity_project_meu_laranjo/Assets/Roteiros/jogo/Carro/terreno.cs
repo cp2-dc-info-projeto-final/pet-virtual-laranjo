@@ -53,7 +53,8 @@ public class terreno : MonoBehaviour
     {
 
         pivotTerreno = transform.parent.gameObject;
-        gatilho.transform.localScale = new Vector3(gerenciador.instancia.render_area,100,gerenciador.instancia.render_area);
+        gatilho.transform.localScale = new Vector3(gerenciador.instancia.render_area,400,gerenciador.instancia.render_area);
+
     }
 
     // Update is called once per frame
@@ -377,22 +378,66 @@ public class terreno : MonoBehaviour
 
         if(gerenciador.instancia.pegar_terreno(pX+1,pZ) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX+1,pZ).GetComponent<terreno>().id).conexao_2).ToList();
+            List<int> lista2_ = new List<int>();
+
+            foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+            {
+                if(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX+1,pZ).id).conexao_2  == peca_.conexao_3){
+                    lista2_.Add(peca_.id);
+                }
+                
+            }
+
+            lista_ = lista_.Intersect(lista2_).ToList();
+
         }
 
         if(gerenciador.instancia.pegar_terreno(pX-1,pZ) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX-1,pZ).GetComponent<terreno>().id).conexao_3).ToList();
+            List<int> lista2_ = new List<int>();
+
+            foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+            {
+                if(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX-1,pZ).id).conexao_3  == peca_.conexao_2){
+                    lista2_.Add(peca_.id);
+                }
+                
+            }
+
+            lista_ = lista_.Intersect(lista2_).ToList();
+
         }
 
         if(gerenciador.instancia.pegar_terreno(pX,pZ+1) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ+1).GetComponent<terreno>().id).conexao_4).ToList();
+            List<int> lista2_ = new List<int>();
+
+            foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+            {
+                if(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ+1).id).conexao_4  == peca_.conexao_1){
+                    lista2_.Add(peca_.id);
+                }
+                
+            }
+
+            lista_ = lista_.Intersect(lista2_).ToList();
+
         }
 
         if(gerenciador.instancia.pegar_terreno(pX,pZ-1) != null){
             
-            lista_ = lista_.Intersect(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ-1).GetComponent<terreno>().id).conexao_1).ToList();
+            List<int> lista2_ = new List<int>();
+
+            foreach (peca_terreno peca_ in gerenciador.instancia.pecas)
+            {
+                if(gerenciador.instancia.pecaDeId(gerenciador.instancia.pegar_terreno(pX,pZ-1).id).conexao_1  == peca_.conexao_4){
+                    lista2_.Add(peca_.id);
+                }
+                
+            }
+
+            lista_ = lista_.Intersect(lista2_).ToList();
+            
         }
 
         return lista_;

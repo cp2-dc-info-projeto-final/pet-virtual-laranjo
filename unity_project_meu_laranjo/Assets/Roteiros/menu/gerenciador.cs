@@ -11,6 +11,9 @@ public class gerenciador : MonoBehaviour
     [Space(30)]
     public string host_;
 
+    [Space(30)]
+    public int versao;
+
     public static gerenciador instancia;
     [Space(30)]
     public string ambiente;
@@ -65,6 +68,13 @@ public class gerenciador : MonoBehaviour
     public GameObject rank_peca, rank_piv;
 
 
+    // CONFIGS
+    [Space(30)]
+    public TMP_Dropdown dropdown_graficos;
+    public Slider slider_render;
+    public Camera[] cameras_mudaveis;
+
+
     //public List<int> lista1 = new List<int>(), lista2 = new List<int>(), lista3 = new List<int>();
 
     private void Awake() {
@@ -75,7 +85,21 @@ public class gerenciador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!PlayerPrefs.HasKey("render_area")){
+            PlayerPrefs.SetInt("render_area", 600);
+        }
 
+        slider_render.value = PlayerPrefs.GetInt("render_area");
+
+        atualizarRender();
+
+        if(!PlayerPrefs.HasKey("qualidade_graficos")){
+            PlayerPrefs.SetInt("qualidade_graficos", 1);
+        }
+
+        dropdown_graficos.value = PlayerPrefs.GetInt("qualidade_graficos");
+
+        atualizarQualidadeGrafica();
         
 
         
@@ -263,6 +287,7 @@ public class gerenciador : MonoBehaviour
             {
 
                 menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
+                gerAnuncios.instancia.atualizarBotoes();
             }
 
 
@@ -788,5 +813,38 @@ public class gerenciador : MonoBehaviour
         todosTerrenos.Add(prim_ter_.GetComponent<terreno>());
 
         GameObject.Find("portao_000").GetComponent<Animator>().SetTrigger("abrir");
+    }
+
+    public void atualizarQualidadeGrafica(){
+        
+        PlayerPrefs.SetInt("qualidade_graficos", dropdown_graficos.value);
+
+        // low
+        if(dropdown_graficos.value == 0){
+            foreach(Camera cam_ in cameras_mudaveis){
+                cam_.renderingPath = RenderingPath.VertexLit;
+            }
+        }
+
+        // normal
+        if(dropdown_graficos.value == 1){
+            foreach(Camera cam_ in cameras_mudaveis){
+                cam_.renderingPath = RenderingPath.UsePlayerSettings;
+            }
+        }
+
+        // high
+        if(dropdown_graficos.value == 2){
+            foreach(Camera cam_ in cameras_mudaveis){
+                cam_.renderingPath = RenderingPath.UsePlayerSettings;
+            }
+        }
+    }
+
+    public void atualizarRender(){
+
+        PlayerPrefs.SetInt("render_area", Mathf.RoundToInt(slider_render.value));
+
+        render_area = Mathf.RoundToInt(slider_render.value);
     }
 }

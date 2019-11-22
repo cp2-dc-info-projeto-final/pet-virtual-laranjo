@@ -19,10 +19,11 @@ public class gerDados : MonoBehaviour
     public TextMeshProUGUI textoNick;
     public TextMeshProUGUI[] textosMoedas;
     public TextMeshProUGUI[] textosDolar;
-    public bool online = false, inFirst = false;
-    public GameObject botao_logout, menu_carregando, menu_ERRO;
+    public bool online = false, inFirst = false, inicializacao = true;
+    public GameObject botao_logout, menu_carregando, menu_ERRO, menu_esta_atualizado, menu_baixar_atualizacao, menu_sem_internet;
 
     private void Awake() {
+        inicializacao = true;
 
         DontDestroyOnLoad(gameObject);
         instancia = this;
@@ -81,6 +82,8 @@ public class gerDados : MonoBehaviour
 
 
         aplicarOutfit(gerenciador.instancia.laranjo,dados_.outfit,dados_.nivel);
+
+        gerLinguas.instancia.atualizarLingua();
     }
 
     public void loginConfigs(){
@@ -106,6 +109,8 @@ public class gerDados : MonoBehaviour
 
                 carregar();
 
+                StartCoroutine(verificarVersao());
+
             }
         }else
         {
@@ -117,6 +122,8 @@ public class gerDados : MonoBehaviour
             salvarDadosOffline();
 
             aplicarDados();
+
+            StartCoroutine(verificarVersao());
 
             //quando estiver entrando plea primeira vez:
             
@@ -246,66 +253,65 @@ public class gerDados : MonoBehaviour
         outfit_[(id_-1)/32] &= ~(1 << ((id_-1) % 32));
     }
 
+    IEnumerator verificarVersao(){
+        UnityWebRequest tst_ = UnityWebRequest.Post(gerenciador.instancia.host_ + "/pps/lar_proc_at.php",new WWWForm());
+
+        yield return tst_.SendWebRequest();
+
+        if(tst_.isNetworkError || tst_.isHttpError){
+
+            //erro na conexao
+
+            Debug.Log("nao foi possivel verificar a versao");
+
+
+            if(inicializacao){
+                menu_sem_internet.SetActive(true);
+
+                inicializacao = false;
+            }
+            
+
+        }else
+        {
+            Debug.Log("versao instalada: " + gerenciador.instancia.versao.ToString() + ". versao mais atual disponivel: " + tst_.downloadHandler.text.Split(',')[0]);
+
+            if(int.Parse(tst_.downloadHandler.text.Split(',')[0]) > gerenciador.instancia.versao){
+
+                //jogo desatualizado
+
+                Debug.Log("jogo desatualizado");
+
+                menu_baixar_atualizacao.SetActive(true);
+
+            }else
+            {
+                //jogo atualizado
+
+                Debug.Log("jogo atualizado");
+
+                if(inicializacao){
+                    menu_esta_atualizado.SetActive(true);
+
+                    inicializacao = false;
+                }
+
+
+            }
+        }
+    }
+
     IEnumerator salvarDadosOnline(int acao_, bool importante_){
 
-        Debug.Log("salvando dados online de..." + dados_.id.ToString() + ". UTC: " + dados_.ult_ctt);
-
-        WWWForm form = new WWWForm();
-
-        form.AddField("acao",acao_);
-        form.AddField("id", dados_.id.ToString());
-        form.AddField("nick",dados_.nick);
-        form.AddField("moedas",dados_.moedas.ToString());
-        form.AddField("dolares",dados_.dolares.ToString());
-        form.AddField("nivel",dados_.nivel.ToString().Replace(',','.'));
-        form.AddField("id_casa",dados_.id_casa);
-        form.AddField("quant_gar",dados_.quant_gar);
-        form.AddField("ult_ctt",dados_.ult_ctt);
-
-        
-
-        dados base_ = new dados();
-
-        for(int i_ = 0; i_ < dados_.itens.Length; i_++){
-            base_.itens[i_] = dados_.itens[i_];
-        }
-
-        dados_.itens = base_.itens;
-
-
-
-        for(int i_ = 0; i_ < dados_.outfit.Length; i_++){
-            base_.outfit[i_] = dados_.outfit[i_];
-        }
-
-        dados_.outfit = base_.outfit;
-
-
-
-        for(int i_ = 0; i_ < dados_.recordes.Length; i_++){
-            base_.recordes[i_] = dados_.recordes[i_];
-        }
-
-        dados_.recordes = base_.recordes;
-
-        
-
-        form.AddField("itens",string.Join("-",dados_.itens));
-        form.AddField("outfit",string.Join("-",dados_.outfit));
-        form.AddField("records",string.Join("-",dados_.recordes));
-
-        form.AddField("carros",stringDeCarro(dados_.carro[1]) + "-" + stringDeCarro(dados_.carro[2]) + "-" + stringDeCarro(dados_.carro[3]));
-
-
-        link = UnityWebRequest.Post(gerenciador.host + site,form);
+        UnityWebRequest tst_ = UnityWebRequest.Post(gerenciador.instancia.host_ + "/pps/lar_proc_at.php",new WWWForm());
 
         if(importante_){
             menu_carregando.SetActive(true);
         }
 
-        yield return link.SendWebRequest();
+        yield return tst_.SendWebRequest();
 
-        if(link.isNetworkError || link.isHttpError){
+        if(tst_.isNetworkError || tst_.isHttpError){
 
             Debug.Log("erro de rede :l (" + link.error + ")   salvando dados offline");
 
@@ -319,6 +325,12 @@ public class gerDados : MonoBehaviour
                 menu_carregando.SetActive(false);
             }
 
+            if(inicializacao){
+                menu_sem_internet.SetActive(true);
+
+                inicializacao = false;
+            }
+
 
             menu_ERRO.SetActive(true);
 
@@ -326,76 +338,196 @@ public class gerDados : MonoBehaviour
 
         }else
         {
-            Debug.Log("rede ok :)");
-            
-            resposta = link.downloadHandler.text.Split(',');
-            
-            if(resposta[0] == "1"){
+            Debug.Log("versao instalada: " + gerenciador.instancia.versao.ToString() + ". versao mais atual disponivel: " + tst_.downloadHandler.text.Split(',')[0]);
 
-                Debug.Log("DADOS ATUALIZADOS ONLINE, UTC: " + resposta[1]);
+            if(int.Parse(tst_.downloadHandler.text.Split(',')[0]) > gerenciador.instancia.versao){
 
-                PlayerPrefs.SetInt("logado", 1);
-                
-                dados_.ult_ctt = resposta[1];
+                // jogo desatualizado
 
-                salvarDadosOffline();
+                Debug.Log("jogo desatualizado");
 
-                aplicarDados();
-            }
-
-            if(resposta[0] == "2"){
-
-                Debug.Log("DADOS ONLINE CRIADOS, UTC: " + resposta[1]);
-
-                PlayerPrefs.SetInt("logado", 1);
-
-                dados_.ult_ctt = resposta[1];
-
-                salvarDadosOffline();
-
-                aplicarDados();
-            }
-
-            if(resposta[0] == "3"){
-                Debug.Log("DADOS ONLINE BAIXADOS, UTC: " + resposta[8]);
-                
-
-                int lingua_ = dados_.lingua;
-
-                dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,int.Parse(resposta[4]),int.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
-
-                dados_.itens = Array.ConvertAll(resposta[9].Split('-'),int.Parse);
-
-                dados_.outfit = Array.ConvertAll(resposta[10].Split('-'),int.Parse);
-
-                dados_.recordes = Array.ConvertAll(resposta[11].Split('-'),long.Parse);
-                
-                dados_.carro = Array.ConvertAll(new string[4] {null,string.Join("-",resposta[12].Split('-').Skip(0).Take(13).ToArray()),string.Join("-",resposta[12].Split('-').Skip(13).Take(13).ToArray()),string.Join("-",resposta[12].Split('-').Skip(26).Take(13).ToArray())},new Converter<string,carro_dados>(carroDeString));
+                dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
 
                 salvarDadosOffline();
 
                 aplicarDados();
 
+                if(importante_){
+                    menu_carregando.SetActive(false);
+                }
                 
-            }
+                menu_baixar_atualizacao.SetActive(true);
 
-            if(resposta[0] == "4"){
-                Debug.Log("DADOS SINCRONIZADOS, UTC: " + resposta[1]);
 
-                PlayerPrefs.SetInt("logado", 1);
+            }else{
+
+                // jogo atualizado
+
+                Debug.Log("jogo atualizado");
+
+                if(inicializacao){
+
+                    menu_esta_atualizado.SetActive(true);
+
+                    inicializacao = false;
+
+                }
+
+                Debug.Log("salvando dados online de..." + dados_.id.ToString() + ". UTC: " + dados_.ult_ctt);
+
+                WWWForm form = new WWWForm();
+
+                form.AddField("acao",acao_);
+                form.AddField("id", dados_.id.ToString());
+                form.AddField("nick",dados_.nick);
+                form.AddField("moedas",dados_.moedas.ToString());
+                form.AddField("dolares",dados_.dolares.ToString());
+                form.AddField("nivel",dados_.nivel.ToString().Replace(',','.'));
+                form.AddField("id_casa",dados_.id_casa);
+                form.AddField("quant_gar",dados_.quant_gar);
+                form.AddField("ult_ctt",dados_.ult_ctt);
+
                 
-                dados_.ult_ctt = resposta[1];
 
-                salvarDadosOffline();
+                dados base_ = new dados();
 
-                aplicarDados();
+                for(int i_ = 0; i_ < dados_.itens.Length; i_++){
+                    base_.itens[i_] = dados_.itens[i_];
+                }
 
+                dados_.itens = base_.itens;
+
+
+
+                for(int i_ = 0; i_ < dados_.outfit.Length; i_++){
+                    base_.outfit[i_] = dados_.outfit[i_];
+                }
+
+                dados_.outfit = base_.outfit;
+
+
+
+                for(int i_ = 0; i_ < dados_.recordes.Length; i_++){
+                    base_.recordes[i_] = dados_.recordes[i_];
+                }
+
+                dados_.recordes = base_.recordes;
+
+                
+
+                form.AddField("itens",string.Join("-",dados_.itens));
+                form.AddField("outfit",string.Join("-",dados_.outfit));
+                form.AddField("moveis",string.Join("-",dados_.moveis));
+                form.AddField("records",string.Join("-",dados_.recordes));
+
+                form.AddField("carros",stringDeCarro(dados_.carro[1]) + "-" + stringDeCarro(dados_.carro[2]) + "-" + stringDeCarro(dados_.carro[3]));
+
+
+                link = UnityWebRequest.Post(gerenciador.host + site,form);
+
+                if(importante_){
+                    menu_carregando.SetActive(true);
+                }
+
+                yield return link.SendWebRequest();
+
+                if(link.isNetworkError || link.isHttpError){
+
+                    Debug.Log("erro de rede :l (" + link.error + ")   salvando dados offline");
+
+                    dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
+
+                    salvarDadosOffline();
+
+                    aplicarDados();
+
+                    if(importante_){
+                        menu_carregando.SetActive(false);
+                    }
+
+
+                    menu_ERRO.SetActive(true);
+
+                    menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "erro na rede (" + link.error + ")";
+
+                }else
+                {
+                    Debug.Log("rede ok :)");
+                    
+                    resposta = link.downloadHandler.text.Split(',');
+                    
+                    if(resposta[0] == "1"){
+
+                        Debug.Log("DADOS ATUALIZADOS ONLINE, UTC: " + resposta[1]);
+
+                        PlayerPrefs.SetInt("logado", 1);
+                        
+                        dados_.ult_ctt = resposta[1];
+
+                        salvarDadosOffline();
+
+                        aplicarDados();
+                    }
+
+                    if(resposta[0] == "2"){
+
+                        Debug.Log("DADOS ONLINE CRIADOS, UTC: " + resposta[1]);
+
+                        PlayerPrefs.SetInt("logado", 1);
+
+                        dados_.ult_ctt = resposta[1];
+
+                        salvarDadosOffline();
+
+                        aplicarDados();
+                    }
+
+                    if(resposta[0] == "3"){
+                        Debug.Log("DADOS ONLINE BAIXADOS, UTC: " + resposta[8]);
+                        
+
+                        int lingua_ = dados_.lingua;
+
+                        dados_ = new dados(long.Parse(resposta[1]),resposta[2],float.Parse(resposta[3].Replace('.',',')),lingua_,int.Parse(resposta[4]),int.Parse(resposta[5]),int.Parse(resposta[6]),int.Parse(resposta[7]),resposta[8]);
+
+                        dados_.itens = Array.ConvertAll(resposta[9].Split('-'),int.Parse);
+
+                        dados_.outfit = Array.ConvertAll(resposta[10].Split('-'),int.Parse);
+
+                        dados_.moveis = Array.ConvertAll(resposta[11].Split('-'),int.Parse);
+
+                        dados_.recordes = Array.ConvertAll(resposta[12].Split('-'),long.Parse);
+                        
+                        dados_.carro = Array.ConvertAll(new string[4] {null,string.Join("-",resposta[13].Split('-').Skip(0).Take(13).ToArray()),string.Join("-",resposta[13].Split('-').Skip(13).Take(13).ToArray()),string.Join("-",resposta[13].Split('-').Skip(26).Take(13).ToArray())},new Converter<string,carro_dados>(carroDeString));
+
+                        salvarDadosOffline();
+
+                        aplicarDados();
+
+                        
+                    }
+
+                    if(resposta[0] == "4"){
+                        Debug.Log("DADOS SINCRONIZADOS, UTC: " + resposta[1]);
+
+                        PlayerPrefs.SetInt("logado", 1);
+                        
+                        dados_.ult_ctt = resposta[1];
+
+                        salvarDadosOffline();
+
+                        aplicarDados();
+
+                    }
+                    if(importante_){
+                        menu_carregando.SetActive(false);
+                    }
+
+                }
             }
-            if(importante_){
-                menu_carregando.SetActive(false);
-            }
-
         }
+
+
     }
 
     public string timeStampDeDate(DateTime data_){
@@ -410,7 +542,7 @@ public class gerDados : MonoBehaviour
         string textoCarro_ = "";
 
         if(car_ == null){
-            textoCarro_ = "0-0-0-0-0-0-0-0-0-0-0-0-0";
+            textoCarro_ = "0" + "-" + "0-0-0-0" +  "-" + "0-0" + "-" + "0-0-0-0-0-0";
         }else
         {
             textoCarro_ = car_.id_chassi.ToString() + "-" + string.Join("-",car_.nivel) + "-" + string.Join("-",car_.cor_id) + "-" + string.Join("-",car_.acessorios);

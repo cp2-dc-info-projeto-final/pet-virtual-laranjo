@@ -20,30 +20,30 @@ public class item_movel : ScriptableObject
 }
 
 public enum PosicaoItemMovel
-    {
-        Porta = 10,
-        Sofa,
-        Estante,
-        Televisao,
-        Cama,
-        Escrivaninha,
-        Cadeira,
-        Material,
-        Vaso,
-        Pia_Banheiro,
-        Chuveiro,
-        Fogao,
-        Pia_Cozinha,
-        Geladeira
-    }
+{
+    Porta = 10,
+    Sofa,
+    Estante,
+    Televisao,
+    Cama,
+    Escrivaninha,
+    Cadeira,
+    Material,
+    Vaso,
+    Pia_Banheiro,
+    Chuveiro,
+    Fogao,
+    Pia_Cozinha,
+    Geladeira
+}
 
-    public enum raridadeItemRoupa
-    {
-        SemNivel = 0,
-        Nivel1,
-        Nivel2,
-        Nivel3,
-        Nivel4,
-        Nivel5,
-        Nivel6
-    }
+public enum raridadeItemRoupa
+{
+    SemNivel = 0,
+    Nivel1,
+    Nivel2,
+    Nivel3,
+    Nivel4,
+    Nivel5,
+    Nivel6
+}

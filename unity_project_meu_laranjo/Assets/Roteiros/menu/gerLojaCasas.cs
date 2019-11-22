@@ -210,6 +210,7 @@ public class gerLojaCasas : MonoBehaviour
             {
 
                 menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
+                gerAnuncios.instancia.atualizarBotoes();
             }
 
 

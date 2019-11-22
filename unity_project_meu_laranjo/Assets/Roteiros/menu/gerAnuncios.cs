@@ -16,7 +16,7 @@ public class gerAnuncios : MonoBehaviour
     private InterstitialAd interstitial;
     private RewardedAd rewardedAd;
 
-    private RewardBasedVideoAd anuncio_video_dolares, anuncio_video_gasolina;
+    public RewardBasedVideoAd anuncio_video_dolares, anuncio_video_gasolina;
     private string id_anuncio_video_dolares = "ca-app-pub-7573135324040135/6565831590", id_anuncio_video_gasolina = "ca-app-pub-3940256099942544/5224354917";
 
     private float deltaTime = 0.0f;
@@ -56,6 +56,11 @@ public class gerAnuncios : MonoBehaviour
     public void Update()
     {
         
+    }
+
+    public void atualizarBotoes(){
+        botaoVideoDolares.interactable = anuncio_video_dolares.IsLoaded();
+        botaoVideoGasolina.interactable = anuncio_video_gasolina.IsLoaded();
     }
 
     public void prepararAnuncioDolares(){

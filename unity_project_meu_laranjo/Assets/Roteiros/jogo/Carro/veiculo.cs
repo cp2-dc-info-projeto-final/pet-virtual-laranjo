@@ -230,7 +230,7 @@ public class veiculo : MonoBehaviour
             frfr = false;
         }
 
-        if(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z > 0 && press_tra){
+        if(transform.InverseTransformDirection(GetComponent<Rigidbody>().velocity).z > 1 && press_tra){
             coll_roda[2].brakeTorque = forca_freios;
             coll_roda[3].brakeTorque = forca_freios;
         }

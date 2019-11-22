@@ -454,6 +454,7 @@ public class gerGames : MonoBehaviour
         if(tempo_restante == 0){
             if(chances_extras > 0){
                 menu_game_over.GetComponent<animar_UI>().mostrar_ocultar();
+                gerAnuncios.instancia.atualizarBotoes();
             }
         }
     }

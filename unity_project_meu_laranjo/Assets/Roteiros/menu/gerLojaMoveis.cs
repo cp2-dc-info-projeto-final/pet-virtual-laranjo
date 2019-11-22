@@ -34,6 +34,8 @@ public class gerLojaMoveis : MonoBehaviour
         item_selecionado = id_;
         item_tipo_selecionado = tipo_;
 
+        botao_loja_comprar.interactable = true;
+
         if(tipo_ < 10){
             textoLoja[0].text = gerMoveis.instancia.itemPinturaMovelDeId(id_).nome[gerDados.instancia.dados_.lingua];
             textoLoja[1].text = gerMoveis.instancia.itemPinturaMovelDeId(id_).descricao[gerDados.instancia.dados_.lingua];
@@ -72,6 +74,64 @@ public class gerLojaMoveis : MonoBehaviour
 
     public void botaoFecharLoja(){
         gerMoveis.instancia.aplicarMoveis(gerDados.instancia.dados_.moveis);
+    }
+
+    public void botaoConfirmarCompra(int opcao_){
+        if(opcao_ == 1){
+            //compra em moedas
+
+            if(item_tipo_selecionado < 10 ? gerDados.instancia.dados_.moedas >= gerMoveis.instancia.itemPinturaMovelDeId(item_selecionado).preco_moedas : gerDados.instancia.dados_.moedas >= gerMoveis.instancia.itemMovelDeId(item_selecionado,(PosicaoItemMovel) item_tipo_selecionado).preco_moedas){
+
+
+                gerDados.instancia.dados_.moveis[item_tipo_selecionado] = item_selecionado;
+
+                gerDados.instancia.dados_.moedas -= item_tipo_selecionado < 10 ? gerMoveis.instancia.itemPinturaMovelDeId(item_selecionado).preco_moedas : gerMoveis.instancia.itemMovelDeId(item_selecionado,(PosicaoItemMovel) item_tipo_selecionado).preco_moedas;
+
+                gerDados.instancia.salvar(true);
+
+                gerarloja(1);
+
+                menu_confirmar_compra.GetComponent<animar_UI>().mostrar_ocultar();
+
+                menu_confirmar_compra_pivot.SetActive(false);
+
+                
+
+            }else
+            {
+                menu_comprar_moedas.GetComponent<animar_UI>().mostrar_ocultar();
+            }
+        }
+
+        if(opcao_ == 2){
+            //compra em dolares
+
+            if(item_tipo_selecionado < 10 ? gerDados.instancia.dados_.dolares >= gerMoveis.instancia.itemPinturaMovelDeId(item_selecionado).preco_dolares : gerDados.instancia.dados_.dolares >= gerMoveis.instancia.itemMovelDeId(item_selecionado,(PosicaoItemMovel) item_tipo_selecionado).preco_dolares){
+
+
+                gerDados.instancia.dados_.moveis[item_tipo_selecionado] = item_selecionado;
+
+                gerDados.instancia.dados_.dolares -= item_tipo_selecionado < 10 ? gerMoveis.instancia.itemPinturaMovelDeId(item_selecionado).preco_dolares : gerMoveis.instancia.itemMovelDeId(item_selecionado,(PosicaoItemMovel) item_tipo_selecionado).preco_dolares;
+
+                gerDados.instancia.salvar(true);
+
+                gerarloja(1);
+
+                menu_confirmar_compra.GetComponent<animar_UI>().mostrar_ocultar();
+
+                menu_confirmar_compra_pivot.SetActive(false);
+
+                
+
+            }else
+            {
+
+                menu_comprar_dolares.GetComponent<animar_UI>().mostrar_ocultar();
+                gerAnuncios.instancia.atualizarBotoes();
+            }
+
+
+        }
     }
 
     public void gerarloja(int posi_){
