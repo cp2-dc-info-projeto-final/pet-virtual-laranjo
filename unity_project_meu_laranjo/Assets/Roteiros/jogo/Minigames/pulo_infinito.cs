@@ -158,6 +158,16 @@ public class pulo_infinito : MonoBehaviour
     }
 
     public void restartPuloInfinito(){
+
+        distancia_percorrida = -12;
+
+        dificuldade = 1;
+
+        velocidade_lado = 0;
+
+        velocidade_queda = 0;
+
+
         float altura_tela = Screen.height, largura_tela = Screen.width;
         escala_tela = (16f / 9f) / (altura_tela / largura_tela);
 
@@ -182,14 +192,6 @@ public class pulo_infinito : MonoBehaviour
 
             plataformas.Add(inst_);
         }
-
-        distancia_percorrida = -12;
-
-        dificuldade = 1;
-
-        velocidade_lado = 0;
-
-        velocidade_queda = 0;
 
         vivo = true;
     }

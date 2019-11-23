@@ -66,7 +66,7 @@ public class copo_aleatorio : MonoBehaviour
                             gerGames.instancia.pontuar();
                             movimentos++;
 
-                            if(movimentos < 50){
+                            if(movimentos < 35){
                                 int numero_aleatorio_ = Random.Range(1,4);
 
                                 if(numero_aleatorio_ == 3){
@@ -77,12 +77,12 @@ public class copo_aleatorio : MonoBehaviour
                                 StartCoroutine(ganharMoeda());
                             }
 
-                            if(movimentos >= 6 && copos.Count == 3){
+                            if(movimentos >= 35 && copos.Count == 3){
                                 GameObject inst_ = Instantiate(prefab_copo,new Vector3(0,0,10), Quaternion.Euler(0,0,0),transform);
                                 copos.Add(inst_.GetComponent<copo>());
                             }
 
-                            if(movimentos >= 205 && copos.Count == 4){
+                            if(movimentos >= 85 && copos.Count == 4){
                                 GameObject inst_ = Instantiate(prefab_copo,new Vector3(0,0,10), Quaternion.Euler(0,0,0),transform);
                                 copos.Add(inst_.GetComponent<copo>());
                             }
@@ -149,7 +149,7 @@ public class copo_aleatorio : MonoBehaviour
 
         tempo_total = 3;
 
-        for ( int i= copos.Count - 1; i > 3; --i )
+        for ( int i= copos.Count - 1; i >= 3; --i )
         {
             Debug.Log(i + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             GameObject child = copos[i-1].gameObject;
