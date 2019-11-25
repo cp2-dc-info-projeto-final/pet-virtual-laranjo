@@ -242,7 +242,7 @@
         
         if($result1 === false) { 
             die(mysqli_error($conexao2));
-         }else{
+        }else{
 
         while($row = mysqli_fetch_assoc($result2)){
             //dados criados

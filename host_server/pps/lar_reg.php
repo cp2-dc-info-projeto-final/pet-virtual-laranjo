@@ -140,7 +140,7 @@ if (isset($_POST['nascimento'])){
             $mail->Body = 'Your registration code is ' . $codigo . '. <br> Use it to confirm your JovDev account e-mail address :) <br> <br> PLEASE NOTE: YOUR CODE IS ONLY VALID FOR 24 HOURS AND ENTERING THE WRONG CODE 5 TIMES WILL CANCEL YOUR REGISTRATION!';
         }
 
-        if($lingua == "es-mx" || $lingua == "en-uk"){
+        if($lingua == "es-mx"){
             $mail->Subject = "Codigo de registro";
             $mail->Body = 'Su código de registro es '. $codigo. '. <br> Utilice este código para confirmar el correo electrónico de su cuenta JovDev :) <br> <br> TENGA EN CUENTA: ¡SU CÓDIGO SÓLO ES VÁLIDO POR 24 HORAS E INGRESAR EL CÓDIGO INCORRECTO 5 VECES CANCELARÁ SU REGISTRO!';
         }

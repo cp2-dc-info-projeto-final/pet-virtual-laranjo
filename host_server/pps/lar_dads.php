@@ -7,14 +7,14 @@
 // base de dados jovdev
 
 $nome_server_db = "localhost";
-$nome_usuario_db = "USUARIO_DA_BASE_DE_DADOS";
-$senha_db = "SENHA_DO_USUARIO_DA_BASE_DE_DADOS";
-$nome_db = "NOME_DA_DASE_DE_DADOS";
+$nome_usuario_db = "root";
+$senha_db = "";
+$nome_db = "jovdev";
 
 // base de dados meu laranjo
 
-$nome_usuario_db2 = "USUARIO_DA_BASE_DE_DADOS";
-$nome_db2 = "NOME_DA_DASE_DE_DADOS";
+$nome_usuario_db2 = "root";
+$nome_db2 = "meularanjo";
 
 // e-mail de confirmacao
 
