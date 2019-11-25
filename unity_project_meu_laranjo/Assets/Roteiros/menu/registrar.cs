@@ -330,6 +330,14 @@ public class registrar : MonoBehaviour
                 
                 menu_conf.GetComponent<confirmar>().id = resposta[2];
             }
+            if(resposta[1] == "2"){
+
+                menu_ERRO.SetActive(true);
+
+                string[] txt_ = new string[5]{"falha ao enviar email :(", "falha ao enviar email :(", "email sending fairule :(", "email sending fairule :(", "falha ao enviar email :("};
+
+                menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = txt_[gerDados.instancia.dados_.lingua];
+            }
         }
 
         
@@ -350,10 +358,12 @@ public class registrar : MonoBehaviour
 
         if(verif_ == 1){
             bordas[3].color = new Color(1,0.5f,0);
+            campoOk[3] = false;
         }
 
         if(verif_ == 2){
             bordas[0].color = new Color(1,0.5f,0);
+            campoOk[0] = false;
         }
 
         yield return link.SendWebRequest();

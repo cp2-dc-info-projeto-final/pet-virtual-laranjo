@@ -10,12 +10,18 @@ public class logar : MonoBehaviour
 {
     UnityWebRequest link_log;
     public TMP_InputField log_nick, log_senha;
-    public string site_log, site_log_fb, nick, senha, st1, st2;
+    public string site_log, site_log_fb, site_reg_FB, site_ver, nick, senha, st1, st2;
     public string[] resposta; // = new List<string>(); 
     public string[] dados_FB = new string[5];
     public bool carregando = false;
     public Slider barra_carregamento;
     public GameObject avisoCarregando, menu_conf, menu_logreg, menu_ERRO;
+
+    public TMP_InputField texto_reg_nick_FB;
+    public TMP_InputField texto_reg_nick_TT;
+    public Button botao_enviar_nick_FB, botao_enviar_nick_TT;
+    public Image[] bordas;
+    public bool[] campoOk = new bool[2]{false, false};
 
     void Awake() {
         if (!FB.IsInitialized) {
@@ -39,7 +45,19 @@ public class logar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(campoOk[0]){
+            botao_enviar_nick_FB.interactable = true;
+        }else
+        {
+            botao_enviar_nick_FB.interactable = false;
+        }
+
+        if(campoOk[1]){
+            botao_enviar_nick_TT.interactable = true;
+        }else
+        {
+            botao_enviar_nick_TT.interactable = false;
+        }
     }
 
     
@@ -294,5 +312,231 @@ public class logar : MonoBehaviour
 
             }
         }
+    }
+
+    public void checar_campo_nick_FB(){
+        StopCoroutine(checarCampo("",0));
+        if(texto_reg_nick_FB.text.Length >= 3){
+            StartCoroutine(checarCampo(texto_reg_nick_FB.text,1));
+        }else
+        {
+            campoOk[0] = false;
+            bordas[0].color = Color.red;
+        }
+        
+    }
+
+    public void checar_campo_nick_TT(){
+        StopCoroutine(checarCampo("",0));
+        if(texto_reg_nick_FB.text.Length >= 3){
+            StartCoroutine(checarCampo(texto_reg_nick_FB.text,1));
+        }else
+        {
+            campoOk[0] = false;
+            bordas[0].color = Color.red;
+        }
+        
+    }
+
+    IEnumerator checarCampo(string campo_, int verif_){
+
+        UnityWebRequest link = new UnityWebRequest();
+        
+        //Debug.Log("checando " + verif_);
+
+        WWWForm form = new WWWForm();
+        form.AddField("campo", campo_);
+        form.AddField("verif", 2);
+
+        link = UnityWebRequest.Post(gerenciador.host + site_ver,form);
+
+        //carregando = true;
+
+        if(verif_ == 1){
+            bordas[0].color = new Color(1,0.5f,0);
+            campoOk[0] = false;
+        }
+
+        if(verif_ == 2){
+            bordas[1].color = new Color(1,0.5f,0);
+            campoOk[1] = false;
+        }
+
+        yield return link.SendWebRequest();
+
+        //carregando = false;
+
+        if(link.isNetworkError || link.isHttpError){
+            if(verif_ == 1){
+                bordas[0].color = Color.red;
+            }
+
+            if(verif_ == 2){
+                bordas[1].color = Color.red;
+            }
+
+            menu_ERRO.SetActive(true);
+        }else
+        {
+            resposta = link.downloadHandler.text.Split(',');
+
+            if(verif_ == 1){
+
+                if(resposta[0] == "0"){
+                    bordas[0].color = Color.red;
+                    campoOk[0] = false;
+                }
+
+                if(resposta[0] == "1"){
+                    bordas[0].color = Color.green;
+                    campoOk[0] = true;
+                }
+
+                if(resposta[0] == "2"){
+                    bordas[0].color = Color.red;
+                    campoOk[0] = false;
+                }
+
+                if(resposta[0] == "99"){
+                    bordas[0].color = Color.red;
+                    campoOk[0] = false;
+                }
+                
+            }
+
+            if(verif_ == 2){
+
+                if(resposta[0] == "1"){
+                    bordas[1].color = Color.green;
+                    campoOk[1] = true;
+                }
+
+                if(resposta[0] == "2"){
+                    bordas[1].color = Color.red;
+                    campoOk[1] = false;
+                }
+
+                if(resposta[0] == "99"){
+                    bordas[1].color = Color.red;
+                    campoOk[1] = false;
+                }
+            }
+        }
+
+    }
+
+    public void botao_registrar_por_nick(int i_){
+
+        string lingua_ = "";
+
+        if(gerDados.instancia.dados_.lingua == 0){
+            lingua_ = "pt-br";
+        }
+
+        if(gerDados.instancia.dados_.lingua == 1){
+            lingua_ = "pt-pt";
+        }
+
+        if(gerDados.instancia.dados_.lingua == 2){
+            lingua_ = "en-us";
+        }
+
+        if(gerDados.instancia.dados_.lingua == 3){
+            lingua_ = "en-uk";
+        }
+
+        if(gerDados.instancia.dados_.lingua == 4){
+            lingua_ = "es-mx";
+        }
+        if(i_ == 0){
+            StartCoroutine(fazerRegistro(i_,i_ == 0 ? texto_reg_nick_FB.text : texto_reg_nick_TT.text,dados_FB[2],dados_FB[3],dados_FB[1],"0",lingua_,dados_FB[4],dados_FB[0]));
+        }else
+        {
+            StartCoroutine(fazerRegistro(i_,i_ == 0 ? texto_reg_nick_FB.text : texto_reg_nick_TT.text,dados_FB[2],dados_FB[3],dados_FB[1],"0",lingua_,dados_FB[4],dados_FB[0]));
+        }
+    }
+
+    IEnumerator fazerRegistro(int opc_ ,string nick_, string nome_, string sobrenome_, string email_, string senha_, string lingua_, string nascimento_, string id_){
+
+        nascimento_ = nascimento_.Split('/')[2] + "-" + nascimento_.Split('/')[0] + "-" + nascimento_.Split('/')[1];
+
+        UnityWebRequest link = new UnityWebRequest();
+        
+        WWWForm form = new WWWForm();
+
+        form.AddField("nick", nick_);
+        form.AddField("nome", nome_);
+        form.AddField("sobrenome", sobrenome_);
+        form.AddField("email", email_);
+        form.AddField("senha", senha_);
+        form.AddField("lingua", lingua_);
+        form.AddField("nascimento", nascimento_);
+
+        if(opc_ == 0){
+            form.AddField("fb_id", id_);
+
+            link = UnityWebRequest.Post(gerenciador.host + site_reg_FB,form);
+
+        }else
+        {
+            link = UnityWebRequest.Post(gerenciador.host + site_reg_FB,form);
+        }
+        
+        if(opc_ == 0){
+            botao_enviar_nick_FB.interactable = false;
+        }else
+        {
+            botao_enviar_nick_TT.interactable = false;
+        }
+
+        yield return link.SendWebRequest();
+
+        if(link.isNetworkError || link.isHttpError){
+
+            if(opc_ == 0){
+                botao_enviar_nick_FB.interactable = true;
+            }else
+            {
+                botao_enviar_nick_TT.interactable = true;
+            }
+
+            menu_ERRO.SetActive(true);
+
+        }else
+        {
+            resposta = link.downloadHandler.text.Split(',');
+
+            if(resposta[1] == "1"){
+                menu_conf.SetActive(true);
+
+                if(opc_ == 0){
+                    texto_reg_nick_FB.text = "";
+                }else
+                {
+                    texto_reg_nick_TT.text = "";
+                }
+                
+                menu_conf.GetComponent<confirmar>().id = resposta[2];
+            }
+            if(resposta[1] == "2"){
+
+                menu_ERRO.SetActive(true);
+
+                string[] txt_ = new string[5]{"falha ao enviar email :(", "falha ao enviar email :(", "email sending fairule :(", "email sending fairule :(", "falha ao enviar email :("};
+
+                menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = txt_[gerDados.instancia.dados_.lingua];
+
+                if(opc_ == 0){
+                    botao_enviar_nick_FB.interactable = true;
+                }else
+                {
+                    botao_enviar_nick_TT.interactable = true;
+                }
+
+            }
+        }
+
+        
+
     }
 }

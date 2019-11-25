@@ -96,13 +96,23 @@
         //inserir dados
 
 
-        $sql = "INSERT INTO `usuario` (`id`, `confirm`, `nome`, `sobrenome`, `nick`, `email`, `senha`, `criacao`, `nascimento`, `lingua`, `id_gg`, `id_fb`, `id_tt`, `id_nc`) VALUES (NULL, 's', '".$nome."', '".$sobrenome."', '".$nick."', '".$email."', NULL, CURRENT_TIME(), '".$nascimento." 00:00:00', '".$lingua."', 0, ".$fb_id.", 0, 0)";
+        $sql = "INSERT INTO `usuario` (`id`, `confirm`, `nome`, `sobrenome`, `nick`, `email`, `senha`, `criacao`, `nascimento`, `lingua`, `id_gg`, `id_fb`, `id_tt`, `id_nc`) VALUES (NULL, 's', '".$nome."', '".$sobrenome."', '".$nick."', '".$email."', '". rand(10000000, 99999999) ."', CURRENT_TIME(), '".$nascimento." 00:00:00', '".$lingua."', 0, ".$fb_id.", 0, 0)";
                 
         //$sql = "INSERT INTO `usuario` (`id`, `confirm`, `nome`, `sobrenome`, `nick`, `email`, `senha`, `criacao`, `nascimento`, `lingua`, `id_gg`, `id_fb`, `id_tt`, `id_nc`) VALUES (NULL, 'aaa', 'crisvaldo', 'vandirlei', 'jooj', 'slaaaa@aaaaaa.coum', '123123', current_timestamp(), '2019-10-22 00:00:00', 'pt-pt', '', '', '', '')";
 
         $result = mysqli_query($conexao ,$sql);
 
-        echo "1,0";
+
+        $sql = "SELECT id FROM usuario WHERE id_fb =".$fb_id;
+
+        $result = mysqli_query($conexao ,$sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            echo "1,0,";
+            echo $row['id'];
+        }
+
+        
 
 
     }
