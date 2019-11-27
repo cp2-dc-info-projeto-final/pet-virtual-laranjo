@@ -211,13 +211,21 @@
 
         global $id, $nick, $moedas, $dolares, $nivel, $id_casa, $quant_gar, $ult_ctt, $itens, $outfit, $moveis, $records, $carros, $conexao1, $conexao2;
 
+
+        $sql2 = "SELECT nick FROM usuario WHERE id = ".$id;
+        $result2 = mysqli_query($conexao1 ,$sql2);
+
+
+        while($row = mysqli_fetch_assoc($result2)){
+            $nick = $row['nick'];
+        }
+
         $sql = "INSERT INTO `info_laranjo` (`id`, `nick_laranjo`, `moedas`, `dolares`, `nivel`, `id_casa`, `quant_gar`, `relacionamento`, `primeiro_cont`, `ultimo_cont`) VALUES (".$id.", '".$nick."', ".$moedas.", ".$dolares.", ".$nivel.", ".$id_casa.", ".$quant_gar.", 'p', current_timestamp(), current_timestamp())";
         $result1 = mysqli_query($conexao2 ,$sql);
 
 
 
-        $sql2 = "SELECT ultimo_cont FROM info_laranjo WHERE id = ".$id;
-        $result2 = mysqli_query($conexao2 ,$sql2);
+        
 
         for($i_ = 0; $i_ < count($itens); $i_++){
             gravarDados_InfoLaranjo_int($itens[$i_],0,$i_);
@@ -239,15 +247,18 @@
             gravarDados_InfoLaranjo_int($carros[$i_],4,$i_);
         }
 
-        
+        $sql2 = "SELECT ultimo_cont FROM info_laranjo WHERE id = ".$id;
+        $result2 = mysqli_query($conexao2 ,$sql2);
+
         if($result1 === false) { 
             die(mysqli_error($conexao2));
         }else{
 
-        while($row = mysqli_fetch_assoc($result2)){
-            //dados criados
-            echo "2,".$row['ultimo_cont'];
-        }}
+            while($row = mysqli_fetch_assoc($result2)){
+                //dados criados
+                echo "2,".$row['ultimo_cont'].",".$nick;
+            }
+        }
 
         //echo $sql;
     }

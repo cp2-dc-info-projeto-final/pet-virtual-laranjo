@@ -63,9 +63,10 @@ public class gerenciador : MonoBehaviour
     // CASAS
     [Space(30)]
     public List<item_casa> casas;
-    public GameObject[] casa_pivot;
 
-    public GameObject rank_peca, rank_piv;
+    public GameObject[] casa_pivot, chao;
+
+    public GameObject rank_peca, rank_piv, chao_piv, pivot_chao;
 
 
     // CONFIGS
@@ -162,7 +163,7 @@ public class gerenciador : MonoBehaviour
 
     public void colocaritemLoja(int id_){
         
-        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_),gerDados.instancia.dados_.nivel);
+        laranjo_preview.GetComponent<design>().MudarMesh(itemDeId(id_),1);
         
         if((int)itemDeId(id_).posicao == 5){
             laranjo_preview.GetComponent<Animator>().SetBool("item",itemDeId(id_).seguraItem);
@@ -184,8 +185,9 @@ public class gerenciador : MonoBehaviour
     }
 
     public void botaoOpcoes(){
-        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
         ligarCameraPreview();
+        gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
+        
     }
 
     public void ligarCameraPreview(){
@@ -322,7 +324,7 @@ public class gerenciador : MonoBehaviour
         }
 
         if(posi_ == 0){
-            gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,gerDados.instancia.dados_.nivel);
+            gerDados.instancia.aplicarOutfit(laranjo_preview,gerDados.instancia.dados_.outfit,1);
             
             foreach(item item_ in itens)
             {
@@ -528,6 +530,13 @@ public class gerenciador : MonoBehaviour
 
             Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
         }
+
+        Vector3 pos_ = chao_piv.transform.position;
+        Quaternion rot_ = chao_piv.transform.rotation;
+
+        Destroy(chao_piv);
+
+        chao_piv = Instantiate(chao[gerDados.instancia.dados_.quant_gar],pos_, rot_,pivot_chao.transform);
     }
 
     public void instanciar_casa(int id_){
@@ -551,6 +560,12 @@ public class gerenciador : MonoBehaviour
             Instantiate(itemCasaDeId(id_).prefab_garagem, casa_pivot[i_].transform);
 
         }
+        Vector3 pos_ = chao_piv.transform.position;
+        Quaternion rot_ = chao_piv.transform.rotation;
+
+        Destroy(chao_piv);
+
+        chao_piv = Instantiate(chao[gerDados.instancia.dados_.quant_gar],pos_, rot_,pivot_chao.transform);
     }
 
     public void instanciar_casa(int quant_garagem, bool preview_garagem){
@@ -574,6 +589,12 @@ public class gerenciador : MonoBehaviour
             Instantiate(itemCasaDeId(gerDados.instancia.dados_.id_casa).prefab_garagem, casa_pivot[i_].transform);
 
         }
+        Vector3 pos_ = chao_piv.transform.position;
+        Quaternion rot_ = chao_piv.transform.rotation;
+
+        Destroy(chao_piv);
+
+        chao_piv = Instantiate(chao[quant_garagem],pos_, rot_,pivot_chao.transform);
     }
 
     public void instanciar_carros(){

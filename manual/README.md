@@ -99,7 +99,8 @@ CREATE TABLE `dados_info_laranjo` (
 
 ALTER TABLE `dados_info_laranjo`
     ADD PRIMARY KEY (`id`),
-    ADD FOREIGN KEY (`id_info_laranjo`) REFERENCES `info_laranjo`(`id`);
+    ADD FOREIGN KEY (`id_info_laranjo`) REFERENCES `info_laranjo`(`id`),
+    CHANGE `id` `id` BIGINT(11) NOT NULL AUTO_INCREMENT;
 
 
 CREATE TABLE `info` ( `ultima_versao` BIGINT NOT NULL ) ENGINE = MyISAM;

@@ -63,17 +63,34 @@ public class confirmar : MonoBehaviour
             resposta = link.downloadHandler.text.Split(',');
 
             if(resposta[0] == "1"){
-                menuConfirmacao.SetActive(false);
+                //registro confirmado
+                
+                
                 confirmado.SetActive(true);
+
+                gerDados.instancia.dados_.id = long.Parse(id);
+
+                PlayerPrefs.SetInt("logado", 1);
+
+                gerDados.instancia.baixarDados();
+
+                Debug.Log("registro confirmado");
+
+                gerDados.instancia.botao_logout.SetActive(true);
+
+                menuConfirmacao.SetActive(false);
             }else
             {
-                if(resposta[1] == "0"){
-                    menuConfirmacao.SetActive(false);
-                    excessoDeTentativas.SetActive(true);
-                }else
-                {
-                    borda.color = new Color(1,0,0);
+                if(resposta[0] == "0"){
+                    if(resposta[1] == "0"){
+                        menuConfirmacao.SetActive(false);
+                        excessoDeTentativas.SetActive(true);
+                    }else
+                    {
+                        borda.color = new Color(1,0,0);
+                    }
                 }
+                
             }
         }
 

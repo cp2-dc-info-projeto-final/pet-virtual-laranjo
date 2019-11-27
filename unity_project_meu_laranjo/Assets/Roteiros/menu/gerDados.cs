@@ -22,6 +22,8 @@ public class gerDados : MonoBehaviour
     public bool online = false, inFirst = false, inicializacao = true;
     public GameObject botao_logout, menu_carregando, menu_ERRO, menu_esta_atualizado, menu_baixar_atualizacao, menu_sem_internet;
 
+    public GameObject menu_linguagem;
+
     private void Awake() {
         inicializacao = true;
 
@@ -83,7 +85,14 @@ public class gerDados : MonoBehaviour
 
         aplicarOutfit(gerenciador.instancia.laranjo,dados_.outfit,dados_.nivel);
 
+        if(gerMoveis.instancia != null){
+            gerMoveis.instancia.aplicarMoveis(dados_.moveis);
+        }
+        
+
         gerLinguas.instancia.atualizarLingua();
+
+        gerenciador.instancia.botaoOpcoes();
     }
 
     public void loginConfigs(){
@@ -124,6 +133,8 @@ public class gerDados : MonoBehaviour
             aplicarDados();
 
             StartCoroutine(verificarVersao());
+
+            menu_linguagem.GetComponent<animar_UI>().mostrar_ocultar();
 
             //quando estiver entrando plea primeira vez:
             
@@ -191,6 +202,7 @@ public class gerDados : MonoBehaviour
     }
 
     public void baixarDados(){
+        dados_.ult_ctt = "2000-10-10 12:00:00";
         StartCoroutine(salvarDadosOnline(1, false));
     }
 
@@ -477,6 +489,8 @@ public class gerDados : MonoBehaviour
 
                         dados_.ult_ctt = resposta[1];
 
+                        dados_.nick = resposta[2];
+
                         salvarDadosOffline();
 
                         aplicarDados();
@@ -533,7 +547,7 @@ public class gerDados : MonoBehaviour
     public string timeStampDeDate(DateTime data_){
         string dataString_ = "";
 
-        dataString_ = data_.Year.ToString() + "-"+ data_.Month.ToString() + "-"+ data_.Day.ToString() + " " + data_.Hour.ToString().PadLeft(2,'0') + ":" + data_.Minute.ToString() + ":" + data_.Second.ToString();
+        dataString_ = data_.Year.ToString() + "-"+ data_.Month.ToString().PadLeft(2,'0') + "-"+ data_.Day.ToString().PadLeft(2,'0') + " " + data_.Hour.ToString().PadLeft(2,'0') + ":" + data_.Minute.ToString() + ":" + data_.Second.ToString();
 
         return dataString_;
     }

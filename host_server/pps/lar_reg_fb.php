@@ -108,6 +108,7 @@
         $result = mysqli_query($conexao ,$sql);
 
         while($row = mysqli_fetch_assoc($result)){
+            //registro com facebook concluido
             echo "1,0,";
             echo $row['id'];
         }

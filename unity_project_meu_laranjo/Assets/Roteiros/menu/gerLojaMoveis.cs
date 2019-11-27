@@ -159,7 +159,8 @@ public class gerLojaMoveis : MonoBehaviour
 
 
         if(posi_ == 1){
-            moveis_atuais = gerDados.instancia.dados_.moveis;
+            moveis_atuais = gerDados.instancia.dados_.moveis.CloneProfundo();
+            gerMoveis.instancia.aplicarMoveis(gerDados.instancia.dados_.moveis);
         }
 
         textoLoja[0].text = "";
@@ -185,7 +186,7 @@ public class gerLojaMoveis : MonoBehaviour
             {
                 if(item_ != null){
 
-                    if(item_.listado && item_.id > 11 && !gerDados.instancia.temItem(item_.id)){
+                    if(item_.listado){
 
                         GameObject botao_ = Instantiate(gerenciador.instancia.prefab_botao,lista_loja.transform);
                         botao_.GetComponent<Image>().sprite = gerenciador.instancia.raridade[(int)item_.raridade];

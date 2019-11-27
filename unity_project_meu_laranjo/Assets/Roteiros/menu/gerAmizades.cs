@@ -39,10 +39,11 @@ public class gerAmizades : MonoBehaviour
 
     public void botao_abrir_ger_amigos(){
         if(PlayerPrefs.GetInt("logado") == 1){
+            GetComponent<animar_UI>().mostrar_ocultar();
             botao_mostrar_amigos.interactable = false;
             botao_mostrar_solicitaoes.interactable = true;
             botaoMostrarAmigos(4);
-            GetComponent<animar_UI>().mostrar_ocultar();
+            
         }else
         {
             menu_login.GetComponent<animar_UI>().mostrar_ocultar();

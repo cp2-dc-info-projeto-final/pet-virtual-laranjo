@@ -15,7 +15,7 @@ public class logar : MonoBehaviour
     public string[] dados_FB = new string[5];
     public bool carregando = false;
     public Slider barra_carregamento;
-    public GameObject avisoCarregando, menu_conf, menu_logreg, menu_ERRO;
+    public GameObject avisoCarregando, menu_conf, menu_logreg, menu_ERRO, menu_reg_nick_fb;
 
     public TMP_InputField texto_reg_nick_FB;
     public TMP_InputField texto_reg_nick_TT;
@@ -254,20 +254,7 @@ public class logar : MonoBehaviour
             
         }else
         {
-
-            avisoCarregando.SetActive(false);
             resposta = link_log.downloadHandler.text.Split(',');
-
-            Debug.Log("RESPOSTA: " + link_log.downloadHandler.text);
-
-            if(resposta[0]=="0"){
-                // usuario nao encontrado
-
-                Debug.Log("usuario nao encontrado");
-                
-                log_nick.text = "";
-                log_senha.text = "";
-            }
 
             if(resposta[0]=="1"){
                 // login bem sucedido
@@ -309,7 +296,7 @@ public class logar : MonoBehaviour
                 // facebook nao cadastrado
 
                 Debug.Log("facebook nao cadastrado");
-
+                menu_reg_nick_fb.SetActive(true);
             }
         }
     }
@@ -506,8 +493,9 @@ public class logar : MonoBehaviour
         {
             resposta = link.downloadHandler.text.Split(',');
 
-            if(resposta[1] == "1"){
-                menu_conf.SetActive(true);
+            if(resposta[0] == "1"){
+                
+                //registro confirmado
 
                 if(opc_ == 0){
                     texto_reg_nick_FB.text = "";
@@ -516,13 +504,26 @@ public class logar : MonoBehaviour
                     texto_reg_nick_TT.text = "";
                 }
                 
-                menu_conf.GetComponent<confirmar>().id = resposta[2];
+
+                gerDados.instancia.dados_.id = long.Parse(resposta[2]);
+
+                PlayerPrefs.SetInt("logado", 1);
+
+                gerDados.instancia.baixarDados();
+
+                Debug.Log("registro confirmado com " + (opc_ == 0 ? "Facebook" : "Twitter"));
+
+                gerDados.instancia.botao_logout.SetActive(true);
+
+                menu_reg_nick_fb.SetActive(false);
+                
+                menu_logreg.GetComponent<animar_UI>().mostrar_ocultar();
             }
-            if(resposta[1] == "2"){
+            if(resposta[0] == "2"){
 
                 menu_ERRO.SetActive(true);
 
-                string[] txt_ = new string[5]{"falha ao enviar email :(", "falha ao enviar email :(", "email sending fairule :(", "email sending fairule :(", "falha ao enviar email :("};
+                string[] txt_ = new string[5]{"falha na conexao com o servidor :(", "falha na conexao com o servidor :(", "server fairule :(", "server fairule :(", "falha con servidor :("};
 
                 menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = txt_[gerDados.instancia.dados_.lingua];
 

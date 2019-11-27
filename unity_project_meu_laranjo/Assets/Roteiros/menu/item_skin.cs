@@ -22,7 +22,7 @@ public class item_skin : item
 
         }else
         {
-            mat_.color = Color.Lerp(material[1].color,material[2].color,(gerDados.instancia.dados_.nivel - 0.5f) * 2);
+            mat_.color = Color.Lerp(material[1].color,material[2].color,(nivel_ - 0.5f) * 2);
         }
 
         return mat_;
