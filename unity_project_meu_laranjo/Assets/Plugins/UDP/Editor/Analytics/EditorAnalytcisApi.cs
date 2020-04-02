@@ -1,3 +1,4 @@
+#if (UNITY_5_6_OR_NEWER && !UNITY_5_6_0)
 using System;
 using System.Reflection;
 using UnityEngine.Networking;
@@ -180,3 +181,4 @@ namespace UnityEngine.UDP.Editor.Analytics
 
     #endregion
 }
+# endif

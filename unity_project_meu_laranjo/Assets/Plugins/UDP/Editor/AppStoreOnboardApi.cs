@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if (UNITY_5_6_OR_NEWER && !UNITY_5_6_0)
+
+using System;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -367,3 +369,5 @@ namespace UnityEngine.UDP.Editor
         }
     }
 }
+
+#endif

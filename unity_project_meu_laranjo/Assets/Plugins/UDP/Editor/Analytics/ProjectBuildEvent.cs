@@ -1,3 +1,5 @@
+#if (UNITY_5_6_OR_NEWER && !UNITY_5_6_0)
+
 using UnityEditor;
 using UnityEditor.Callbacks;
 
@@ -22,3 +24,5 @@ namespace UnityEngine.UDP.Editor.Analytics
         }
     }
 }
+
+#endif

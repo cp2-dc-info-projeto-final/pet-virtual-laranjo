@@ -66,6 +66,20 @@ ModelImporter:
     100120: item__08__-_roupa
     100122: item__09__-_colar
     100124: item__10__-_sapato
+    100126: 000_carroceria_mr_bean
+    100128: celular_01
+    100130: celular_02
+    100132: chinelo
+    100134: BezierCurve
+    100136: BezierCurve_001
+    100138: Cylinder
+    100140: Cylinder_001
+    100142: Cylinder_002
+    100144: objeto_celular_01
+    100146: objeto_celular_02
+    100148: objeto_chinelo
+    100150: objeto_luneta
+    100152: sapato_chinelo
     400000: //RootNode
     400002: Cube
     400004: Icosphere
@@ -129,6 +143,20 @@ ModelImporter:
     400120: item__08__-_roupa
     400122: item__09__-_colar
     400124: item__10__-_sapato
+    400126: 000_carroceria_mr_bean
+    400128: celular_01
+    400130: celular_02
+    400132: chinelo
+    400134: BezierCurve
+    400136: BezierCurve_001
+    400138: Cylinder
+    400140: Cylinder_001
+    400142: Cylinder_002
+    400144: objeto_celular_01
+    400146: objeto_celular_02
+    400148: objeto_chinelo
+    400150: objeto_luneta
+    400152: sapato_chinelo
     2100000: Material
     2100002: cor_olho_1
     2100004: cor_olho_2
@@ -167,6 +195,13 @@ ModelImporter:
     2300060: item__08__-_roupa
     2300062: item__09__-_colar
     2300064: item__10__-_sapato
+    2300066: 000_carroceria_mr_bean
+    2300068: chinelo
+    2300070: BezierCurve
+    2300072: BezierCurve_001
+    2300074: Cylinder
+    2300076: Cylinder_001
+    2300078: Cylinder_002
     3300000: //RootNode
     3300002: Cube
     3300004: Icosphere
@@ -200,6 +235,13 @@ ModelImporter:
     3300060: item__08__-_roupa
     3300062: item__09__-_colar
     3300064: item__10__-_sapato
+    3300066: 000_carroceria_mr_bean
+    3300068: chinelo
+    3300070: BezierCurve
+    3300072: BezierCurve_001
+    3300074: Cylinder
+    3300076: Cylinder_001
+    3300078: Cylinder_002
     4300000: Cube
     4300002: Icosphere
     4300004: olhos
@@ -236,6 +278,20 @@ ModelImporter:
     4300066: item__03__-_bigode
     4300068: item__02__-_sobranselha
     4300070: item__01__-_cabelo
+    4300072: 000_carroceria_mr_bean
+    4300074: chinelo
+    4300076: celular_02
+    4300078: celular_01
+    4300080: BezierCurve_001
+    4300082: BezierCurve
+    4300084: Cylinder_002
+    4300086: Cylinder_001
+    4300088: Cylinder
+    4300090: objeto_luneta
+    4300092: sapato_chinelo
+    4300094: objeto_chinelo
+    4300096: objeto_celular_02
+    4300098: objeto_celular_01
     7400000: Default Take
     7400002: laranjo_andar
     7400004: laranjo_item
@@ -258,13 +314,30 @@ ModelImporter:
     13700010: objeto_taco
     13700012: sobrancelha_presidencial
     13700014: oculos_dwi
+    13700016: celular_01
+    13700018: celular_02
+    13700020: objeto_celular_01
+    13700022: objeto_celular_02
+    13700024: objeto_chinelo
+    13700026: objeto_luneta
+    13700028: sapato_chinelo
     2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material__Untitled
-    second: {fileID: 2100000, guid: 892b9d02e6bfc9e48865a29bf741a1e5, type: 2}
+    second: {fileID: 2100000, guid: 7535771b752bfbf43801284bd02c4c13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__cabelo_presidencial
+    second: {fileID: 2100000, guid: c777662fe7e6bbf4ea285de96cb38837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None__textura_roupa_objeto_luneta_png
+    second: {fileID: 2100000, guid: 80b7322f615c0f14c97b1a3616f1850c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -273,8 +346,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: celular_cor_claro
+    second: {fileID: 2100000, guid: b3c30741383238f41981c63594eab6ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: celular_cor_escuro
+    second: {fileID: 2100000, guid: 4949fc7c7c1e4e1458bd177868de7b0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: celular_tela
+    second: {fileID: 2100000, guid: 483d1d1ef3d669445bafab2fe98e4a68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: chapeu_sad_boy__sadboy
     second: {fileID: 2100000, guid: 727fb34a997b2924d928ffca6a42be85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chinelo_cor_01__textura_fade_amarelo_claro_jpg
+    second: {fileID: 2100000, guid: 656eeaf227f3a3b4994a53e62609a484, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: chinelo_cor_02__textura_fade_branco_jpg
+    second: {fileID: 2100000, guid: b468c813ece6e1e4e8d3261ca2e8f152, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -288,8 +386,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: cor_olho_2__textura_fade_preto_jpg
+    second: {fileID: 2100000, guid: 4a4b99d0c209109468392c1be399406a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: cor_olho_3
     second: {fileID: 2100000, guid: eecaef4fcb819ef429d0d0e3f6ca9b7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cor_olho_3__textura_fade_azul_medio_jpg
+    second: {fileID: 2100000, guid: 66416512eaf746349a445f01261d9dd6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
