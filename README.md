@@ -1,11 +1,13 @@
 # Meu Laranjo
 
-![](\documentacao\readme\imagens\laranjo_img.png)
+![](documentacao\readme\imagens\laranjo_img.png)
+
+<img src="documentacao\readme\screenshots\scr_pt_ini.jpg">
 
 ---
 
 ### Languages:
-[![](\documentacao\readme\icones\band_br.png)](#sumário) [![](\documentacao\readme\icones\band_us.png)](#summary)
+[![](documentacao\readme\icones\band_br.png)](#sumário) [![](documentacao\readme\icones\band_us.png)](#summary)
 
 ---
 
@@ -44,33 +46,33 @@ Meu Laranjo foi um projeto de jogo para ser usado como trabalho de conclusão de
 
 ## Manual do jogo
 
-Ao abrir o jogo pela primeira vez, você deverá selecionar um idioma da lista (ele pode ser mudado posteriormente em ![](\documentacao\readme\icones\but_op.png) -> ![](\documentacao\readme\icones\but_li.png))
+Ao abrir o jogo pela primeira vez, você deverá selecionar um idioma da lista (ele pode ser mudado posteriormente em ![](documentacao\readme\icones\but_op.png) -> ![](documentacao\readme\icones\but_li.png))
 
-![](\documentacao\readme\screenshots\scr_pt_li.jpg)
+![](documentacao\readme\screenshots\scr_pt_li.jpg)
 
 Uma verificação de versão acontecerá para assegurar que seu jogo está atualizado.
 
-![](\documentacao\readme\gifs\lar_atu.gif)
+![](documentacao\readme\gifs\lar_atu.gif)
 
 Depois disso você estará na parte central do jogo: a casa do Laranjo.
 
 Toque no chão para fazer o Laranjo andar até lá.
 
-![](\documentacao\readme\gifs\lar_cli.gif)
+![](documentacao\readme\gifs\lar_cli.gif)
 
 Toque nas setas para mudar a visão da camera entre: sala de estar, quarto, banheiro e cozinha
 
-![](\documentacao\readme\screenshots\scr_pt_ca.jpg)
+![](documentacao\readme\screenshots\scr_pt_ca.jpg)
 
-No quarto, toque em ![](\documentacao\readme\icones\but_ar.png) para abrir o guarda-roupa do Laranjo e toque em ![](\documentacao\readme\icones\but_ce.png) para acessar a lojas (![](\documentacao\readme\icones\but_in.png)), minigames (![](\documentacao\readme\icones\but_jo.png)) e amigos (![](\documentacao\readme\icones\but_am.png)).
+No quarto, toque em ![](documentacao\readme\icones\but_ar.png) para abrir o guarda-roupa do Laranjo e toque em ![](documentacao\readme\icones\but_ce.png) para acessar a lojas (![](documentacao\readme\icones\but_in.png)), minigames (![](documentacao\readme\icones\but_jo.png)) e amigos (![](documentacao\readme\icones\but_am.png)).
 
 
 <img src="documentacao\readme\gifs\lar_arm.gif" width="25%"><img src="documentacao\readme\gifs\lar_loj.gif" width="25%"><img src="documentacao\readme\gifs\lar_jog.gif" width="25%"><img src="documentacao\readme\gifs\lar_ami.gif" width="25%">
 
 
-Para abrir o menu de opções toque no botao superior direito (![](\documentacao\readme\icones\but_op.png)), nele você pode pode acessar as áreas de perfil, idiomas, configuracoes e créditos
+Para abrir o menu de opções toque no botao superior direito (![](documentacao\readme\icones\but_op.png)), nele você pode pode acessar as áreas de perfil, idiomas, configuracoes e créditos
 
-![](\documentacao\readme\screenshots\scr_pt_op.jpg)
+![](documentacao\readme\screenshots\scr_pt_op.jpg)
 
 ---
 
@@ -80,17 +82,17 @@ Para abrir o projeto em modo de desenvolvimento, você precisa ter um ambiente c
 
 ### Unity:
 
-Clone o repositorio e abra o projeto da pasta [\unity_project_meu_laranjo](\unity_project_meu_laranjo) com o Unity Editor 
+Clone o repositorio e abra o projeto da pasta [\unity_project_meu_laranjo](unity_project_meu_laranjo) com o Unity Editor 
 
 ### Servidor:
 
-Hospede os arquivos da pasta [\host_server](\host_server) no servidor HTTP
+Hospede os arquivos da pasta [\host_server](host_server) no servidor HTTP
 
 ### Bases de Dados:
 
 Utilize essas consultas para gerar as bases de dados "jovdev" e "meularanjo" no mesmo servidor do HTTP.
 
-(A estrutura dessas bases de dados estão descritas nesse [diagrama de entidades e relacionamentos](\documentacao\diagrama%20do%20banco%20de%20dados\DED%20bases%20de%20dados.jpg) )
+(A estrutura dessas bases de dados estão descritas nesse [diagrama de entidades e relacionamentos](documentacao\diagrama%20do%20banco%20de%20dados\DED%20bases%20de%20dados.jpg) )
 
 #### jovdev:
 ~~~~sql
@@ -236,33 +238,33 @@ Meu Laranjo was a game project to be used as a course completion work in the tec
 
 ## Game manual
 
-When opening the game for the first time, you must select a language from the list (it can be changed later at ![](\documentacao\readme\icones\but_op.png) -> ![](\documentacao\readme\icones\but_li.png))
+When opening the game for the first time, you must select a language from the list (it can be changed later at ![](documentacao\readme\icones\but_op.png) -> ![](documentacao\readme\icones\but_li.png))
 
-![](\documentacao\readme\screenshots\scr_pt_li.jpg)
+![](documentacao\readme\screenshots\scr_pt_li.jpg)
 
 A version check will take place to ensure that your game is up to date.
 
-![](\documentacao\readme\gifs\lar_atu.gif)
+![](documentacao\readme\gifs\lar_atu.gif)
 
 After that you will be in the central part of the game: the Laranjo house.
 
 Touch the floor to make Laranjo walk there.
 
-![](\documentacao\readme\gifs\lar_cli.gif)
+![](documentacao\readme\gifs\lar_cli.gif)
 
 Touch the arrows to change the camera view between: living room, bedroom, bathroom and kitchen
 
-![](\documentacao\readme\screenshots\scr_pt_ca.jpg)
+![](documentacao\readme\screenshots\scr_pt_ca.jpg)
 
-In the bedroom, tap ![](\documentacao\readme\icones\but_ar.png) to open the Laranjo wardrobe and tap ![](\documentacao\readme\icones\but_ce.png) to access stores (![](\documentacao\readme\icones\but_in.png)), minigames (![](\documentacao\readme\icones\but_jo.png)) and friends (![](\documentacao\readme\icones\but_am.png)).
+In the bedroom, tap ![](documentacao\readme\icones\but_ar.png) to open the Laranjo wardrobe and tap ![](documentacao\readme\icones\but_ce.png) to access stores (![](documentacao\readme\icones\but_in.png)), minigames (![](documentacao\readme\icones\but_jo.png)) and friends (![](documentacao\readme\icones\but_am.png)).
 
 
 <img src="documentacao\readme\gifs\lar_arm.gif" width="25%"><img src="documentacao\readme\gifs\lar_loj.gif" width="25%"><img src="documentacao\readme\gifs\lar_jog.gif" width="25%"><img src="documentacao\readme\gifs\lar_ami.gif" width="25%">
 
 
-To open the options menu, tap the upper right button (![](\documentacao\readme\icones\but_op.png)), where you can access the profile, languages, settings and credits areas
+To open the options menu, tap the upper right button (![](documentacao\readme\icones\but_op.png)), where you can access the profile, languages, settings and credits areas
 
-![](\documentacao\readme\screenshots\scr_pt_op.jpg)
+![](documentacao\readme\screenshots\scr_pt_op.jpg)
 
 ---
 
@@ -272,17 +274,17 @@ To open the project in development mode, you need to have an environment configu
 
 ### Unity:
 
-Clone the repository and open the project from the folder [\ unity_project_meu_laranjo](\unity_project_meu_laranjo) with Unity Editor
+Clone the repository and open the project from the folder [\ unity_project_meu_laranjo](unity_project_meu_laranjo) with Unity Editor
 
 ### Server:
 
-Host files from the [\host_server](\host_server) folder on the HTTP server
+Host files from the [\host_server](host_server) folder on the HTTP server
 
 ### Data base:
 
 Use these queries to generate the "jovdev" and "meularanjo" databases on the same HTTP server.
 
-(The structure of these databases are described in this [diagram of entities and relationships](\documentacao\diagrama%20do%20banco%20de%20dados\DED%20bases%20de%20dados.jpg) )
+(The structure of these databases are described in this [diagram of entities and relationships](documentacao\diagrama%20do%20banco%20de%20dados\DED%20bases%20de%20dados.jpg) )
 
 #### jovdev:
 ~~~~sql

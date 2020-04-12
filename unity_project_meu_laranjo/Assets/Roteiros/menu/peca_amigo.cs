@@ -17,7 +17,7 @@ public class peca_amigo : MonoBehaviour
     {
         perfil_amigo = GameObject.Find("perfil_amigo");
         texto_nick.text = nick;
-        
+            
 
         if(nivel < 0.5f){
 

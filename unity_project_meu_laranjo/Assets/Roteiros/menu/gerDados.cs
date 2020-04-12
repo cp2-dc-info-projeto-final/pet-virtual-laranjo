@@ -325,7 +325,7 @@ public class gerDados : MonoBehaviour
 
         if(tst_.isNetworkError || tst_.isHttpError){
 
-            Debug.Log("erro de rede :l (" + link.error + ")   salvando dados offline");
+            Debug.Log("erro de rede :l (" + tst_.error + ")   salvando dados offline");
 
             dados_.ult_ctt = timeStampDeDate(DateTime.UtcNow);
 
@@ -346,7 +346,7 @@ public class gerDados : MonoBehaviour
 
             menu_ERRO.SetActive(true);
 
-            menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "erro na rede (" + link.error + ")";
+            menu_ERRO.transform.Find("desc").gameObject.GetComponent<TextMeshProUGUI>().text = "erro na rede (" + tst_.error + ")";
 
         }else
         {
