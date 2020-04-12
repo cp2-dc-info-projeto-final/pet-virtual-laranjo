@@ -17,6 +17,16 @@ public class peca_amigo : MonoBehaviour
     {
         perfil_amigo = GameObject.Find("perfil_amigo");
         texto_nick.text = nick;
+        
+
+        if(nivel < 0.5f){
+
+            fundo.color = Color.Lerp(new Color(0,1,0),new Color(1,1,0),gerDados.instancia.dados_.nivel * 2);
+
+        }else
+        {
+            fundo.color = Color.Lerp(new Color(1,1,0),new Color(1,113f / 255,50f / 255),(nivel - 0.5f) * 2);
+        }
     }
 
     // Update is called once per frame
