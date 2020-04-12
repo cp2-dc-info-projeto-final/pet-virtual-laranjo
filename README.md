@@ -208,8 +208,8 @@ Visite o site da [JovDev](http://jovdev.tk/jogos.html) para futuras informaçõe
 - [About the project](#about-the-project)
 - [Why?](#why)
 - [Getting started](#getting-started)
-    - [Manual do jogo](#manual-do-jogo)
-    - [Manual para clonagem do projeto](#manual-para-clonagem-do-projeto)
+    - [Game manual](#game-manual)
+    - [Manual for cloning the project](#manual-for-cloning-the-project)
 
 ---
 
